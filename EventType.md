@@ -74,7 +74,25 @@ query{
 }
 ```
 
-### Triggered when an issue comment is created, edited, or deleted.
+### Issue event
+
+Triggered when an issue is opened, edited, deleted, transferred, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, or demilestoned.
+
+Below query fetch `first 5` item with fields `body`
+
+```
+issues(first:5){
+  edges{
+    node{
+      body
+    }
+  }
+}
+```
+
+## Comments on issue event.
+
+Triggered when an issue comment is created, edited, or deleted.
 
 Below query fetch `first 5` item with fields `body and url`
 
@@ -89,7 +107,9 @@ issueComments(first:5){
 }
 ```
 
-### Triggered when a commit comment is created.
+## Comments on commit event.
+
+Triggered when a commit comment is created.
 
 Below query fetch `first 5` item with fields `url`
 
@@ -103,21 +123,9 @@ commitComments(first:5){
 }
 ```
 
-### Triggered when an issue is opened, edited, deleted, transferred, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, or demilestoned.
+### Pull Request event
 
-Below query fetch `first 5` item with fields `body`
-
-```
-issues(first:5){
-  edges{
-    node{
-      body
-    }
-  }
-}
-```
-
-### Triggered when a pull request is assigned, unassigned, labeled, unlabeled, opened, edited, closed, reopened, synchronize, ready_for_review, locked, unlocked or when a pull request review is requested or removed.
+Triggered when a pull request is assigned, unassigned, labeled, unlabeled, opened, edited, closed, reopened, synchronize, ready_for_review, locked, unlocked or when a pull request review is requested or removed.
 
 Below query fetch `first 5` item with fields `body`
 
