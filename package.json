@@ -1,0 +1,14 @@
+{
+  "name": "oss-leaderboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:leapfrogtechnology/oss-leaderboard.git",
+  "author": "jungRoit <roit.jung@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
