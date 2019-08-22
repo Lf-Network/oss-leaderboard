@@ -1,38 +1,14 @@
 // const fetch = require('node-fetch');
 import fetch from 'node-fetch';
 
-var membersWithRoleQuery = {
-  variables: {
-    first: 100
-  },
-  query:
-    'query($first: Int!) {organization(login:leapfrogtechnology) {name, url, membersWithRole (first:$first){totalCount, pageInfo {hasNextPage, endCursor}, nodes{login, name}}}}'
-};
+import 'dotenv/config';
 
-const memberStatuses = {
-  variables: {
-    first: 100
-  },
-  query:
-    'query {organization(login:leapfrogtechnology) {name, url, memberStatuses (first:100) {totalCount,nodes{user{login}}}}}'
-};
-
-function getQuery(after) {
-  return {
-    variables: {
-      first: 100,
-      after: after
-    },
-    query:
-      'query ($first: Int!, $after: String!) {organization(login:leapfrogtechnology) {name, url, membersWithRole (first:$first, after:$after){totalCount, pageInfo {hasNextPage, endCursor}, nodes{login, name}}}}'
-  };
-}
+import getQuery from './src/query';
 
 let usersList = [];
 
 async function fetchUsers(query) {
-  var accessToken = '2966f6db8b2b2f652588d61ab827948d625bf94b';
-
+  var accessToken = process.env.ACCESS_TOKEN;
   try {
     const res = await fetch('https://api.github.com/graphql', {
       method: 'POST',
@@ -42,13 +18,12 @@ async function fetchUsers(query) {
       }
     });
     return res.json();
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function init() {
-  fetchData(membersWithRoleQuery);
+  const query = getQuery('membersWithRole');
+  fetchData(query);
 }
 
 async function fetchData(query) {
@@ -58,9 +33,11 @@ async function fetchData(query) {
     ...response.data.organization.membersWithRole.nodes
   ];
   const pageInfo = response.data.organization.membersWithRole.pageInfo;
-  console.log(pageInfo);
   if (pageInfo.hasNextPage) {
-    const query = getQuery(pageInfo.endCursor);
+    const query = getQuery('fetchMoreMembers', {
+      first: 100,
+      after: pageInfo.endCursor
+    });
 
     fetchData(query);
   }
