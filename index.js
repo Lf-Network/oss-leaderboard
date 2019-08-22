@@ -1,6 +1,5 @@
-// import { graphql, buildSchema } from 'graphql';
-// import fetch from 'node-fetch';
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 var membersWithRoleQuery = {
   variables: {
@@ -10,7 +9,7 @@ var membersWithRoleQuery = {
     'query($first: Int!) {organization(login:leapfrogtechnology) {name, url, membersWithRole (first:$first){totalCount, pageInfo {hasNextPage, endCursor}, nodes{login, name}}}}'
 };
 
-var memberStatuses = {
+const memberStatuses = {
   variables: {
     first: 100
   },
