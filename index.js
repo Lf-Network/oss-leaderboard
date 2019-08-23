@@ -1,10 +1,9 @@
-// const fetch = require('node-fetch');
-import fetch from "node-fetch";
+import fetch from 'node-fetch';
 
-import "dotenv/config";
+import 'dotenv/config';
 
-import getQuery from "./src/query";
-import { QUERY_NAMES, DAYS_TO_CONSIDER } from "./src/constants";
+import getQuery from './src/query';
+import { QUERY_NAMES, DAYS_TO_CONSIDER } from './src/constants';
 
 let usersList = [];
 
@@ -12,22 +11,28 @@ let uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
 async function fetchUsers(query) {
-  var accessToken = process.env.ACCESS_TOKEN;
+  let accessToken = process.env.ACCESS_TOKEN;
   try {
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
       body: JSON.stringify(query),
       headers: {
         authorization: `token ${accessToken}`
       }
     });
     return res.json();
-  } catch (error) {}
+  } catch (error) {
+    // TODO
+  }
 }
 
 async function init() {
   const query = getQuery(QUERY_NAMES.MEMBERS_WITH_ROLE);
-  await fetchData(query);
+  try {
+    await fetchData(query);
+  } catch (error) {
+    // TODO
+  }
 
   usersList.forEach(async user => {
     const pullRequestQuery = getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
@@ -35,7 +40,7 @@ async function init() {
       pullRequestsAfter: null
     });
     const totalPullRequest = await fetchPullRequest(pullRequestQuery);
-    console.log((user.name || user.login) + ":" + totalPullRequest);
+    console.log(`${user.name || user.login}: ${totalPullRequest}`);
   });
 }
 
@@ -88,7 +93,7 @@ async function fetchData(query) {
   ];
   const pageInfo = response.data.organization.membersWithRole.pageInfo;
   if (pageInfo.hasNextPage) {
-    const query = getQuery("fetchMoreMembers", {
+    const query = getQuery('fetchMoreMembers', {
       first: 100,
       after: pageInfo.endCursor
     });
