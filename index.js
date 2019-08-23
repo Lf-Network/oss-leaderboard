@@ -1,10 +1,11 @@
-// const fetch = require('node-fetch');
+"use strict";
+
 import fetch from "node-fetch";
 
 import "dotenv/config";
 
 import getQuery from "./src/query";
-import { QUERY_NAMES, DAYS_TO_CONSIDER } from "./src/constants";
+import { QUERY_NAMES, DAYS_TO_CONSIDER, eventTypes } from "./src/constants";
 
 let usersList = [];
 
@@ -12,7 +13,7 @@ let uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
 async function fetchUsers(query) {
-  var accessToken = process.env.ACCESS_TOKEN;
+  let accessToken = process.env.ACCESS_TOKEN;
   try {
     const res = await fetch("https://api.github.com/graphql", {
       method: "POST",
@@ -22,7 +23,9 @@ async function fetchUsers(query) {
       }
     });
     return res.json();
-  } catch (error) {}
+  } catch (error) {
+    //TODO
+  }
 }
 
 async function init() {
@@ -32,10 +35,13 @@ async function init() {
   usersList.forEach(async user => {
     const pullRequestQuery = getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
       user: user.login,
-      pullRequestsAfter: null
+      pullRequestsAfter: null,
+      issuesAfter: null
     });
     const totalPullRequest = await fetchPullRequest(pullRequestQuery);
-    console.log((user.name || user.login) + ":" + totalPullRequest);
+    console.log(
+      `${user.name || user.login}:${JSON.stringify(totalPullRequest)}`
+    );
   });
 }
 
@@ -53,31 +59,52 @@ const countHowManyLiesWithin = (pullRequests, l, r) => {
 
 async function fetchPullRequest(query) {
   const response = await fetchUsers(query);
-  const pullRequests = response.data.user.pullRequests.edges;
-  const pageInfo = response.data.user.pullRequests.pageInfo;
-  if (pullRequests.length <= 0) {
-    return 0;
-  }
-  const lastPullRequestDate = new Date(
-    pullRequests[pullRequests.length - 1].node.updatedAt
-  );
+  const queryVariables = {};
+  let totalCounter = {};
 
-  let totalCounts = 0;
+  let needAnotherFetch = false;
+  Object.values(eventTypes).forEach(event => {
+    const eventResult = response.data.user[event];
 
-  if (lastPullRequestDate.getTime() >= uptoDate.getTime()) {
-    totalCounts += pullRequests.length;
-    if (pageInfo.hasNextPage) {
-      query.variables.pullRequestsAfter.pageInfo.endCursor;
-      totalCounts += fetchPullRequest(query);
+    totalCounter[event] = 0;
+    queryVariables[event] = eventResult;
+
+    if (eventResult.edges.length <= 0) {
+      return;
     }
-  }
-  totalCounts += countHowManyLiesWithin(
-    pullRequests,
-    0,
-    pullRequests.length - 1
-  );
 
-  return totalCounts;
+    const lastDate = new Date(
+      eventResult.edges[eventResult.edges.length - 1].node.updatedAt
+    );
+
+    if (lastDate.getTime() >= uptoDate.getTime()) {
+      totalCounter[event] += eventResult.edges.length;
+      if (eventResult.pageInfo.hasNextPage) {
+        needAnotherFetch = true;
+      }
+    } else {
+      totalCounter[event] += countHowManyLiesWithin(
+        eventResult.edges,
+        0,
+        eventResult.edges.length - 1
+      );
+    }
+  });
+
+  if (needAnotherFetch) {
+    Object.values(eventTypes).forEach(event => {
+      query.variables = Object.assign({}, query.variables, {
+        [`${event}After`]: queryVariables[event].pageInfo.endCursor
+      });
+    });
+    let currentCountstotalCounts = await fetchPullRequest(query);
+
+    Object.values(eventTypes).forEach(event => {
+      totalCounter[event] += currentCountstotalCounts[event];
+    });
+  }
+
+  return totalCounter;
 }
 
 async function fetchData(query) {
@@ -93,7 +120,7 @@ async function fetchData(query) {
       after: pageInfo.endCursor
     });
 
-    fetchData(query);
+    await fetchData(query);
   }
   console.log(usersList.length);
 }

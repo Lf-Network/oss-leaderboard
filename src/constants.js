@@ -5,3 +5,8 @@ export const QUERY_NAMES = {
 };
 
 export const DAYS_TO_CONSIDER = 7;
+
+export const eventTypes = {
+  PULL_REQUESTS: "pullRequests",
+  ISSUES: "issues"
+};
