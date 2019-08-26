@@ -5,8 +5,6 @@ import 'dotenv/config';
 import getQuery from './src/query';
 import { QUERY_NAMES, DAYS_TO_CONSIDER } from './src/constants';
 
-let usersList = [];
-
 let uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
@@ -29,19 +27,18 @@ async function fetchUsers(query) {
 async function init() {
   const query = getQuery(QUERY_NAMES.MEMBERS_WITH_ROLE);
   try {
-    await fetchData(query);
+    const usersList = await fetchData(query);
+    usersList.forEach(async user => {
+      const pullRequestQuery = getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
+        user: user.login,
+        pullRequestsAfter: null
+      });
+      const totalPullRequest = await fetchPullRequest(pullRequestQuery);
+      console.log(`${user.name || user.login}: ${totalPullRequest}`);
+    });
   } catch (error) {
     // TODO
   }
-
-  usersList.forEach(async user => {
-    const pullRequestQuery = getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
-      user: user.login,
-      pullRequestsAfter: null
-    });
-    const totalPullRequest = await fetchPullRequest(pullRequestQuery);
-    console.log(`${user.name || user.login}: ${totalPullRequest}`);
-  });
 }
 
 const countHowManyLiesWithin = (pullRequests, l, r) => {
@@ -86,21 +83,26 @@ async function fetchPullRequest(query) {
 }
 
 async function fetchData(query) {
-  const response = await fetchUsers(query);
-  usersList = [
-    ...usersList,
-    ...response.data.organization.membersWithRole.nodes
-  ];
-  const pageInfo = response.data.organization.membersWithRole.pageInfo;
-  if (pageInfo.hasNextPage) {
-    const query = getQuery('fetchMoreMembers', {
-      first: 100,
-      after: pageInfo.endCursor
-    });
+  let hasNextPage = false;
+  let usedQuery = query;
+  let users = [];
 
-    fetchData(query);
-  }
-  console.log(usersList.length);
+  do {
+    try {
+      const response = await fetchUsers(usedQuery);
+      users = [...users, ...response.data.organization.membersWithRole.nodes];
+      const pageInfo = response.data.organization.membersWithRole.pageInfo;
+      hasNextPage = pageInfo.hasNextPage;
+      usedQuery = getQuery('fetchMoreMembers', {
+        first: 100,
+        after: pageInfo.endCursor
+      });
+    } catch (error) {
+      // TODO
+    }
+  } while (hasNextPage);
+  console.log(`No of Users: ${users.length}`);
+  return users;
 }
 
 init();
