@@ -34,9 +34,7 @@ async function init() {
   const query = getQuery(QUERY_NAMES.MEMBERS_WITH_ROLE);
   try {
     const usersList = await fetchData(query);
-    usersList.forEach(async (user, index) => {
-      // if (index > 0) return;
-
+    usersList.forEach(async user => {
       const openedEvents = await fetchUserEvents(
         getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
           user: user.login,
