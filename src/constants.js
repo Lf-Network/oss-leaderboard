@@ -10,3 +10,8 @@ export const eventTypes = {
   PULL_REQUESTS: "pullRequests",
   ISSUES: "issues"
 };
+
+export const STATES = {
+  OPEN: "OPEN",
+  CLOSED: "CLOSED"
+};

@@ -22,7 +22,7 @@ const getQuery = (queryName, variables) => {
       return {
         variables: variables,
         query:
-          "query($user:String!,$pullRequestsAfter:String,$issuesAfter:String){user(login:$user){email,pullRequests(first:100,after: $pullRequestsAfter,orderBy: {field: UPDATED_AT, direction: DESC}){pageInfo {hasNextPage, endCursor},edges{node{title,body,updatedAt}}},issues(first:100,after: $issuesAfter,orderBy: {field: UPDATED_AT, direction: DESC}){pageInfo {hasNextPage, endCursor},edges{node{title,body,updatedAt}}}}}"
+          "query($user:String!,$pullRequestsAfter:String,$issuesAfter:String,$issueState:[IssueState!],$pullRequestState:[PullRequestState!],){user(login:$user){email,pullRequests(first:100,after: $pullRequestsAfter,states:$pullRequestState,orderBy: {field: UPDATED_AT, direction: DESC}){pageInfo {hasNextPage, endCursor},edges{node{title,body,updatedAt}}},issues(first:100,after: $issuesAfter,states:$issueState,orderBy: {field: UPDATED_AT, direction: DESC}){pageInfo {hasNextPage, endCursor},edges{node{title,body,updatedAt}}}}}"
       };
     }
   }
