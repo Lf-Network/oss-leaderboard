@@ -1,29 +1,27 @@
-"use strict";
+import fetch from 'node-fetch';
 
-import fetch from "node-fetch";
+import 'dotenv/config';
 
-import "dotenv/config";
-
-import getQuery from "./src/query";
+import getQuery from './src/query';
 import {
-  QUERY_NAMES,
   DAYS_TO_CONSIDER,
+  QUERY_NAMES,
+  STATES,
   eventTypes,
-  STATES
-} from "./src/constants";
+} from './src/constants';
 
-let uptoDate = new Date();
+const uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
 async function fetchUsers(query) {
-  let accessToken = process.env.ACCESS_TOKEN;
+  const accessToken = process.env.ACCESS_TOKEN;
   try {
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
       body: JSON.stringify(query),
       headers: {
-        authorization: `token ${accessToken}`
-      }
+        authorization: `token ${accessToken}`,
+      },
     });
     return res.json();
   } catch (error) {
@@ -43,21 +41,21 @@ async function init() {
         getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
           user: user.login,
           pullRequestState: STATES.OPEN,
-          issueState: STATES.OPEN
-        })
+          issueState: STATES.OPEN,
+        }),
       );
       const closedEvents = await fetchUserEvents(
         getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
           user: user.login,
           pullRequestState: STATES.CLOSED,
-          issueState: STATES.CLOSED
-        })
+          issueState: STATES.CLOSED,
+        }),
       );
       console.log(
         `${user.name || user.login}: ${JSON.stringify({
           open: openedEvents,
-          closed: closedEvents
-        })}`
+          closed: closedEvents,
+        })}`,
       );
     });
   } catch (error) {
@@ -67,7 +65,7 @@ async function init() {
 
 async function fetchUserEvents(query) {
   const queryVariables = {};
-  let totalCounter = {};
+  const totalCounter = {};
   try {
     const response = await fetchUsers(query).catch(err => {
       throw err.response;
@@ -83,7 +81,7 @@ async function fetchUserEvents(query) {
       }
 
       const lastDate = new Date(
-        eventResult.edges[eventResult.edges.length - 1].node.updatedAt
+        eventResult.edges[eventResult.edges.length - 1].node.updatedAt,
       );
 
       if (lastDate.getTime() >= uptoDate.getTime()) {
@@ -95,7 +93,7 @@ async function fetchUserEvents(query) {
         totalCounter[event] += countHowManyLiesWithin(
           eventResult.edges,
           0,
-          eventResult.edges.length - 1
+          eventResult.edges.length - 1,
         );
       }
     });
@@ -103,17 +101,17 @@ async function fetchUserEvents(query) {
     if (needAnotherFetch) {
       Object.values(eventTypes).forEach(event => {
         query.variables = Object.assign({}, query.variables, {
-          [`${event}After`]: queryVariables[event].pageInfo.endCursor
+          [`${event}After`]: queryVariables[event].pageInfo.endCursor,
         });
       });
-      let currentCountstotalCounts = await fetchUserEvents(query);
+      const currentCountstotalCounts = await fetchUserEvents(query);
 
       Object.values(eventTypes).forEach(event => {
         totalCounter[event] += currentCountstotalCounts[event];
       });
     }
   } catch (err) {
-    console.log("Error fetching user events", err);
+    console.log('Error fetching user events', err);
   }
   return totalCounter;
 }
@@ -131,7 +129,7 @@ async function fetchData(query) {
       hasNextPage = pageInfo.hasNextPage;
       usedQuery = getQuery(QUERY_NAMES.FETCH_MORE_MEMBERS, {
         first: 100,
-        after: pageInfo.endCursor
+        after: pageInfo.endCursor,
       });
     } catch (error) {
       // TODO
