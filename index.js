@@ -6,8 +6,8 @@ import getQuery from './src/query';
 import {
   DAYS_TO_CONSIDER,
   QUERY_NAMES,
-  STATES,
-  eventTypes,
+  eventQueryGenerator,
+  events,
 } from './src/constants';
 
 const uptoDate = new Date();
@@ -33,31 +33,32 @@ async function fetchUsers(query) {
 async function init() {
   const query = getQuery(QUERY_NAMES.MEMBERS_WITH_ROLE);
   try {
-    const usersList = await fetchData(query);
+    const usersList = await fetchData(query).catch(err => {
+      throw err;
+    });
     usersList.forEach(async user => {
-      const openedEvents = await fetchUserEvents(
-        getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
-          user: user.login,
-          pullRequestState: STATES.OPEN,
-          issueState: STATES.OPEN,
-        }),
+      const userEvents = await fetchUserEvents(
+        eventQueryGenerator(Object.values(events), user.login),
       );
-      const closedEvents = await fetchUserEvents(
-        getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
-          user: user.login,
-          pullRequestState: STATES.CLOSED,
-          issueState: STATES.CLOSED,
-        }),
-      );
-      console.log(
-        `${user.name || user.login}: ${JSON.stringify({
-          open: openedEvents,
-          closed: closedEvents,
-        })}`,
-      );
+      // const openedEvents = await fetchUserEvents(
+      //   getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
+      //     user: user.login,
+      //     pullRequestState: STATES.OPEN,
+      //     issueState: STATES.OPEN,
+      //   }),
+      // );
+      // const closedEvents = await fetchUserEvents(
+      //   getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
+      //     user: user.login,
+      //     pullRequestState: STATES.CLOSED,
+      //     issueState: STATES.CLOSED,
+      //   }),
+      // );
+      console.log(`${user.name || user.login}: ${JSON.stringify(userEvents)}`);
     });
   } catch (error) {
     // TODO
+    console.log('Error user fetching', error);
   }
 }
 
@@ -66,12 +67,13 @@ async function fetchUserEvents(query) {
   const totalCounter = {};
   try {
     const response = await fetchUsers(query).catch(err => {
-      throw err.response;
+      throw err;
     });
     let needAnotherFetch = false;
-    Object.values(eventTypes).forEach(event => {
+    const eventList = [];
+
+    Object.keys(events).forEach(event => {
       const eventResult = response.data.user[event];
-      totalCounter[event] = 0;
       queryVariables[event] = eventResult;
 
       if (eventResult.edges.length <= 0) {
@@ -83,29 +85,36 @@ async function fetchUserEvents(query) {
       );
 
       if (lastDate.getTime() >= uptoDate.getTime()) {
-        totalCounter[event] += eventResult.edges.length;
+        totalCounter[event] =
+          (totalCounter[event] || 0) + eventResult.edges.length;
+
         if (eventResult.pageInfo.hasNextPage) {
           needAnotherFetch = true;
+
+          const eventFetchMore = Object.assign({}, events[event]);
+          eventFetchMore.variables.after.value = eventResult.pageInfo.endCursor;
+
+          eventList.push(eventFetchMore);
         }
       } else {
-        totalCounter[event] += countHowManyLiesWithin(
-          eventResult.edges,
-          0,
-          eventResult.edges.length - 1,
-        );
+        totalCounter[event] =
+          (totalCounter[event] || 0) +
+          countHowManyLiesWithin(
+            eventResult.edges,
+            0,
+            eventResult.edges.length - 1,
+          );
       }
     });
 
     if (needAnotherFetch) {
-      Object.values(eventTypes).forEach(event => {
-        query.variables = Object.assign({}, query.variables, {
-          [`${event}After`]: queryVariables[event].pageInfo.endCursor,
-        });
-      });
-      const currentCountstotalCounts = await fetchUserEvents(query);
+      const currentCountstotalCounts = await fetchUserEvents(
+        eventQueryGenerator(eventList, response.login),
+      );
 
-      Object.values(eventTypes).forEach(event => {
-        totalCounter[event] += currentCountstotalCounts[event];
+      Object.keys(events).forEach(event => {
+        totalCounter[event] =
+          (totalCounter[event] || 0) + currentCountstotalCounts[event];
       });
     }
   } catch (err) {
@@ -144,16 +153,16 @@ async function fetchData(query) {
  * @param {*} l Left bound.
  * @param {*} r Right bound.
  */
-const countHowManyLiesWithin = (events, l, r) => {
+const countHowManyLiesWithin = (eventDetail, l, r) => {
   if (l === r) {
     return l;
   }
   const mid = parseInt(l + (r - l) / 2);
-  const midEventDate = new Date(events[mid].node.updatedAt);
+  const midEventDate = new Date(eventDetail[mid].node.updatedAt);
   if (midEventDate.getTime() >= uptoDate.getTime()) {
-    return countHowManyLiesWithin(events, mid + 1, r);
+    return countHowManyLiesWithin(eventDetail, mid + 1, r);
   }
-  return countHowManyLiesWithin(events, l, mid);
+  return countHowManyLiesWithin(eventDetail, l, mid);
 };
 
 init();
