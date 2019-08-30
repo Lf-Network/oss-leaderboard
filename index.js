@@ -37,25 +37,19 @@ async function init() {
       throw err;
     });
     usersList.forEach(async user => {
-      const userEvents = await fetchUserEvents(
+      const { totalCounter: userEvents, userEventList } = await fetchUserEvents(
         eventQueryGenerator(Object.values(events), user.login),
       );
-      // const openedEvents = await fetchUserEvents(
-      //   getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
-      //     user: user.login,
-      //     pullRequestState: STATES.OPEN,
-      //     issueState: STATES.OPEN,
-      //   }),
-      // );
-      // const closedEvents = await fetchUserEvents(
-      //   getQuery(QUERY_NAMES.FETCH_USER_EVENTS, {
-      //     user: user.login,
-      //     pullRequestState: STATES.CLOSED,
-      //     issueState: STATES.CLOSED,
-      //   }),
-      // );
-      console.log(`${user.name || user.login}: ${JSON.stringify(userEvents)}`);
+      console.log(
+        `${user.name || user.login}: ${userEventList.length} =>${JSON.stringify(
+          userEvents,
+        )}`,
+      );
     });
+    // const userEvents = await fetchUserEvents(
+    //   eventQueryGenerator(Object.values(events), 'kabirbaidhya'),
+    // );
+    // console.log(`${'kabirbaidhya'}: ${JSON.stringify(userEvents)}`);
   } catch (error) {
     // TODO
     console.log('Error user fetching', error);
@@ -63,8 +57,8 @@ async function init() {
 }
 
 async function fetchUserEvents(query) {
-  const queryVariables = {};
   const totalCounter = {};
+  let userEventList = [];
   try {
     const response = await fetchUsers(query).catch(err => {
       throw err;
@@ -74,43 +68,61 @@ async function fetchUserEvents(query) {
 
     Object.keys(events).forEach(event => {
       const eventResult = response.data.user[event];
-      queryVariables[event] = eventResult;
 
       if (eventResult.edges.length <= 0) {
         return;
+      }
+      if (events[event].variables.before) {
+        eventResult.edges = eventResult.edges.reverse();
       }
 
       const lastDate = new Date(
         eventResult.edges[eventResult.edges.length - 1].node.updatedAt,
       );
+      // if (event === 'issueComments') {
+      //   console.log('here', lastDate);
+      // }
 
       if (lastDate.getTime() >= uptoDate.getTime()) {
         totalCounter[event] =
           (totalCounter[event] || 0) + eventResult.edges.length;
+        userEventList = userEventList.concat(eventResult.edges);
 
         if (eventResult.pageInfo.hasNextPage) {
           needAnotherFetch = true;
 
           const eventFetchMore = Object.assign({}, events[event]);
-          eventFetchMore.variables.after.value = eventResult.pageInfo.endCursor;
+          if (eventFetchMore.variables.after) {
+            eventFetchMore.variables.after.value =
+              eventResult.pageInfo.endCursor;
+          } else if (eventFetchMore.variables.before) {
+            eventFetchMore.variables.before.value =
+              eventResult.pageInfo.endCursor;
+          }
 
           eventList.push(eventFetchMore);
         }
       } else {
+        const uptoPositionToConsider = countHowManyLiesWithin(
+          eventResult.edges,
+          0,
+          eventResult.edges.length - 1,
+        );
         totalCounter[event] =
-          (totalCounter[event] || 0) +
-          countHowManyLiesWithin(
-            eventResult.edges,
-            0,
-            eventResult.edges.length - 1,
-          );
+          (totalCounter[event] || 0) + uptoPositionToConsider;
+        userEventList = userEventList.concat(
+          eventResult.edges.slice(0, uptoPositionToConsider),
+        );
       }
     });
 
     if (needAnotherFetch) {
-      const currentCountstotalCounts = await fetchUserEvents(
-        eventQueryGenerator(eventList, response.login),
-      );
+      const {
+        totalCounter: currentCountstotalCounts,
+        userEventList: remainingEventList,
+      } = await fetchUserEvents(eventQueryGenerator(eventList, response.login));
+
+      userEventList = userEventList.concat(remainingEventList);
 
       Object.keys(events).forEach(event => {
         totalCounter[event] =
@@ -120,7 +132,7 @@ async function fetchUserEvents(query) {
   } catch (err) {
     console.log('Error fetching user events', err);
   }
-  return totalCounter;
+  return { totalCounter, userEventList };
 }
 
 async function fetchData(query) {

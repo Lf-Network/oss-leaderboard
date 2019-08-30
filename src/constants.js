@@ -68,14 +68,14 @@ export const events = {
   },
   issueComments: {
     variables: {
-      after: {
-        name: 'issueCommentAfter',
+      before: {
+        name: 'issueCommentBefore',
         type: 'String',
         value: null,
         eventName: 'issueComments',
       },
     },
     query:
-      'issueComments(first:100,after: $issueCommentAfter,orderBy: {field: UPDATED_AT, direction: DESC}){pageInfo {hasNextPage, endCursor},edges{node{updatedAt}}}',
+      'issueComments(last:100,before: $issueCommentBefore){pageInfo {hasNextPage, endCursor},edges{node{updatedAt}}}',
   },
 };
