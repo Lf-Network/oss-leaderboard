@@ -88,9 +88,6 @@ async function fetchUserEvents(query) {
       const lastDate = new Date(
         eventResult.edges[eventResult.edges.length - 1].node.updatedAt,
       );
-      // if (event === 'issueComments') {
-      //   console.log('here', lastDate);
-      // }
 
       if (lastDate.getTime() >= uptoDate.getTime()) {
         totalCounter[event] =
