@@ -36,20 +36,29 @@ async function init() {
     const usersList = await fetchData(query).catch(err => {
       throw err;
     });
-    usersList.forEach(async user => {
-      const { totalCounter: userEvents, userEventList } = await fetchUserEvents(
-        eventQueryGenerator(Object.values(events), user.login),
-      );
-      console.log(
-        `${user.name || user.login}: ${JSON.stringify(
-          userEventList,
-        )} =>${JSON.stringify(userEvents)}`,
-      );
+    const usersDetails = {};
+    await Promise.all(
+      usersList.map(async user => {
+        const eventDetails = await fetchUserEvents(
+          eventQueryGenerator(Object.values(events), user.login),
+        );
+        usersDetails[user.name || user.login] = eventDetails;
+      }),
+    ).then(() => {
+      let leaderBoard = Object.keys(usersDetails).sort((a, b) => {
+        return usersDetails[a].userEventList.length >
+          usersDetails[b].userEventList.length
+          ? -1
+          : usersDetails[a].userEventList.length ===
+            usersDetails[b].userEventList.length
+          ? 0
+          : 1;
+      });
+      leaderBoard = leaderBoard.map(user => ({
+        [user]: usersDetails[user],
+      }));
+      console.log(leaderBoard);
     });
-    // const userEvents = await fetchUserEvents(
-    //   eventQueryGenerator(Object.values(events), 'kabirbaidhya'),
-    // );
-    // console.log(`${'kabirbaidhya'}: ${JSON.stringify(userEvents)}`);
   } catch (error) {
     // TODO
     console.log('Error user fetching', error);
