@@ -41,9 +41,9 @@ async function init() {
         eventQueryGenerator(Object.values(events), user.login),
       );
       console.log(
-        `${user.name || user.login}: ${userEventList.length} =>${JSON.stringify(
-          userEvents,
-        )}`,
+        `${user.name || user.login}: ${JSON.stringify(
+          userEventList,
+        )} =>${JSON.stringify(userEvents)}`,
       );
     });
     // const userEvents = await fetchUserEvents(
@@ -86,7 +86,9 @@ async function fetchUserEvents(query) {
       if (lastDate.getTime() >= uptoDate.getTime()) {
         totalCounter[event] =
           (totalCounter[event] || 0) + eventResult.edges.length;
-        userEventList = userEventList.concat(eventResult.edges);
+        userEventList = userEventList.concat(
+          eventResult.edges.map(edge => ({ [event]: edge.node })),
+        );
 
         if (eventResult.pageInfo.hasNextPage) {
           needAnotherFetch = true;
@@ -111,7 +113,9 @@ async function fetchUserEvents(query) {
         totalCounter[event] =
           (totalCounter[event] || 0) + uptoPositionToConsider;
         userEventList = userEventList.concat(
-          eventResult.edges.slice(0, uptoPositionToConsider),
+          eventResult.edges
+            .slice(0, uptoPositionToConsider)
+            .map(edge => ({ [event]: edge.node })),
         );
       }
     });
