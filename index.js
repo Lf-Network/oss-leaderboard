@@ -54,10 +54,27 @@ async function init() {
           ? 0
           : 1;
       });
-      leaderBoard = leaderBoard.map(user => ({
-        [user]: usersDetails[user],
-      }));
-      console.log(leaderBoard);
+      leaderBoard = leaderBoard.map(user => {
+        const contribution = {};
+        Object.keys(usersDetails[user]).forEach(key => {
+          try {
+            console.log(usersDetails[user][key]);
+            if (usersDetails[user][key].length > 0) {
+              const generatedKey = key + (usersDetails[user][key].state || '');
+              if (!contribution[generatedKey]) {
+                contribution[generatedKey] = 0;
+              }
+              contribution[generatedKey]++;
+            }
+          } catch (err) {
+            contribution[key] = usersDetails[user][key];
+          }
+        });
+        return {
+          [user]: contribution,
+        };
+      });
+      console.log(JSON.stringify(leaderBoard));
     });
   } catch (error) {
     // TODO
@@ -66,12 +83,18 @@ async function init() {
 }
 
 async function fetchUserEvents(query) {
-  const totalCounter = {};
   let userEventList = [];
+  const userContribution = {};
+
   try {
-    const response = await fetchUsers(query).catch(err => {
-      throw err;
-    });
+    const response = await fetchUsers(query);
+
+    if (!userContribution.repositoriesContributedTo) {
+      userContribution.repositoriesContributedTo = response.data.user
+        .repositoriesContributedTo
+        ? response.data.user.repositoriesContributedTo.totalCount
+        : 0;
+    }
     let needAnotherFetch = false;
     const eventList = [];
 
@@ -90,8 +113,6 @@ async function fetchUserEvents(query) {
       );
 
       if (lastDate.getTime() >= uptoDate.getTime()) {
-        totalCounter[event] =
-          (totalCounter[event] || 0) + eventResult.edges.length;
         userEventList = userEventList.concat(
           eventResult.edges.map(edge => ({ [event]: edge.node })),
         );
@@ -116,8 +137,6 @@ async function fetchUserEvents(query) {
           0,
           eventResult.edges.length - 1,
         );
-        totalCounter[event] =
-          (totalCounter[event] || 0) + uptoPositionToConsider;
         userEventList = userEventList.concat(
           eventResult.edges
             .slice(0, uptoPositionToConsider)
@@ -127,22 +146,16 @@ async function fetchUserEvents(query) {
     });
 
     if (needAnotherFetch) {
-      const {
-        totalCounter: currentCountstotalCounts,
-        userEventList: remainingEventList,
-      } = await fetchUserEvents(eventQueryGenerator(eventList, response.login));
+      const { userEventList: remainingEventList } = await fetchUserEvents(
+        eventQueryGenerator(eventList, response.login),
+      );
 
       userEventList = userEventList.concat(remainingEventList);
-
-      Object.keys(events).forEach(event => {
-        totalCounter[event] =
-          (totalCounter[event] || 0) + currentCountstotalCounts[event];
-      });
     }
   } catch (err) {
     console.log('Error fetching user events', err);
   }
-  return { totalCounter, userEventList };
+  return Object.assign({}, userContribution, { userEventList });
 }
 
 async function fetchData(query) {
