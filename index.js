@@ -56,18 +56,23 @@ async function init() {
       });
       leaderBoard = leaderBoard.map(user => {
         const contribution = {};
+        // console.log(usersDetails[user]);
         Object.keys(usersDetails[user]).forEach(key => {
-          try {
-            console.log(usersDetails[user][key]);
-            if (usersDetails[user][key].length > 0) {
-              const generatedKey = key + (usersDetails[user][key].state || '');
+          const userContribution = usersDetails[user][key];
+
+          if (typeof userContribution === 'number') {
+            contribution[key] = userContribution;
+          } else if (userContribution.length > 0) {
+            userContribution.map(event => {
+              const eventKey = Object.keys(event)[0];
+              const state = event[eventKey].state || '';
+              const generatedKey =
+                eventKey + state.charAt(0) + state.substr(1).toLowerCase();
               if (!contribution[generatedKey]) {
                 contribution[generatedKey] = 0;
               }
               contribution[generatedKey]++;
-            }
-          } catch (err) {
-            contribution[key] = usersDetails[user][key];
+            });
           }
         });
         return {
