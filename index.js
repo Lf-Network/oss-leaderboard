@@ -75,9 +75,13 @@ async function init() {
             });
           }
         });
-        return {
-          [user]: contribution,
-        };
+        return Object.assign(
+          {},
+          {
+            name: user,
+          },
+          contribution,
+        );
       });
       console.log(JSON.stringify(leaderBoard));
     });
