@@ -3,7 +3,7 @@
  *
  * let json = [{name : "Nischal" lastname: "Shakya"}, {"name": "Avishkar", lastnane: "KC"}]
  *
- * @param {json} json
+ * @param {any[]} json
  * @return ["name", "lastname"]
  */
 export function getKeys(json) {

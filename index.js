@@ -8,6 +8,7 @@ import {
   QUERY_NAMES,
   eventQueryGenerator,
   events,
+  fileName,
 } from './src/constants';
 
 import { getKeys, getValues } from './src/util/key-value-util';
@@ -89,7 +90,6 @@ async function init() {
       });
 
       const keys = getKeys(leaderBoard);
-
       leaderBoard = leaderBoard.slice(0, 20).reduce((acc, item) => {
         const temp = Object.assign({}, item);
         if (Object.keys(temp).length <= 2) {
@@ -104,12 +104,11 @@ async function init() {
 
       getValues(leaderBoard, keys).then(res => {
         generateMarkdown(res, keys).then(contributionData => {
-          createMarkdown('user.md', contributionData);
+          createMarkdown(fileName, contributionData);
         });
       });
     });
   } catch (error) {
-    // TODO
     console.log('Error user fetching', error);
   }
 }
@@ -117,7 +116,6 @@ async function init() {
 async function fetchUserEvents(query) {
   let userEventList = [];
   const userContribution = {};
-
   try {
     const response = await fetchUsers(query);
 
