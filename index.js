@@ -90,13 +90,17 @@ async function init() {
 
       const keys = getKeys(leaderBoard);
 
-      leaderBoard = leaderBoard.map(item => {
+      leaderBoard = leaderBoard.slice(0, 20).reduce((acc, item) => {
         const temp = Object.assign({}, item);
+        if (Object.keys(temp).length <= 2) {
+          return acc;
+        }
         keys.forEach(key => {
           temp[key] = temp[key] || 0;
         });
-        return temp;
-      });
+        acc.push(temp);
+        return acc;
+      }, []);
 
       getValues(leaderBoard, keys).then(res => {
         generateMarkdown(res, keys).then(contributionData => {
