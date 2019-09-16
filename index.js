@@ -64,7 +64,6 @@ async function init() {
 
         Object.keys(usersDetails[user]).forEach(key => {
           const userContribution = usersDetails[user][key];
-
           if (typeof userContribution === 'number') {
             contribution[key] = userContribution;
           } else if (userContribution.length > 0) {
@@ -88,7 +87,6 @@ async function init() {
           contribution,
         );
       });
-
       const keys = getKeys(leaderBoard);
       leaderBoard = leaderBoard.slice(0, 20).reduce((acc, item) => {
         const temp = Object.assign({}, item);
@@ -118,13 +116,6 @@ async function fetchUserEvents(query) {
   const userContribution = {};
   try {
     const response = await fetchUsers(query);
-
-    if (!userContribution.repositoriesContributedTo) {
-      userContribution.repositoriesContributedTo = response.data.user
-        .repositoriesContributedTo
-        ? response.data.user.repositoriesContributedTo.totalCount
-        : 0;
-    }
     let needAnotherFetch = false;
     const eventList = [];
 
@@ -180,13 +171,18 @@ async function fetchUserEvents(query) {
       const { userEventList: remainingEventList } = await fetchUserEvents(
         eventQueryGenerator(eventList, response.login),
       );
-
       userEventList = userEventList.concat(remainingEventList);
+    }
+    if (!userContribution.repositoriesContributedTo) {
+      userContribution.repositoriesContributedTo = response.data.user
+        .repositoriesContributedTo
+        ? response.data.user.repositoriesContributedTo.totalCount
+        : 0;
     }
   } catch (err) {
     console.log('Error fetching user events', err);
   }
-  return Object.assign({}, userContribution, { userEventList });
+  return Object.assign({}, { userEventList }, userContribution);
 }
 
 async function fetchData(query) {

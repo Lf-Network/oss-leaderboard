@@ -84,9 +84,9 @@ export const fileName = 'oss-leaderboard.md';
 
 export const keys = {
   name: 'Name',
-  repositoriesContributed: 'Repos Contributed',
   pullRequestsMerged: 'PR Merged',
   pullRequestsOpen: 'PR Opened',
   issueOpen: 'Issue Opened',
   issueComments: 'Issue Comments',
+  repositoriesContributed: 'Repos Contributed',
 };
