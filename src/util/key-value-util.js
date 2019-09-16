@@ -7,7 +7,15 @@
  * @return ["name", "lastname"]
  */
 export function getKeys(json) {
-  return Object.keys(json[json.length - 1]);
+  let keysObj = {};
+  json.forEach(item => {
+    const temp = {};
+    Object.keys(item).forEach(key => {
+      temp[key] = 1;
+    });
+    keysObj = Object.assign({}, keysObj, temp);
+  });
+  return Object.keys(keysObj);
 }
 
 /**

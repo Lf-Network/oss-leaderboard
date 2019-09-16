@@ -10,6 +10,10 @@ import {
   events,
 } from './src/constants';
 
+import { getKeys, getValues } from './src/util/key-value-util';
+import { generateMarkdown } from './src/service/generate-markdown';
+import { createMarkdown } from './src/service/create-markdown';
+
 const uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
@@ -56,7 +60,7 @@ async function init() {
       });
       leaderBoard = leaderBoard.map(user => {
         const contribution = {};
-        // console.log(usersDetails[user]);
+
         Object.keys(usersDetails[user]).forEach(key => {
           const userContribution = usersDetails[user][key];
 
@@ -83,7 +87,22 @@ async function init() {
           contribution,
         );
       });
-      console.log(JSON.stringify(leaderBoard));
+
+      const keys = getKeys(leaderBoard);
+
+      leaderBoard = leaderBoard.map(item => {
+        const temp = Object.assign({}, item);
+        keys.forEach(key => {
+          temp[key] = temp[key] || 0;
+        });
+        return temp;
+      });
+
+      getValues(leaderBoard, keys).then(res => {
+        generateMarkdown(res, keys).then(contributionData => {
+          createMarkdown('user.md', contributionData);
+        });
+      });
     });
   } catch (error) {
     // TODO
@@ -111,6 +130,7 @@ async function fetchUserEvents(query) {
       const eventResult = response.data.user[event];
 
       if (eventResult.edges.length <= 0) {
+        // userEventList = userEventList.concat([{ [event]: null }]);
         return;
       }
       if (events[event].variables.before) {
