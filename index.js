@@ -101,15 +101,26 @@ async function init() {
         acc.push(temp);
         return acc;
       }, []);
-      getValues(addScore(leaderBoard), keys).then(res => {
-        generateMarkdown(res, keys).then(contributionData => {
-          createMarkdown(fileName, contributionData);
-        });
-      });
+      getValues(sortLeaderBoard(addScore(leaderBoard), 'desc'), keys).then(
+        res => {
+          generateMarkdown(res, keys).then(contributionData => {
+            createMarkdown(fileName, contributionData);
+          });
+        },
+      );
     });
   } catch (error) {
     console.log('Error user fetching', error);
   }
+}
+
+function sortLeaderBoard(leaderBoard, sortBy) {
+  return leaderBoard.sort((a, b) => {
+    if (sortBy === 'desc') {
+      return b.score - a.score;
+    }
+    return a.score - b.score;
+  });
 }
 
 function calculateScore(e) {
