@@ -101,7 +101,7 @@ async function init() {
         acc.push(temp);
         return acc;
       }, []);
-      getValues(calculateAndAddScore(leaderBoard), keys).then(res => {
+      getValues(addScore(leaderBoard), keys).then(res => {
         generateMarkdown(res, keys).then(contributionData => {
           createMarkdown(fileName, contributionData);
         });
@@ -112,14 +112,17 @@ async function init() {
   }
 }
 
-function calculateAndAddScore(leaderBoard) {
+function calculateScore(e) {
+  return (e.score =
+    e.pullRequestsMerged * weight.pullRequestsMerged +
+    e.pullRequestsOpen * weight.pullRequestsOpen +
+    e.issueComments * weight.issueComments +
+    e.issuesOpen * weight.issuesOpen);
+}
+
+function addScore(leaderBoard) {
   leaderBoard.forEach(e => {
-    e.score =
-      e.pullRequestsMerged * weight.pullRequestsMerged +
-      e.pullRequestsOpen * weight.pullRequestsOpen +
-      e.issueComments * weight.issueComments +
-      e.issuesOpen * weight.issuesOpen;
-    leaderBoard.push(e);
+    e[leaderBoard.indexOf(e)] = calculateScore(e);
   });
   return leaderBoard;
 }
