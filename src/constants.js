@@ -86,7 +86,16 @@ export const keys = {
   name: 'Name',
   pullRequestsMerged: 'PR Merged',
   pullRequestsOpen: 'PR Opened',
-  issueOpen: 'Issue Opened',
+  issuesOpen: 'Issue Opened',
   issueComments: 'Issue Comments',
   repositoriesContributed: 'Repos Contributed',
+  score: 'Score',
+};
+
+export const weight = {
+  pullRequestsMerged: 3,
+  pullRequestsOpen: 3,
+  issuesOpen: 1,
+  issueComments: 1,
+  repositoriesContributed: 0,
 };

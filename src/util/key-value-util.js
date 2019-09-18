@@ -13,6 +13,7 @@ export function getKeys(json) {
     Object.keys(item).forEach(key => {
       temp[key] = 1;
     });
+    temp.score = 'Score';
     keysObj = Object.assign({}, keysObj, temp);
   });
   return Object.keys(keysObj);
@@ -31,15 +32,15 @@ export function getKeys(json) {
 export async function getValues(json, keys) {
   const twoDValuesArray = [];
   let keyIndex = 0;
-  json.forEach(element => {
+  for (const element of json) {
     const singleDValuesArray = [];
     do {
       const key = keys[keyIndex];
       singleDValuesArray.push(element[key]);
       keyIndex++;
-    } while (keyIndex != keys.length);
+    } while (keyIndex !== keys.length);
     keyIndex = 0;
     twoDValuesArray.push(singleDValuesArray);
-  });
+  }
   return twoDValuesArray;
 }

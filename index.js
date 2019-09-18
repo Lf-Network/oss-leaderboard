@@ -5,10 +5,11 @@ import 'dotenv/config';
 import getQuery from './src/query';
 import {
   DAYS_TO_CONSIDER,
-  QUERY_NAMES,
   eventQueryGenerator,
   events,
   fileName,
+  QUERY_NAMES,
+  weight,
 } from './src/constants';
 
 import { getKeys, getValues } from './src/util/key-value-util';
@@ -87,6 +88,7 @@ async function init() {
           contribution,
         );
       });
+
       const keys = getKeys(leaderBoard);
       leaderBoard = leaderBoard.slice(0, 20).reduce((acc, item) => {
         const temp = Object.assign({}, item);
@@ -99,8 +101,7 @@ async function init() {
         acc.push(temp);
         return acc;
       }, []);
-
-      getValues(leaderBoard, keys).then(res => {
+      getValues(calculateAndAddScore(leaderBoard), keys).then(res => {
         generateMarkdown(res, keys).then(contributionData => {
           createMarkdown(fileName, contributionData);
         });
@@ -109,6 +110,18 @@ async function init() {
   } catch (error) {
     console.log('Error user fetching', error);
   }
+}
+
+function calculateAndAddScore(leaderBoard) {
+  leaderBoard.forEach(e => {
+    e.score =
+      e.pullRequestsMerged * weight.pullRequestsMerged +
+      e.pullRequestsOpen * weight.pullRequestsOpen +
+      e.issueComments * weight.issueComments +
+      e.issuesOpen * weight.issuesOpen;
+    leaderBoard.push(e);
+  });
+  return leaderBoard;
 }
 
 async function fetchUserEvents(query) {
