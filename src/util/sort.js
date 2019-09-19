@@ -1,3 +1,6 @@
+/*
+ * sort array of object on basics of key and order
+ * */
 export function sort(arr, key, sortBy = 'asc') {
   return arr.sort((paramOne, paramTwo) => {
     if (sortBy === 'asc') {
