@@ -15,6 +15,7 @@ import {
 import { getKeys, getValues } from './src/util/key-value-util';
 import { generateMarkdown } from './src/service/generate-markdown';
 import { createMarkdown } from './src/service/create-markdown';
+import { sort } from './src/util/sort';
 
 const uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
@@ -101,26 +102,16 @@ async function init() {
         acc.push(temp);
         return acc;
       }, []);
-      getValues(sortLeaderBoard(addScore(leaderBoard), 'desc'), keys).then(
-        res => {
-          generateMarkdown(res, keys).then(contributionData => {
-            createMarkdown(fileName, contributionData);
-          });
-        },
-      );
+      const sortedLeaderBoard = sort(addScore(leaderBoard), 'score', 'desc');
+      getValues(sortedLeaderBoard, keys).then(res => {
+        generateMarkdown(res, keys).then(contributionData => {
+          createMarkdown(fileName, contributionData);
+        });
+      });
     });
   } catch (error) {
     console.log('Error user fetching', error);
   }
-}
-
-function sortLeaderBoard(leaderBoard, sortBy) {
-  return leaderBoard.sort((a, b) => {
-    if (sortBy === 'desc') {
-      return b.score - a.score;
-    }
-    return a.score - b.score;
-  });
 }
 
 function calculateScore(e) {
