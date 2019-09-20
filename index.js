@@ -3,16 +3,9 @@ import fetch from 'node-fetch';
 import 'dotenv/config';
 
 import getQuery from './src/query';
-import {
-  DAYS_TO_CONSIDER,
-  eventQueryGenerator,
-  events,
-  fileName,
-  QUERY_NAMES,
-  weight,
-} from './src/constants';
+import { DAYS_TO_CONSIDER, eventQueryGenerator, events, fileName, QUERY_NAMES, weight } from './src/constants';
 
-import { getKeys, getValues } from './src/util/key-value-util';
+import { getKeys, getValues } from './src/util/key-value';
 import { generateMarkdown } from './src/service/generate-markdown';
 import { createMarkdown } from './src/service/create-markdown';
 import { sort } from './src/util/sort';
@@ -54,12 +47,12 @@ async function init() {
     ).then(() => {
       let leaderBoard = Object.keys(usersDetails).sort((a, b) => {
         return usersDetails[a].userEventList.length >
-          usersDetails[b].userEventList.length
+        usersDetails[b].userEventList.length
           ? -1
           : usersDetails[a].userEventList.length ===
-            usersDetails[b].userEventList.length
-          ? 0
-          : 1;
+          usersDetails[b].userEventList.length
+            ? 0
+            : 1;
       });
       leaderBoard = leaderBoard.map(user => {
         const contribution = {};
