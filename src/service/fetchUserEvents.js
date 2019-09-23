@@ -2,9 +2,18 @@ import { findGreatestLesser, findLeastGreater } from '../util/eventHelper';
 import { fetchUsers } from '../..';
 import { eventQueryGenerator, events } from '../constants';
 
-export const fetchUserEventsFromTo = async (query, dateFrom, dateTo) => {
+/**
+ * Fetch user events within data from: dateFrom and to:dateTo.
+ *
+ * @param {String} query
+ * @param {Date} dateFrom
+ * @param {Date} dateTo
+ * @returns
+ */
+export async function fetchUserEventsFromTo(query, dateFrom, dateTo) {
   let userEventList = [];
   const userContribution = {};
+
   try {
     const response = await fetchUsers(query);
     let needAnotherFetch = false;
@@ -42,6 +51,7 @@ export const fetchUserEventsFromTo = async (query, dateFrom, dateTo) => {
           needAnotherFetch = true;
 
           const eventFetchMore = Object.assign({}, events[event]);
+
           if (eventFetchMore.variables.after) {
             eventFetchMore.variables.after.value =
               eventResult.pageInfo.endCursor;
@@ -74,6 +84,7 @@ export const fetchUserEventsFromTo = async (query, dateFrom, dateTo) => {
         dateFrom,
         dateTo,
       );
+
       userEventList = userEventList.concat(remainingEventList);
     }
     if (!userContribution.repositoriesContributedTo) {
@@ -83,7 +94,9 @@ export const fetchUserEventsFromTo = async (query, dateFrom, dateTo) => {
         : 0;
     }
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log('Error fetching user events', err);
   }
+
   return Object.assign({}, { userEventList }, userContribution);
-};
+}

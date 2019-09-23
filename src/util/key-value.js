@@ -1,21 +1,25 @@
 /**
- * Filter keys from flat json
  *
- * let json = [{name : "Nischal" lastname: "Shakya"}, {"name": "Avishkar", lastnane: "KC"}]
+ * Filter keys from flat json.
+ *
+ * Suppose: let json = [{name : "Nischal" lastname: "Shakya"}, {"name": "Avishkar", lastnane: "KC"}].
  *
  * @param {any[]} json
- * @return keys = ["name", "lastname"]
+ * @return Keys = ["name", "lastname"].
  */
 export function getKeys(json) {
   let keysObj = {};
+
   json.forEach(item => {
     const temp = {};
+
     Object.keys(item).forEach(key => {
       temp[key] = 1;
     });
     temp.score = 'Score';
     keysObj = Object.assign({}, keysObj, temp);
   });
+
   return Object.keys(keysObj);
 }
 

@@ -17,11 +17,18 @@ import { generateMarkdown } from './src/service/generate-markdown';
 import { createMarkdown } from './src/service/create-markdown';
 import { fetchUserEventsFromTo } from './src/service/fetchUserEvents';
 import { sort } from './src/util/sort';
+import { fetchOrganizationUsers } from './src/service/fetchOrganizationUsers';
 
 const uptoDate = new Date();
 
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
+/**
+ *
+ *
+ * @param {*} query
+ * @returns
+ */
 export async function fetchUsers(query) {
   const accessToken = process.env.ACCESS_TOKEN;
 
@@ -34,7 +41,6 @@ export async function fetchUsers(query) {
       },
     });
 
-    
     return res.json();
   } catch (error) {
     // TODO
@@ -42,34 +48,47 @@ export async function fetchUsers(query) {
   }
 }
 
+/**
+ *
+ *
+ */
 async function init() {
   const query = getQuery(QUERY_NAMES.MEMBERS_WITH_ROLE);
 
   try {
-    const usersList = await fetchData(query).catch(err => {
+    const usersList = await fetchOrganizationUsers(query).catch(err => {
       throw err;
     });
-    const usersDetails = {};
 
     await Promise.all(
-      usersList.map(async user => {
-        const eventDetails = await fetchUserEventsFromTo(
+      usersList.map(user => {
+        return fetchUserEventsFromTo(
           eventQueryGenerator(Object.values(events), user.login),
           new Date(),
           uptoDate,
         );
-
-        usersDetails[user.name || user.login] = eventDetails;
       }),
-    ).then(() => {
+    ).then(res => {
+      const usersDetails = {};
+
+      res.forEach((item, index) => {
+        usersDetails[usersList[index].name || usersList[index].login] = item;
+      });
+
       let leaderBoard = Object.keys(usersDetails).sort((a, b) => {
-        return usersDetails[a].userEventList.length >
+        if (
+          usersDetails[a].userEventList.length >
           usersDetails[b].userEventList.length
-          ? -1
-          : usersDetails[a].userEventList.length ===
-            usersDetails[b].userEventList.length
-            ? 0
-            : 1;
+        ) {
+          return -1;
+        } else if (
+          usersDetails[a].userEventList.length ===
+          usersDetails[b].userEventList.length
+        ) {
+          return 0;
+        }
+
+        return 1;
       });
 
       leaderBoard = leaderBoard.map(user => {
@@ -94,7 +113,7 @@ async function init() {
             });
           }
         });
-        
+
         return Object.assign(
           {},
           {
@@ -116,7 +135,7 @@ async function init() {
           temp[key] = temp[key] || 0;
         });
         acc.push(temp);
-        
+
         return acc;
       }, []);
       const sortedLeaderBoard = sort(addScore(leaderBoard), 'score', 'desc');
@@ -128,50 +147,41 @@ async function init() {
       });
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error user fetching', error);
   }
 }
 
+/**
+ * Calculate a score of events.
+ *
+ * @param {*} e
+ * @returns Calcualted score by give weights.
+ */
 function calculateScore(e) {
-  return (e.score =
+  return (
     e.pullRequestsMerged * weight.pullRequestsMerged +
     e.pullRequestsOpen * weight.pullRequestsOpen +
     e.issueComments * weight.issueComments +
-    e.issuesOpen * weight.issuesOpen);
+    e.issuesOpen * weight.issuesOpen
+  );
 }
 
+/**
+ * Add a score field for each events.
+ *
+ * @param {*} leaderBoard
+ * @returns Event list of user with added score.
+ */
 function addScore(leaderBoard) {
   leaderBoard.forEach(e => {
     e[leaderBoard.indexOf(e)] = calculateScore(e);
   });
-  
-  return leaderBoard;
-}
 
-async function fetchData(query) {
-  let hasNextPage = false;
-  let usedQuery = query;
-  let users = [];
-
-  do {
-    try {
-      const response = await fetchUsers(usedQuery);
-
-      users = [...users, ...response.data.organization.membersWithRole.nodes];
-      const pageInfo = response.data.organization.membersWithRole.pageInfo;
-
-      hasNextPage = pageInfo.hasNextPage;
-      usedQuery = getQuery(QUERY_NAMES.FETCH_MORE_MEMBERS, {
-        first: 100,
-        after: pageInfo.endCursor,
-      });
-    } catch (error) {
-      // TODO
-    }
-  } while (hasNextPage);
-  console.log(`No of Users: ${users.length}`);
-  
-  return users;
+  return leaderBoard.map(item => ({
+    ...item,
+    score: calculateScore(item),
+  }));
 }
 
 init();
