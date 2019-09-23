@@ -19,10 +19,12 @@ import { fetchUserEventsFromTo } from './src/service/fetchUserEvents';
 import { sort } from './src/util/sort';
 
 const uptoDate = new Date();
+
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
 export async function fetchUsers(query) {
   const accessToken = process.env.ACCESS_TOKEN;
+
   try {
     const res = await fetch('https://api.github.com/graphql', {
       method: 'POST',
@@ -31,6 +33,8 @@ export async function fetchUsers(query) {
         authorization: `token ${accessToken}`,
       },
     });
+
+    
     return res.json();
   } catch (error) {
     // TODO
@@ -40,6 +44,7 @@ export async function fetchUsers(query) {
 
 async function init() {
   const query = getQuery(QUERY_NAMES.MEMBERS_WITH_ROLE);
+
   try {
     const usersList = await fetchData(query).catch(err => {
       throw err;
@@ -53,6 +58,7 @@ async function init() {
           new Date(),
           uptoDate,
         );
+
         usersDetails[user.name || user.login] = eventDetails;
       }),
     ).then(() => {
@@ -62,14 +68,16 @@ async function init() {
           ? -1
           : usersDetails[a].userEventList.length ===
             usersDetails[b].userEventList.length
-          ? 0
-          : 1;
+            ? 0
+            : 1;
       });
+
       leaderBoard = leaderBoard.map(user => {
         const contribution = {};
 
         Object.keys(usersDetails[user]).forEach(key => {
           const userContribution = usersDetails[user][key];
+
           if (typeof userContribution === 'number') {
             contribution[key] = userContribution;
           } else if (userContribution.length > 0) {
@@ -78,6 +86,7 @@ async function init() {
               const state = event[eventKey].state || '';
               const generatedKey =
                 eventKey + state.charAt(0) + state.substr(1).toLowerCase();
+
               if (!contribution[generatedKey]) {
                 contribution[generatedKey] = 0;
               }
@@ -85,6 +94,7 @@ async function init() {
             });
           }
         });
+        
         return Object.assign(
           {},
           {
@@ -95,8 +105,10 @@ async function init() {
       });
 
       const keys = getKeys(leaderBoard);
+
       leaderBoard = leaderBoard.slice(0, 20).reduce((acc, item) => {
         const temp = Object.assign({}, item);
+
         if (Object.keys(temp).length <= 2) {
           return acc;
         }
@@ -104,9 +116,11 @@ async function init() {
           temp[key] = temp[key] || 0;
         });
         acc.push(temp);
+        
         return acc;
       }, []);
       const sortedLeaderBoard = sort(addScore(leaderBoard), 'score', 'desc');
+
       getValues(sortedLeaderBoard, keys).then(res => {
         generateMarkdown(res, keys).then(contributionData => {
           createMarkdown(fileName, contributionData);
@@ -130,6 +144,7 @@ function addScore(leaderBoard) {
   leaderBoard.forEach(e => {
     e[leaderBoard.indexOf(e)] = calculateScore(e);
   });
+  
   return leaderBoard;
 }
 
@@ -141,8 +156,10 @@ async function fetchData(query) {
   do {
     try {
       const response = await fetchUsers(usedQuery);
+
       users = [...users, ...response.data.organization.membersWithRole.nodes];
       const pageInfo = response.data.organization.membersWithRole.pageInfo;
+
       hasNextPage = pageInfo.hasNextPage;
       usedQuery = getQuery(QUERY_NAMES.FETCH_MORE_MEMBERS, {
         first: 100,
@@ -153,6 +170,7 @@ async function fetchData(query) {
     }
   } while (hasNextPage);
   console.log(`No of Users: ${users.length}`);
+  
   return users;
 }
 
