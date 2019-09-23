@@ -14,11 +14,12 @@ import {
 import { getKeys, getValues } from './src/util/key-value-util';
 import { generateMarkdown } from './src/service/generate-markdown';
 import { createMarkdown } from './src/service/create-markdown';
+import { fetchUserEventsFromTo } from './src/service/fetchUserEvents';
 
 const uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
-async function fetchUsers(query) {
+export async function fetchUsers(query) {
   const accessToken = process.env.ACCESS_TOKEN;
   try {
     const res = await fetch('https://api.github.com/graphql', {
@@ -42,10 +43,13 @@ async function init() {
       throw err;
     });
     const usersDetails = {};
+
     await Promise.all(
       usersList.map(async user => {
-        const eventDetails = await fetchUserEvents(
+        const eventDetails = await fetchUserEventsFromTo(
           eventQueryGenerator(Object.values(events), user.login),
+          new Date(),
+          uptoDate,
         );
         usersDetails[user.name || user.login] = eventDetails;
       }),
@@ -111,80 +115,6 @@ async function init() {
   }
 }
 
-async function fetchUserEvents(query) {
-  let userEventList = [];
-  const userContribution = {};
-  try {
-    const response = await fetchUsers(query);
-    let needAnotherFetch = false;
-    const eventList = [];
-
-    Object.keys(events).forEach(event => {
-      const eventResult = response.data.user[event];
-
-      if (eventResult.edges.length <= 0) {
-        // userEventList = userEventList.concat([{ [event]: null }]);
-        return;
-      }
-      if (events[event].variables.before) {
-        eventResult.edges = eventResult.edges.reverse();
-      }
-
-      const lastDate = new Date(
-        eventResult.edges[eventResult.edges.length - 1].node.updatedAt,
-      );
-
-      if (lastDate.getTime() >= uptoDate.getTime()) {
-        userEventList = userEventList.concat(
-          eventResult.edges.map(edge => ({ [event]: edge.node })),
-        );
-
-        if (eventResult.pageInfo.hasNextPage) {
-          needAnotherFetch = true;
-
-          const eventFetchMore = Object.assign({}, events[event]);
-          if (eventFetchMore.variables.after) {
-            eventFetchMore.variables.after.value =
-              eventResult.pageInfo.endCursor;
-          } else if (eventFetchMore.variables.before) {
-            eventFetchMore.variables.before.value =
-              eventResult.pageInfo.endCursor;
-          }
-
-          eventList.push(eventFetchMore);
-        }
-      } else {
-        const uptoPositionToConsider = countHowManyLiesWithin(
-          eventResult.edges,
-          0,
-          eventResult.edges.length - 1,
-        );
-        userEventList = userEventList.concat(
-          eventResult.edges
-            .slice(0, uptoPositionToConsider)
-            .map(edge => ({ [event]: edge.node })),
-        );
-      }
-    });
-
-    if (needAnotherFetch) {
-      const { userEventList: remainingEventList } = await fetchUserEvents(
-        eventQueryGenerator(eventList, response.login),
-      );
-      userEventList = userEventList.concat(remainingEventList);
-    }
-    if (!userContribution.repositoriesContributedTo) {
-      userContribution.repositoriesContributedTo = response.data.user
-        .repositoriesContributedTo
-        ? response.data.user.repositoriesContributedTo.totalCount
-        : 0;
-    }
-  } catch (err) {
-    console.log('Error fetching user events', err);
-  }
-  return Object.assign({}, { userEventList }, userContribution);
-}
-
 async function fetchData(query) {
   let hasNextPage = false;
   let usedQuery = query;
@@ -207,24 +137,5 @@ async function fetchData(query) {
   console.log(`No of Users: ${users.length}`);
   return users;
 }
-
-/**
- * Binary search to count total events which lies after target date
- *
- * @param {*} events Array of events.
- * @param {*} l Left bound.
- * @param {*} r Right bound.
- */
-const countHowManyLiesWithin = (eventDetail, l, r) => {
-  if (l === r) {
-    return l;
-  }
-  const mid = parseInt(l + (r - l) / 2);
-  const midEventDate = new Date(eventDetail[mid].node.updatedAt);
-  if (midEventDate.getTime() >= uptoDate.getTime()) {
-    return countHowManyLiesWithin(eventDetail, mid + 1, r);
-  }
-  return countHowManyLiesWithin(eventDetail, l, mid);
-};
 
 init();
