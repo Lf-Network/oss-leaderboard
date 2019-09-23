@@ -2,11 +2,11 @@ import fs from 'fs';
 
 /**
  * Write data content to external markdown file.
- * let fileName = users.md
+ * Let fileName = users.md
  * let data = firstname | lastname
                 --- | ---
               Nischal | Shakya
-              Avishkar | KC
+              Avishkar | KC.
  *
  * @param {string} fileName
  * @param {object} data

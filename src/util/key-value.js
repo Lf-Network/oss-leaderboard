@@ -24,10 +24,10 @@ export function getKeys(json) {
 }
 
 /**
- * Filter values from json array
+ * Filter values from json array.
  *
  * let json = [{name : "Nischal" lastname: "Shakya"}, {"name": "Avishkar", lastnane: "KC"}]
- * let keys = ["name", "lastname"]
+ * let keys = ["name", "lastname"].
  *
  * @param {json} json
  * @param {string[]} keys
@@ -36,15 +36,19 @@ export function getKeys(json) {
 export async function getValues(json, keys) {
   const twoDValuesArray = [];
   let keyIndex = 0;
+
   for (const element of json) {
     const singleDValuesArray = [];
+
     do {
       const key = keys[keyIndex];
+
       singleDValuesArray.push(element[key]);
       keyIndex++;
     } while (keyIndex !== keys.length);
     keyIndex = 0;
     twoDValuesArray.push(singleDValuesArray);
   }
+  
   return twoDValuesArray;
 }
