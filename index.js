@@ -5,16 +5,18 @@ import 'dotenv/config';
 import getQuery from './src/query';
 import {
   DAYS_TO_CONSIDER,
-  QUERY_NAMES,
   eventQueryGenerator,
   events,
   fileName,
+  QUERY_NAMES,
+  weight,
 } from './src/constants';
 
-import { getKeys, getValues } from './src/util/key-value-util';
+import { getKeys, getValues } from './src/util/key-value';
 import { generateMarkdown } from './src/service/generate-markdown';
 import { createMarkdown } from './src/service/create-markdown';
 import { fetchUserEventsFromTo } from './src/service/fetchUserEvents';
+import { sort } from './src/util/sort';
 
 const uptoDate = new Date();
 uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
@@ -91,6 +93,7 @@ async function init() {
           contribution,
         );
       });
+
       const keys = getKeys(leaderBoard);
       leaderBoard = leaderBoard.slice(0, 20).reduce((acc, item) => {
         const temp = Object.assign({}, item);
@@ -103,8 +106,8 @@ async function init() {
         acc.push(temp);
         return acc;
       }, []);
-
-      getValues(leaderBoard, keys).then(res => {
+      const sortedLeaderBoard = sort(addScore(leaderBoard), 'score', 'desc');
+      getValues(sortedLeaderBoard, keys).then(res => {
         generateMarkdown(res, keys).then(contributionData => {
           createMarkdown(fileName, contributionData);
         });
@@ -113,6 +116,21 @@ async function init() {
   } catch (error) {
     console.log('Error user fetching', error);
   }
+}
+
+function calculateScore(e) {
+  return (e.score =
+    e.pullRequestsMerged * weight.pullRequestsMerged +
+    e.pullRequestsOpen * weight.pullRequestsOpen +
+    e.issueComments * weight.issueComments +
+    e.issuesOpen * weight.issuesOpen);
+}
+
+function addScore(leaderBoard) {
+  leaderBoard.forEach(e => {
+    e[leaderBoard.indexOf(e)] = calculateScore(e);
+  });
+  return leaderBoard;
 }
 
 async function fetchData(query) {
