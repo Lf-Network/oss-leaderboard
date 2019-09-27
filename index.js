@@ -3,7 +3,14 @@ import fetch from 'node-fetch';
 import 'dotenv/config';
 
 import getQuery from './src/query';
-import { DAYS_TO_CONSIDER, eventQueryGenerator, events, fileName, QUERY_NAMES, weight } from './src/constants';
+import {
+  DAYS_TO_CONSIDER,
+  eventQueryGenerator,
+  events,
+  fileName,
+  QUERY_NAMES,
+  weight,
+} from './src/constants';
 
 import { getKeys, getValues } from './src/util/keyValue';
 import { generateMarkdown } from './src/service/generateMarkdown';
@@ -132,11 +139,16 @@ async function init() {
         return acc;
       }, []);
       const sortedLeaderBoard = sort(addScore(leaderBoard), 'score', 'desc');
-      const leaderBoardValues = getValues(sortedLeaderBoard, keys);
+      const leaderBoardValues = getValues(sortedLeaderBoard, [
+        ...keys,
+        'score',
+      ]);
 
-      generateMarkdown(leaderBoardValues, keys).then(contributionData => {
-        createMarkdown(fileName, contributionData);
-      });
+      generateMarkdown(leaderBoardValues, [...keys, 'score']).then(
+        contributionData => {
+          createMarkdown(fileName, contributionData);
+        },
+      );
     });
   } catch (error) {
     // eslint-disable-next-line no-console

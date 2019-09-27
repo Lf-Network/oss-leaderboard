@@ -16,7 +16,7 @@ export function getKeys(any) {
     Object.keys(item).forEach(key => {
       temp[key] = 1;
     });
-    temp.score = 'Score';
+    // temp.score = 'Score';
     keysObj = Object.assign({}, keysObj, temp);
   }
 
