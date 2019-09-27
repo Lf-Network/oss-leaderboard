@@ -16,7 +16,7 @@ export async function generateMarkdown(rows, headers) {
   return json2md([
     { h1: 'oss-leaderboard' },
     {
-      table: { headers: headers, rows: rows },
+      table: { headers: Object.values(headers), rows: rows },
     },
     { blockquote: 'PR = Pull request' },
   ]);

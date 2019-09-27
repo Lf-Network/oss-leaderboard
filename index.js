@@ -7,7 +7,7 @@ import {
   DAYS_TO_CONSIDER,
   eventQueryGenerator,
   events,
-  fileName,
+  fileName, MAPPED_USER_EVENT,
   QUERY_NAMES,
   weight,
 } from './src/constants';
@@ -144,7 +144,7 @@ async function init() {
         'score',
       ]);
 
-      generateMarkdown(leaderBoardValues, [...keys, 'score']).then(
+      generateMarkdown(leaderBoardValues, MAPPED_USER_EVENT).then(
         contributionData => {
           createMarkdown(fileName, contributionData);
         },

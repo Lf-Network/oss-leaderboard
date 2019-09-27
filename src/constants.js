@@ -82,7 +82,7 @@ export const events = {
 
 export const fileName = 'oss-leaderboard.md';
 
-export const keys = {
+export const MAPPED_USER_EVENT = {
   name: 'Name',
   pullRequestsMerged: 'PR Merged',
   pullRequestsOpen: 'PR Opened',
