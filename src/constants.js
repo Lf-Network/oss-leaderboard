@@ -17,28 +17,72 @@ export const STATES = {
   CLOSED: 'CLOSED',
 };
 
-export const eventQueryGenerator = (events, user) => {
+/**
+ * Generate a query for github to fetch neccessary events.
+ *
+ * @param {Array} events Array of events to be fetched.
+ * @param {String} user User handle.
+ * @param {String} repoContribution Repo Contribution to be fetched wih new variables.
+ */
+export const eventQueryGenerator = (events, user, repoContribution) => {
   const variables = {};
   let query =
-    'query($user:String!,:variable_declaration){user(login:$user){login,repositoriesContributedTo{totalCount},:event_type}}';
+    'query($user:String!,:variable_declaration){user(login:$user){login,:repositoriesContributedTo:event_type}}';
   let variableDeclaration = '';
   let eventType = '';
+  let repoContributionQuery = '';
 
-  events.forEach(event => {
-    Object.values(event.variables).forEach(variable => {
-      variables[variable.name] = variable.value;
-      variableDeclaration += '$' + variable.name + ':' + variable.type + ',';
+  // For repos contributed to
+  if (repoContribution) {
+    const repositoriesContributedVar =
+      repoContribution.repositoriesContributedTo.variables;
+
+    variables[repositoriesContributedVar.after.name] =
+      repositoriesContributedVar.after.value;
+    variableDeclaration +=
+      '$' +
+      repositoriesContributedVar.after.name +
+      ':' +
+      repositoriesContributedVar.after.type +
+      ',';
+    repoContributionQuery =
+      repoContribution.repositoriesContributedTo.query + ',';
+  }
+
+  // For events
+  if (events && events.length > 0) {
+    events.forEach(event => {
+      Object.values(event.variables).forEach(variable => {
+        variables[variable.name] = variable.value;
+        variableDeclaration += '$' + variable.name + ':' + variable.type + ',';
+      });
+      eventType += event.query + ',';
     });
-    eventType += event.query + ',';
-  });
+  }
 
   query = query.replace(':variable_declaration', variableDeclaration);
   query = query.replace(':event_type', eventType);
+  query = query.replace(':repositoriesContributedTo', repoContributionQuery);
 
   return {
     variables: Object.assign({}, { user }, variables),
     query,
   };
+};
+
+export const repositoriesContributedTo = {
+  repositoriesContributedTo: {
+    variables: {
+      after: {
+        name: 'repositoriesContributedToAfter',
+        type: 'String',
+        value: null,
+        eventName: 'repositoriesContributedTo',
+      },
+    },
+    query:
+      'repositoriesContributedTo(first:100,after: $repositoriesContributedToAfter,orderBy:{field: UPDATED_AT, direction: DESC}){pageInfo {hasNextPage, endCursor},edges{node{updatedAt}}}',
+  },
 };
 
 export const events = {

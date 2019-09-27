@@ -7,9 +7,11 @@ import {
   DAYS_TO_CONSIDER,
   eventQueryGenerator,
   events,
-  fileName, MAPPED_USER_EVENT,
+  fileName,
+  MAPPED_USER_EVENT,
   QUERY_NAMES,
   weight,
+  repositoriesContributedTo,
 } from './src/constants';
 
 import { getKeys, getValues } from './src/util/keyValue';
@@ -18,10 +20,6 @@ import { createMarkdown } from './src/service/createMarkdown';
 import { fetchUserEventsFromTo } from './src/service/fetchUserEvents';
 import { sort } from './src/util/sort';
 import { fetchOrganizationUsers } from './src/service/fetchOrganizationUsers';
-
-const uptoDate = new Date();
-
-uptoDate.setDate(uptoDate.getDate() - DAYS_TO_CONSIDER);
 
 /**
  *
@@ -53,6 +51,12 @@ export async function fetchUsers(query) {
  *
  */
 async function init() {
+  const fromDate = new Date();
+
+  const uptoDate = new Date();
+
+  uptoDate.setDate(fromDate.getDate() - DAYS_TO_CONSIDER);
+
   const query = getQuery(QUERY_NAMES.MEMBERS_WITH_ROLE);
 
   try {
@@ -63,8 +67,12 @@ async function init() {
     await Promise.all(
       usersList.map(user => {
         return fetchUserEventsFromTo(
-          eventQueryGenerator(Object.values(events), user.login),
-          new Date(),
+          eventQueryGenerator(
+            Object.values(events),
+            user.login,
+            repositoriesContributedTo,
+          ),
+          fromDate,
           uptoDate,
         );
       }),
