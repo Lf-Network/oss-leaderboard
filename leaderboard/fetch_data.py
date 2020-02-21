@@ -3,18 +3,17 @@ import os
 import logging
 
 import requests
-from dotenv import load_dotenv
 
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('fetch_data')
 
-load_dotenv()
-
-ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+ACCESS_TOKEN = os.environ.get('GITHUB_TOKEN')
 API_ENDPOINT = "https://api.github.com/graphql"
 
 headers = {"Authorization": ACCESS_TOKEN}
+
+logger.info(headers)
 
 
 def execute_query(query: str, username: str): 
