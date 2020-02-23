@@ -1,4 +1,4 @@
-test_query  = """
+test_query = """
 {{
   user(login: "{username}") {{
     followers(last: 5) {{
