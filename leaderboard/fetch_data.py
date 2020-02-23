@@ -3,6 +3,8 @@ import os
 import logging
 
 import requests
+from urllib3.util.retry import Retry
+from requests.adapters import HTTPAdapter
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -23,10 +25,17 @@ def execute_query(query: str, username: str):
         query: GraphQL query for fetching data. 
         username: whose data will be fetched.
     """
-    request = requests.post(
+    s = requests.Session()
+
+    retries = Retry(total=5, backoff_factor=0.1, status_forcelist=[500, 502, 503, 504])
+
+    s.mount("https://", HTTPAdapter(max_retries=retries))
+
+    request = s.post(
         url=API_ENDPOINT,
         json={"query": query.format(username=username)},
         headers=headers,
+        timeout=5,
     )
 
     if request.status_code == 200:
