@@ -1,6 +1,9 @@
 """ Fetch required data from the GitHub API. """
 import os
+import json
 import logging
+from typing import Dict
+from datetime import date
 
 import requests
 from urllib3.util.retry import Retry
@@ -11,14 +14,14 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
 
 ACCESS_TOKEN = os.environ.get("GITHUB_TOKEN")
-API_ENDPOINT = "https://api.github.com/graphql"
+API_ENDPOINT = f"https://api.github.com/graphql"
 
 headers = {"Authorization": ACCESS_TOKEN}
 
 logger.info(headers)
 
 
-def execute_query(query: str, username: str):
+def execute_query(query: str, variables: Dict):
     """ Executes query to fetch data from GraphQL API.
 
     Args: 
@@ -33,13 +36,13 @@ def execute_query(query: str, username: str):
 
     request = s.post(
         url=API_ENDPOINT,
-        json={"query": query.format(username=username)},
+        json={"query": query, "variables": variables},
         headers=headers,
         timeout=5,
     )
 
     if request.status_code == 200:
-        logger.info(request.json())
+        logger.info(json.dumps(request.json(), indent=4))
     else:
         raise Exception(
             "Request failed with code of {} \n{}.".format(
