@@ -8,7 +8,7 @@ with open("README.md", "r") as f:
 requirements = ["requests==2.22.0"]
 
 # Development Requirements
-requirements_dev = ["pytest==4.*", "black==19.10b0", "pyright==1.1.25"]
+requirements_dev = ["pytest==4.*", "black==19.10b0"]
 
 setuptools.setup(
     name="oss-leaderboard",
