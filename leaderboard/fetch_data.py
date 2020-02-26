@@ -16,7 +16,7 @@ logger = logging.getLogger("fetch_data")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 API_ENDPOINT = "https://api.github.com/graphql"
 
-headers = {"Authorization": "token {}".format(GITHUB_TOKEN)}
+headers = {"Authorization": GITHUB_TOKEN}
 
 logger.info(headers)
 
