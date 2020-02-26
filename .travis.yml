@@ -1,6 +1,7 @@
+language: generic
+
 install: 
-    - npm install pyright
+    - sudo npm install -g pyright
 
 script:
-    - make test
     - make check
