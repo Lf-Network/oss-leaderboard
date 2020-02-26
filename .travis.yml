@@ -1,2 +1,5 @@
+install: 
+    - make setup
+
 script:
     - make check
