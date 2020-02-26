@@ -13,10 +13,10 @@ from requests.adapters import HTTPAdapter
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
 
-ACCESS_TOKEN = os.environ.get("GITHUB_TOKEN")
-API_ENDPOINT = f"https://api.github.com/graphql"
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+API_ENDPOINT = "https://api.github.com/graphql"
 
-headers = {"Authorization": ACCESS_TOKEN}
+headers = {"Authorization": "token {}".format(GITHUB_TOKEN)}
 
 logger.info(headers)
 
