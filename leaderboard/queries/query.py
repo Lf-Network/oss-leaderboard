@@ -1,3 +1,5 @@
+""" GraphQL Query to fetch data. """
+
 query = """
 query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
   user(login: $username) {
