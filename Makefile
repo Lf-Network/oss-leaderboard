@@ -23,7 +23,7 @@ build:
 	@docker build --no-cache --target=main -t leaderboard .
 
 test:
-	@docker build --target=test -t leaderboard:test .
+	@docker build --no-cache --target=test -t leaderboard:test .
 	@docker run leaderboard:test
 
 format:
