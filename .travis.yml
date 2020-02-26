@@ -1,8 +1,2 @@
-node_js: 
-    - lts/*
-
-install: 
-    - sudo $(which npm) install -g pyright
-
 script:
     - make check
