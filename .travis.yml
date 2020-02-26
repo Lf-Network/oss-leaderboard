@@ -1,7 +1,8 @@
-language: generic
+node_js: 
+    - lts/*
 
 install: 
-    - sudo npm install -g pyright
+    - sudo $(which npm) install -g pyright
 
 script:
     - make check
