@@ -1,0 +1,6 @@
+install: 
+    - npm install pyright
+
+script:
+    - make test
+    - make check
