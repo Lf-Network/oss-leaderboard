@@ -3,12 +3,13 @@
 query = """
 query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
   user(login: $username) {
-    username:login
-    contributionsCollection(from:$timedelta) {
+    username: login
+    id
+    contributionsCollection(from: $timedelta) {
       hasAnyContributions
       pullRequestReviewContributions(first: $dataCount) {
         totalCount
-        pageInfo{
+        pageInfo {
           hasNextPage
         }
         edges {
@@ -16,15 +17,22 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
           node {
             repository {
               id
-              nameWithOwner
+              name
+              owner {
+                id
+                login
+              }
             }
             pullRequestReview {
-              state
-              createdAt
-              lastEditedAt
+              ReviewState: state
               pullRequest {
                 id
-                title
+                author {
+                  login
+                  ... on User {
+                    id
+                  }
+                }
                 url
                 state
                 merged
@@ -32,6 +40,11 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
                   login
                 }
               }
+              reactions {
+                totalCount
+              }
+              createdAt
+              updatedAt
             }
           }
         }
@@ -45,17 +58,29 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
           cursor
           node {
             issue {
+              repository {
+                id
+                owner {
+                  id
+                }
+              }
               reactions {
                 totalCount
+              }
+              labels(first: $dataCount) {
+                edges {
+                  node {
+                    name
+                  }
+                }
               }
               url
               comments {
                 totalCount
               }
+              state
               closed
               createdAt
-              state
-              title
               updatedAt
             }
           }
@@ -63,22 +88,40 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
       }
       pullRequestContributions(first: $dataCount) {
         totalCount
+        pageInfo {
+          hasNextPage
+        }
         edges {
           node {
             pullRequest {
-              author {
-                login
+              repository {
+                id
+                owner {
+                  id
+                }
               }
+              state
+              title
               closed
-              closedAt
               merged
               mergedAt
               mergedBy {
                 login
+                ... on User {
+                  id
+                }
               }
-              number
-              state
-              title
+              labels(first: $dataCount) {
+                edges {
+                  node {
+                    name
+                  }
+                }
+              }
+              commits {
+                totalCount
+              }
+              createdAt
               updatedAt
             }
           }
@@ -91,20 +134,24 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
             repository {
               id
               name
-              createdAt
+              isFork
+              parent {
+                id
+                owner {
+                  id
+                  login
+                }
+              }
+              isTemplate
+              isFork
               isArchived
               isDisabled
-              isFork
-              isLocked
-              isMirror
-              isTemplate
-              pushedAt
-              updatedAt
               forkCount
-              isFork
-              stargazers(first: $dataCount) {
+              stargazers {
                 totalCount
               }
+              createdAt
+              updatedAt
             }
           }
         }
