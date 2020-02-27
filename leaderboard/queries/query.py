@@ -5,6 +5,36 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
   user(login: $username) {
     username: login
     id
+    issueComments(first: $dataCount) {
+      totalCount
+      pageInfo {
+        hasNextPage
+      }
+      edges {
+        cursor
+        node {
+          issue {
+            author {
+              login
+              ... on User {
+                id
+              }
+            }
+            repository {
+              id
+              owner {
+                id
+              }
+            }
+            reactions {
+              totalCount
+            }
+          }
+          createdAt
+          updatedAt
+        }
+      }
+    }
     contributionsCollection(from: $timedelta) {
       hasAnyContributions
       pullRequestReviewContributions(first: $dataCount) {
