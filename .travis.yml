@@ -5,6 +5,7 @@ python:
 
 install: 
     - make setup
+    - npm install -g pyright
 
 script:
     - make check
