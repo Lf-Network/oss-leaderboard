@@ -4,7 +4,6 @@ python:
     - "3.6" 
 
 install: 
-    - make venv
     - make setup
 
 script:
