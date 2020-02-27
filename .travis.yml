@@ -1,4 +1,5 @@
 install: 
+    - apt-get install python3-venv
     - make venv
     - make setup
 
