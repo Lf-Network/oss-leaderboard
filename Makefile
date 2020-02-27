@@ -11,6 +11,7 @@ clean:
 
 venv:
 	@python3 -m venv $(VENV_PATH)
+	@source .venv/bin/activate
 
 setup:
 	@pip install -U -e .[dev]
