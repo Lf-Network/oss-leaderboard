@@ -1,4 +1,5 @@
 install: 
+    - make venv
     - make setup
 
 script:
