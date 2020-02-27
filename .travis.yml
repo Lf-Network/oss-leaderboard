@@ -1,7 +1,5 @@
 install: 
-    - sudo apt-get install python3-venv
     - make venv
-    - pip install --upgrade pip
     - make setup
 
 script:
