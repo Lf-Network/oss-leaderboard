@@ -10,7 +10,7 @@ clean:
 	@find . -name '*.pyc' -delete
 
 venv:
-	@virtualenv -p python3 $(VENV_PATH)
+	@python3 -m venv $(VENV_PATH)
 
 setup:
 	@pip install -U -e .[dev]
@@ -31,4 +31,3 @@ format:
 
 check:
 	@black --check --diff .
-	@pyright
