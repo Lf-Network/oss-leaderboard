@@ -1,7 +1,7 @@
 SHELL :=/bin/bash
 CWD := $(PWD)
 TMP_PATH := $(CWD)/.tmp
-VENV_PATH := $(CWD)/.venv
+VENV_PATH := $(CWD)/ venv
 
 .PHONY: test clean
 
@@ -10,8 +10,9 @@ clean:
 	@find . -name '*.pyc' -delete
 
 venv:
-	@python3 -m venv $(VENV_PATH)
-	@source .venv/bin/activate
+	@sudo pip3 install virtualenv 
+	@virtualenv -p $(VENV_PATH)
+	@source venv/bin/activate
 
 setup:
 	@pip install -U -e .[dev]
