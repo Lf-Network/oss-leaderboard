@@ -30,7 +30,7 @@ def execute_query(query: str, variables: Dict):
     """
     s = requests.Session()
 
-    retries = Retry(total=5, backoff_factor=0.1, status_forcelist=[500, 502, 503, 504])
+    retries = Retry(total=5, backoff_factor=10.0, status_forcelist=[500, 502, 503, 504])
 
     s.mount("https://", HTTPAdapter(max_retries=retries))
 
