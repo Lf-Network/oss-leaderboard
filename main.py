@@ -1,16 +1,24 @@
 """ Main module for the OSS Leaderboard. """
 import logging
-from leaderboard.query.query import test_query
+
+from leaderboard.queries.query import query
+from leaderboard.utils.data import get_date
 from leaderboard.fetch_data import execute_query
 
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
 
+variables = {
+    "timedelta": get_date(100),
+    "username": "sindresorhus",
+    "dataCount": 5,
+}
+
 
 def main():
     """ Script entrypoint. """
-    execute_query(test_query, "yankeexe")
+    execute_query(query, variables)
 
 
 main()

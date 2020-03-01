@@ -1,0 +1,10 @@
+{
+    "include": ["leaderboard/**/*.py", "tests/**/*.py"],
+    "exclude":["venv", "*.pyc", "*.egg-info", ".coverage"],
+
+    "reportMissingImports": true,
+    "reportUnusedImport": true,
+    "reportUnusedFunction": true,
+    "reportUnusedVariable": true,
+    "reportDuplicateImport": true
+}

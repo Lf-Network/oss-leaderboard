@@ -31,4 +31,3 @@ format:
 
 check:
 	@black --check --diff .
-	@pyright
