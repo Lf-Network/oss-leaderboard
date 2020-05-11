@@ -87,7 +87,7 @@ def get_intermediate_score_table(intermediate_table_df):
             },
             ignore_index=True,
         )
-        
+
     return result_df
 
 
