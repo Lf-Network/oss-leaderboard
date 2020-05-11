@@ -15,19 +15,19 @@ def get_intermediate_score_table(intermediate_table_df):
         columns=[
             "user_name",
             "user_id",
-            "T1S1",
-            "T1S2",
-            "T2S1",
-            "T2S2",
-            "T2S3",
-            "T2S4",
-            "T3S1",
-            "T3S2",
-            "T4S1",
-            "T4S2",
-            "T4S3",
-            "T4S4",
-            "T5S1",
+            "t1s1",
+            "t1s2",
+            "t2s1",
+            "t2s2",
+            "t2s3",
+            "t2s4",
+            "t3s1",
+            "t3s2",
+            "t4s1",
+            "t4s2",
+            "t4s3",
+            "t4s4",
+            "t5s1",
         ]
     )
 
@@ -35,7 +35,7 @@ def get_intermediate_score_table(intermediate_table_df):
 
     for user_tuple, frame in user_groups:
         # reset count for each user
-        T1S1, T1S2, T2S1, T2S2, T2S3, T2S4, T3S1, T3S2, T4S1, T4S2, T4S3, T4S4, T5S1 = (
+        t1s1, t1s2, t2s1, t2s2, t2s3, t2s4, t3s1, t3s2, t4s1, t4s2, t4s3, t4s4, t5s1 = (
             0,
             0,
             0,
@@ -54,42 +54,40 @@ def get_intermediate_score_table(intermediate_table_df):
         user_contrib_group_by_type = frame.groupby(["type"])
         for contrib_type, frame2 in user_contrib_group_by_type:
             if contrib_type == 1:
-                T1S1, T1S2 = get_pr_opened_counts(frame2, user_tuple[0])
+                t1s1, t1s2 = get_pr_opened_counts(frame2, user_tuple[0])
             elif contrib_type == 2:
-                T2S1, T2S2, T2S3, T2S4 = get_pr_reviewed_counts(frame2, user_tuple[0])
+                t2s1, t2s2, t2s3, t2s4 = get_pr_reviewed_counts(frame2, user_tuple[0])
             elif contrib_type == 3:
-                T3S1, T3S2 = get_issue_created_counts(frame2, user_tuple[0])
+                t3s1, t3s2 = get_issue_created_counts(frame2, user_tuple[0])
             elif contrib_type == 4:
-                T4S1, T4S2, T4S3, T4S4 = get_commented_on_issue_counts(
+                t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(
                     frame2, user_tuple[0]
                 )
             elif contrib_type == 5:
-                T5S1 = get_repo_created_counts(frame2)
+                t5s1 = get_repo_created_counts(frame2)
 
         # set total contribution counts of a user
         result_df = result_df.append(
             {
                 "user_name": user_tuple[1],
                 "user_id": user_tuple[0],
-                "T1S1": T1S1,
-                "T1S2": T1S2,
-                "T2S1": T2S1,
-                "T2S2": T2S2,
-                "T2S3": T2S3,
-                "T2S4": T2S4,
-                "T3S1": T3S1,
-                "T3S2": T3S2,
-                "T4S1": T4S1,
-                "T4S2": T4S2,
-                "T4S3": T4S3,
-                "T4S4": T4S4,
-                "T5S1": T5S1,
+                "t1s1": t1s1,
+                "t1s2": t1s2,
+                "t2s1": t2s1,
+                "t2s2": t2s2,
+                "t2s3": t2s3,
+                "t2s4": t2s4,
+                "t3s1": t3s1,
+                "t3s2": t3s2,
+                "t4s1": t4s1,
+                "t4s2": t4s2,
+                "t4s3": t4s3,
+                "t4s4": t4s4,
+                "t5s1": t5s1,
             },
             ignore_index=True,
         )
-
-    print("Intermediate Score Table: ", result_df, sep="\n")
-
+        
     return result_df
 
 
@@ -102,15 +100,15 @@ def get_pr_opened_counts(df, user_id):
         int, int
     """
 
-    T1S1, T1S2 = 0, 0
+    t1s1, t1s2 = 0, 0
 
     for index, contribution in df.iterrows():
         if user_id != contribution.repo_owner_id:
-            T1S1 += 1
+            t1s1 += 1
         elif user_id == contribution.repo_owner_id:
-            T1S2 += 1
+            t1s2 += 1
 
-    return T1S1, T1S2
+    return t1s1, t1s2
 
 
 def get_pr_reviewed_counts(df, user_id):
@@ -122,25 +120,25 @@ def get_pr_reviewed_counts(df, user_id):
         int, int, int, int
     """
 
-    T2S1, T2S2, T2S3, T2S4 = 0, 0, 0, 0
+    t2s1, t2s2, t2s3, t2s4 = 0, 0, 0, 0
 
     for index, contribution in df.iterrows():
         if user_id == contribution.author_id and user_id == contribution.repo_owner_id:
-            T2S1 += 1
+            t2s1 += 1
         elif (
             user_id != contribution.author_id and user_id == contribution.repo_owner_id
         ):
-            T2S2 += 1
+            t2s2 += 1
         elif (
             user_id == contribution.author_id and user_id != contribution.repo_owner_id
         ):
-            T2S3 += 1
+            t2s3 += 1
         elif (
             user_id != contribution.author_id and user_id != contribution.repo_owner_id
         ):
-            T2S4 += 1
+            t2s4 += 1
 
-    return T2S1, T2S2, T2S3, T2S4
+    return t2s1, t2s2, t2s3, t2s4
 
 
 def get_issue_created_counts(df, user_id):
@@ -152,15 +150,15 @@ def get_issue_created_counts(df, user_id):
         int, int
     """
 
-    T3S1, T3S2 = 0, 0
+    t3s1, t3s2 = 0, 0
 
     for index, contribution in df.iterrows():
         if user_id == contribution.repo_owner_id:
-            T3S1 += 1
+            t3s1 += 1
         elif user_id != contribution.repo_owner_id:
-            T3S2 += 1
+            t3s2 += 1
 
-    return T3S1, T3S2
+    return t3s1, t3s2
 
 
 def get_commented_on_issue_counts(df, user_id):
@@ -172,25 +170,25 @@ def get_commented_on_issue_counts(df, user_id):
         int, int, int, int
     """
 
-    T4S1, T4S2, T4S3, T4S4 = 0, 0, 0, 0
+    t4s1, t4s2, t4s3, t4s4 = 0, 0, 0, 0
 
     for index, contribution in df.iterrows():
         if user_id == contribution.author_id and user_id == contribution.repo_owner_id:
-            T4S1 += 1
+            t4s1 += 1
         elif (
             user_id != contribution.author_id and user_id == contribution.repo_owner_id
         ):
-            T4S2 += 1
+            t4s2 += 1
         elif (
             user_id == contribution.author_id and user_id != contribution.repo_owner_id
         ):
-            T4S3 += 1
+            t4s3 += 1
         elif (
             user_id != contribution.author_id and user_id != contribution.repo_owner_id
         ):
-            T4S4 += 1
+            t4s4 += 1
 
-    return T4S1, T4S2, T4S3, T4S4
+    return t4s1, t4s2, t4s3, t4s4
 
 
 def get_repo_created_counts(df):
@@ -201,9 +199,9 @@ def get_repo_created_counts(df):
         int
     """
 
-    T5S1 = 0
+    t5s1 = 0
 
     for index, contribution in df.iterrows():
-        T5S1 += 1
+        t5s1 += 1
 
-    return T5S1
+    return t5s1
