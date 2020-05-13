@@ -7,8 +7,6 @@ from pandas.io.json import json_normalize
 
 
 def convert_to_intermediate_table(data):
-    print(data)
-    print(json_normalize(data))
     df = pd.DataFrame.from_dict(json_normalize(json.loads(data.encode())), orient='columns')
     user_github_id = df['data.user.id'][0]
     user_name = df['data.user.username'][0]
@@ -25,7 +23,6 @@ def convert_to_intermediate_table(data):
     new_df = format_pr_contributions(pr_contribution_list, user_github_id, user_name, new_df)
     new_df = format_issue_contributions(issue_contribution_list, user_github_id, user_name, new_df)
     new_df = format_repo_contributions(repo_contribution_list, user_github_id, user_name, new_df)
-    print(new_df)
 
     new_df.to_csv('data.csv', index = False)
 

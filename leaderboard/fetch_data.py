@@ -8,7 +8,7 @@ import requests
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
-from leaderboard.utils.format_json import convert_to_intermediate_table
+from leaderboard.utils.formatter import convert_to_intermediate_table
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -58,5 +58,3 @@ def execute_query(query: str, variables: Dict):
                 request.status_code, request.text
             )
         )
-
-
