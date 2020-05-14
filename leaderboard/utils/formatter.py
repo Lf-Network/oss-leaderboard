@@ -31,13 +31,14 @@ def convert_to_intermediate_table(data):
 
 def format_issue_comments(issue_comment_list, user_id, user_name, df):
     for issue_comment in issue_comment_list:
+        github_id = issue_comment['node']['id']
         user = issue_comment['node']['issue']['author']['id']
         repo_id = issue_comment['node']['issue']['repository']['id']
         repo_owner_id = issue_comment['node']['issue']['repository']['owner']['id']
         reactions = issue_comment['node']['issue']['reactions']['totalCount']
         created_at = issue_comment['node']['createdAt']
         last_updated_at = issue_comment['node']['updatedAt']
-        df = df.append({'user_id': user_id, 'user_name': user_name,
+        df = df.append({'github_id':github_id, 'user_id': user_id, 'user_name': user_name,
                         'type': 'Issue Comments', 'repo_id': repo_id,
                         'repo_owner_id': repo_owner_id,  'reactions': reactions,
                         'created_at': created_at, 'last_updated_at': last_updated_at
@@ -46,6 +47,7 @@ def format_issue_comments(issue_comment_list, user_id, user_name, df):
 
 def format_pr_review_contributions(review_contribution_list, user_id, user_name, df):
     for pr_review in review_contribution_list:
+        github_id = pr_review['node']['pullRequestReview']['id']
         pr_review_node = pr_review['node']['pullRequestReview']
         repo_id = pr_review['node']['repository']['id']
         repo_owner_id = pr_review['node']['repository']['owner']['id']
@@ -62,7 +64,7 @@ def format_pr_review_contributions(review_contribution_list, user_id, user_name,
         last_updated_at = pr_review_node['updatedAt']
         # label, commits, forks, stars, comments
 
-        df = df.append({'user_id': user_id, 'user_name': user_name, 'type': 'PR Reviewed',
+        df = df.append({'github_id': github_id, 'user_id': user_id, 'user_name': user_name, 'type': 'PR Reviewed',
                     'repo_id': repo_id, 'repo_owner_id': repo_owner_id,
                     'review_type': review_type, 'pr_status': pr_status,
                     'author_id': author_id, 'merged_by_id': merged_by_id,
@@ -72,6 +74,8 @@ def format_pr_review_contributions(review_contribution_list, user_id, user_name,
 
 def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
     for pr in pr_contribution_list:
+        github_id = pr['node']['pullRequest']['id']
+
         pr_node = pr['node']['pullRequest']
 
         repo_id = pr_node['repository']['id']
@@ -85,7 +89,7 @@ def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
             merged_by_id = pr_node['mergedBy']['id']
 
         labels = []
-        for edge in issue_node['labels']['edges']:
+        for edge in pr_node['labels']['edges']:
             labels.append(edge['node']['name'])
         label = ', '.join(labels)
 
@@ -93,7 +97,7 @@ def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
         last_updated_at =  pr_node['updatedAt']
         #forks, stars, comments
 
-        df = df.append({'user_id': user_id, 'user_name': user_name, 'type': 'PR Opened',
+        df = df.append({'github_id':github_id, 'user_id': user_id, 'user_name': user_name, 'type': 'PR Opened',
                         'repo_id': repo_id, 'repo_owner_id': repo_owner_id,
                         'pr_status': pr_status, 'author_id': author_id, 'label': label,
                         'commits': commits, 'merged_by_id': merged_by_id,
@@ -104,6 +108,7 @@ def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
 
 def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
     for issue in issue_contribution_list:
+        github_id = issue['node']['issue']['id']
         issue_node = issue['node']['issue']
         repo_id = issue_node['repository']['id']
         repo_owner_id = issue_node['repository']['owner']['id']
@@ -117,7 +122,7 @@ def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
         created_at = issue_node['createdAt']
         last_updated_at =  issue_node['updatedAt']
         # type = 'Issue'
-        df.append({'user_id': user_id, 'user_name': user_name, 'type': 'Issue',
+        df.append({'github_id':github_id, 'user_id': user_id, 'user_name': user_name, 'type': 'Issue',
                 'repo_id': repo_id, 'repo_owner_id': repo_owner_id,
                 'reactions': reactions, 'label': label, 'comments': comments,
                 'created_at': created_at, 'last_updated_at': last_updated_at},
@@ -126,6 +131,7 @@ def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
 
 def format_repo_contributions(repo_contribution_list, user_id, user_name, df):
     for repo in repo_contribution_list:
+        github_id = repo['node']['repository']['id']
         repo_node = repo['node']['repository']
         repo_id = repo_node['id']
         forks = repo_node['forkCount']
@@ -133,7 +139,7 @@ def format_repo_contributions(repo_contribution_list, user_id, user_name, df):
         created_at = repo_node['createdAt']
         last_updated_at = repo_node['updatedAt']
         is_fork = repo_node['isFork']
-        df.append({'user_id': user_id, 'user_name': user_name, 'type': 'Repo Created',
+        df.append({'github_id': github_id, 'user_id': user_id, 'user_name': user_name, 'type': 'Repo Created',
                 'repo_id': repo_id, 'repo_owner_id': user_id,
                 'forks': forks, 'stars': stars, 'is_fork': is_fork,
                 'created_at': created_at, 'last_updated_at': last_updated_at},
