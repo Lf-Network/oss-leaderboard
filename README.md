@@ -56,6 +56,27 @@ $ make check
 $ make test
 ```
 
+## Intermediate scrore table
+
+The Intermediate score table stores the counts of all the individual contribution sub-types for each of the contributors.
+The labels in the table starting from T1S1 to T5S1 correspond to the following:
+
+| Label | Contribution Subtype |
+| ------ | ------ |
+| t1s1 | PR opened in a repo not owned by the user |
+| t1s2 | PR opened in a repo owned by the user |
+| t2s1 | PR reviewed that is opened by the user and contributed in the repo owned by the user |
+| t2s2 | PR reviewed that is not opened by the user and contributed in the repo owned by the user |
+| t2s3 | PR reviewed that is opened by the user and contributed in the repo not owned by the user |
+| t2s4 | PR reviewed that is not opened by the user and contributed in the repo not owned by the user |
+| t3s1 | Issue created in a repo owned by the user |
+| t3s2 | Issue created in a repo not owned by the user |
+| t4s1 | Commented on issue created by user in the repo owned by the user |
+| t4s2 | Commented on issue not created by user in the repo owned by the user |
+| t4s3 | Commented on issue created by user in the repo not owned by the user |
+| t4s4 | Commented on issue not created by user in the repo not owned by the user |
+| t5s1 | Repo created by the user |
+
 ## License
 
 Licensed under [The MIT License](LICENSE).
