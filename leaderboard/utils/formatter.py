@@ -29,6 +29,8 @@ def convert_to_intermediate_table(data):
     new_df = pd.DataFrame(
         columns=[
             "github_id",
+            "user_id",
+            "user_name",
             "type",
             "repo_id",
             "repo_owner_id",
@@ -63,8 +65,6 @@ def convert_to_intermediate_table(data):
     new_df = format_repo_contributions(
         repo_contribution_list, user_github_id, user_name, new_df
     )
-
-    new_df.to_csv("data.csv", index=False)
 
     return new_df
 
