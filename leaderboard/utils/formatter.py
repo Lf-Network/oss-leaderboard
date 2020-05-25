@@ -4,6 +4,7 @@
 import json
 import pandas as pd
 from pandas.io.json import json_normalize
+import constants
 
 
 def convert_to_intermediate_table(data):
@@ -83,7 +84,7 @@ def format_issue_comments(issue_comment_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": "Issue Comments",
+                "type": constants.ISSUE_COMMENTS,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -119,7 +120,7 @@ def format_pr_review_contributions(review_contribution_list, user_id, user_name,
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": "PR Reviewed",
+                "type": constants.PR_REVIEWED,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "review_type": review_type,
@@ -165,7 +166,7 @@ def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": "PR Opened",
+                "type": constants.PR_OPENED,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "pr_status": pr_status,
@@ -203,7 +204,7 @@ def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": "Issue",
+                "type": constants.ISSUE,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -232,7 +233,7 @@ def format_repo_contributions(repo_contribution_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": "Repo Created",
+                "type": constants.REPO_CREATED,
                 "repo_id": repo_id,
                 "repo_owner_id": user_id,
                 "forks": forks,

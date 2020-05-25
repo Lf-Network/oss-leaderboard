@@ -1,5 +1,5 @@
 import pandas as pd
-
+import constants
 
 def get_intermediate_score_table(intermediate_table_df):
     """ Returns a dataframe - contribution counts of all sub types for all users
@@ -53,17 +53,17 @@ def get_intermediate_score_table(intermediate_table_df):
 
         user_contrib_group_by_type = frame.groupby(["type"])
         for contrib_type, frame2 in user_contrib_group_by_type:
-            if contrib_type == 1:
+            if contrib_type == constants.PR_OPENED:
                 t1s1, t1s2 = get_pr_opened_counts(frame2, user_tuple[0])
-            elif contrib_type == 2:
+            elif contrib_type == constants.PR_REVIEWED:
                 t2s1, t2s2, t2s3, t2s4 = get_pr_reviewed_counts(frame2, user_tuple[0])
-            elif contrib_type == 3:
+            elif contrib_type == constants.ISSUE:
                 t3s1, t3s2 = get_issue_created_counts(frame2, user_tuple[0])
-            elif contrib_type == 4:
+            elif contrib_type == constants.ISSUE_COMMENTS:
                 t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(
                     frame2, user_tuple[0]
                 )
-            elif contrib_type == 5:
+            elif contrib_type == constants.REPO_CREATED:
                 t5s1 = get_repo_created_counts(frame2)
 
         # set total contribution counts of a user
