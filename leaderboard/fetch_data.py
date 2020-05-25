@@ -50,7 +50,9 @@ def execute_query(query: str, variables: Dict):
     if request.status_code == 200:
         logger.info(json.dumps(request.json(), indent=4))
 
-        intermediate_table = convert_to_intermediate_table(json.dumps(request.json(), indent=4))
+        intermediate_table = convert_to_intermediate_table(
+            json.dumps(request.json(), indent=4)
+        )
         score_table = get_intermediate_score_table(intermediate_table)
         logger.info(score_table)
 
