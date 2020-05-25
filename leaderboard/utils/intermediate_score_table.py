@@ -1,6 +1,7 @@
 import pandas as pd
 import constants
 
+
 def get_intermediate_score_table(intermediate_table_df):
     """ Returns a dataframe - contribution counts of all sub types for all users
     Args: 
