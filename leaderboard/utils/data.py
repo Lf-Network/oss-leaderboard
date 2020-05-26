@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 
 def get_date(days: int) -> datetime:
     """ Get date before x days.
-    Args: 
+    Args:
         days: number of days before from which data is fetched.
-    
+
     Returns: 
         DateTime object in isoformat.
     """

@@ -8,6 +8,8 @@ import requests
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
+from leaderboard.utils.formatter import convert_to_intermediate_table
+from leaderboard.utils.intermediate_score_table import get_intermediate_score_table
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
@@ -47,6 +49,12 @@ def execute_query(query: str, variables: Dict):
 
     if request.status_code == 200:
         logger.info(json.dumps(request.json(), indent=4))
+
+        intermediate_table = convert_to_intermediate_table(
+            json.dumps(request.json(), indent=4)
+        )
+        score_table = get_intermediate_score_table(intermediate_table)
+        logger.info(score_table)
 
         with open("data.json", "w") as f:
             json.dump(request.json(), f, indent=4)

@@ -30,6 +30,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
               totalCount
             }
           }
+          id
           createdAt
           updatedAt
         }
@@ -73,6 +74,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
               reactions {
                 totalCount
               }
+              id
               createdAt
               updatedAt
             }
@@ -110,6 +112,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
               }
               state
               closed
+              id
               createdAt
               updatedAt
             }
@@ -151,6 +154,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
               commits {
                 totalCount
               }
+              id
               createdAt
               updatedAt
             }
