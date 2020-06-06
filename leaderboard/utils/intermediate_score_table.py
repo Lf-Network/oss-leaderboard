@@ -100,7 +100,7 @@ def get_pr_opened_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
     t1s1, t1s2 = 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id != contribution.repo_owner_id:
             t1s1 += 1
         elif user_id == contribution.repo_owner_id:
@@ -118,7 +118,7 @@ def get_pr_reviewed_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
     t2s1, t2s2, t2s3, t2s4 = 0, 0, 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id == contribution.author_id and user_id == contribution.repo_owner_id:
             t2s1 += 1
         elif (
@@ -146,7 +146,7 @@ def get_issue_created_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
     t3s1, t3s2 = 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id == contribution.repo_owner_id:
             t3s1 += 1
         elif user_id != contribution.repo_owner_id:
@@ -164,7 +164,7 @@ def get_commented_on_issue_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
     t4s1, t4s2, t4s3, t4s4 = 0, 0, 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id == contribution.author_id and user_id == contribution.repo_owner_id:
             t4s1 += 1
         elif (
@@ -190,7 +190,7 @@ def get_repo_created_counts(df: pd.DataFrame) -> int:
     """
     t5s1 = 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         t5s1 += 1
 
     return t5s1
