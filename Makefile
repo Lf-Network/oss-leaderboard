@@ -31,3 +31,6 @@ format:
 
 check:
 	@black --check --diff .
+
+run :
+	@./.run-local.sh
