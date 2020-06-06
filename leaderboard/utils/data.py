@@ -2,13 +2,13 @@
 from datetime import datetime, timedelta
 
 
-def get_date(days: int) -> datetime:
+def get_date(days: int) -> str:
     """ Get date before x days.
     Args:
         days: number of days before from which data is fetched.
 
-    Returns: 
-        DateTime object in isoformat.
+    Returns:
+        DateTime string in isoformat.
     """
 
     return (datetime.today() - timedelta(days=days)).isoformat()
