@@ -1,10 +1,14 @@
 {
-    "include": ["leaderboard/**/*.py", "tests/**/*.py"],
-    "exclude":["venv", "*.pyc", "*.egg-info", ".coverage"],
+  "include": ["leaderboard/**/*.py", "tests/**/*.py"],
+  "exclude": ["venv", "*.pyc", "*.egg-info", ".coverage"],
 
-    "reportMissingImports": true,
-    "reportUnusedImport": true,
-    "reportUnusedFunction": true,
-    "reportUnusedVariable": true,
-    "reportDuplicateImport": true
+  "reportMissingImports": true,
+  "reportUnusedImport": true,
+  "reportUnusedFunction": true,
+  "reportUnusedVariable": true,
+  "reportDuplicateImport": true,
+  "reportGeneralTypeIssues": false,
+  "verboseOutput": true,
+  "reportInvalidStringEscapeSequence": true,
+  "reportImplicitStringConcatenation": true
 }
