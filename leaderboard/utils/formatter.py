@@ -77,7 +77,6 @@ def format_issue_comments(
 ) -> pd.DataFrame:
     for issue_comment in issue_comment_list:
         github_id = issue_comment["node"]["id"]
-        user = issue_comment["node"]["issue"]["author"]["id"]
         repo_id = issue_comment["node"]["issue"]["repository"]["id"]
         repo_owner_id = issue_comment["node"]["issue"]["repository"]["owner"]["id"]
         reactions = issue_comment["node"]["issue"]["reactions"]["totalCount"]

@@ -33,5 +33,5 @@ check:
 	@black --check --diff .
 	@pyright --verbose
 
-run :
+run:
 	@./.run-local.sh

@@ -188,9 +188,4 @@ def get_repo_created_counts(df: pd.DataFrame) -> int:
     Args:
         df: sub-table of contributions for 'Repo Created' type by a particular contributor.
     """
-    t5s1 = 0
-
-    for _, contribution in df.iterrows():
-        t5s1 += 1
-
-    return t5s1
+    return len(df)
