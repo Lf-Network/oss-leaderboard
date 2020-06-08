@@ -1,16 +1,18 @@
-""" Util to convert the json to dataframe
-"""
-
+""" Util to convert the json to dataframe. """
 import json
+from typing import List
+
 import pandas as pd
 from pandas.io.json import json_normalize
+
 import constants
 
 
-def convert_to_intermediate_table(data):
+def convert_to_intermediate_table(data: str) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(
         json_normalize(json.loads(data.encode())), orient="columns"
     )
+
     user_github_id = df["data.user.id"][0]
     user_name = df["data.user.username"][0]
     issue_comment_list = df["data.user.issueComments.edges"][0]
@@ -70,15 +72,17 @@ def convert_to_intermediate_table(data):
     return new_df
 
 
-def format_issue_comments(issue_comment_list, user_id, user_name, df):
+def format_issue_comments(
+    issue_comment_list: str, user_id: str, user_name: str, df: pd.DataFrame
+) -> pd.DataFrame:
     for issue_comment in issue_comment_list:
         github_id = issue_comment["node"]["id"]
-        user = issue_comment["node"]["issue"]["author"]["id"]
         repo_id = issue_comment["node"]["issue"]["repository"]["id"]
         repo_owner_id = issue_comment["node"]["issue"]["repository"]["owner"]["id"]
         reactions = issue_comment["node"]["issue"]["reactions"]["totalCount"]
         created_at = issue_comment["node"]["createdAt"]
         last_updated_at = issue_comment["node"]["updatedAt"]
+
         df = df.append(
             {
                 "github_id": github_id,
@@ -93,10 +97,13 @@ def format_issue_comments(issue_comment_list, user_id, user_name, df):
             },
             ignore_index=True,
         )
+
     return df
 
 
-def format_pr_review_contributions(review_contribution_list, user_id, user_name, df):
+def format_pr_review_contributions(
+    review_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
+) -> pd.DataFrame:
     for pr_review in review_contribution_list:
         github_id = pr_review["node"]["pullRequestReview"]["id"]
         pr_review_node = pr_review["node"]["pullRequestReview"]
@@ -108,6 +115,7 @@ def format_pr_review_contributions(review_contribution_list, user_id, user_name,
         author_id = pr_review_node["pullRequest"]["author"]["id"]
         reactions = pr_review_node["reactions"]["totalCount"]
         merged_by_id = ""
+
         if pr_review_node["pullRequest"]["merged"]:
             merged_by_id = pr_review_node["pullRequest"]["mergedBy"]["login"]
 
@@ -133,10 +141,13 @@ def format_pr_review_contributions(review_contribution_list, user_id, user_name,
             },
             ignore_index=True,
         )
+
     return df
 
 
-def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
+def format_pr_contributions(
+    pr_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
+) -> pd.DataFrame:
     for pr in pr_contribution_list:
         github_id = pr["node"]["pullRequest"]["id"]
 
@@ -183,7 +194,9 @@ def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
     return df
 
 
-def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
+def format_issue_contributions(
+    issue_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
+) -> pd.DataFrame:
     for issue in issue_contribution_list:
         github_id = issue["node"]["issue"]["id"]
         issue_node = issue["node"]["issue"]
@@ -191,6 +204,7 @@ def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
         repo_owner_id = issue_node["repository"]["owner"]["id"]
         reactions = issue_node["reactions"]["totalCount"]
         labels = []
+
         for edge in issue_node["labels"]["edges"]:
             labels.append(edge["node"]["name"])
         label = ", ".join(labels)
@@ -215,10 +229,13 @@ def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
             },
             ignore_index=True,
         )
+
     return df
 
 
-def format_repo_contributions(repo_contribution_list, user_id, user_name, df):
+def format_repo_contributions(
+    repo_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
+) -> pd.DataFrame:
     for repo in repo_contribution_list:
         github_id = repo["node"]["repository"]["id"]
         repo_node = repo["node"]["repository"]
@@ -244,4 +261,5 @@ def format_repo_contributions(repo_contribution_list, user_id, user_name, df):
             },
             ignore_index=True,
         )
+
     return df
