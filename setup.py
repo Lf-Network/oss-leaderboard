@@ -5,7 +5,7 @@ import setuptools
 with open("README.md", "r") as f:
     long_description = f.read()
 
-requirements = ["requests==2.22.0", "pandas==0.23.3"]
+requirements = ["requests==2.22.0", "pandas==1.0.0", "tabulate"]
 
 # Development Requirements
 requirements_dev = ["pytest==4.*", "black==19.10b0"]

@@ -10,6 +10,8 @@ from requests.adapters import HTTPAdapter
 
 from leaderboard.utils.formatter import convert_to_intermediate_table
 from leaderboard.utils.intermediate_score_table import get_intermediate_score_table
+from leaderboard.utils.final_score_table import get_final_score_table
+from leaderboard.utils.data import convert_df_to_markdown
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
@@ -33,7 +35,7 @@ def execute_query(query: str, variables: Dict):
 
     retries = Retry(
         total=5,
-        backoff_factor=0.3,
+        backoff_factor=0.8,
         status_forcelist=[500, 502, 503, 504],
         method_whitelist=(["POST"]),
     )
@@ -53,8 +55,11 @@ def execute_query(query: str, variables: Dict):
         intermediate_table = convert_to_intermediate_table(
             json.dumps(request.json(), indent=4)
         )
-        score_table = get_intermediate_score_table(intermediate_table)
-        logger.info(score_table)
+        
+        intermediate_score_table = get_intermediate_score_table(intermediate_table)
+        final_score_table = get_final_score_table(intermediate_score_table)
+        convert_df_to_markdown(final_score_table)
+
 
         with open("data.json", "w") as f:
             json.dump(request.json(), f, indent=4)

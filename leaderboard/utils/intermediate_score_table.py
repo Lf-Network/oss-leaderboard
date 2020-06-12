@@ -1,5 +1,5 @@
 import pandas as pd
-import constants
+from leaderboard.constants import contribTypes
 
 
 def get_intermediate_score_table(intermediate_table_df):
@@ -54,17 +54,17 @@ def get_intermediate_score_table(intermediate_table_df):
 
         user_contrib_group_by_type = frame.groupby(["type"])
         for contrib_type, frame2 in user_contrib_group_by_type:
-            if contrib_type == constants.PR_OPENED:
+            if contrib_type == contribTypes.PR_OPENED:
                 t1s1, t1s2 = get_pr_opened_counts(frame2, user_tuple[0])
-            elif contrib_type == constants.PR_REVIEWED:
+            elif contrib_type == contribTypes.PR_REVIEWED:
                 t2s1, t2s2, t2s3, t2s4 = get_pr_reviewed_counts(frame2, user_tuple[0])
-            elif contrib_type == constants.ISSUE:
+            elif contrib_type == contribTypes.ISSUE:
                 t3s1, t3s2 = get_issue_created_counts(frame2, user_tuple[0])
-            elif contrib_type == constants.ISSUE_COMMENTS:
+            elif contrib_type == contribTypes.ISSUE_COMMENTS:
                 t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(
                     frame2, user_tuple[0]
                 )
-            elif contrib_type == constants.REPO_CREATED:
+            elif contrib_type == contribTypes.REPO_CREATED:
                 t5s1 = get_repo_created_counts(frame2)
 
         # set total contribution counts of a user

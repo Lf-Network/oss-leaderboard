@@ -4,8 +4,7 @@
 import json
 import pandas as pd
 from pandas.io.json import json_normalize
-import constants
-
+from leaderboard.constants import contribTypes
 
 def convert_to_intermediate_table(data):
     df = pd.DataFrame.from_dict(
@@ -67,6 +66,7 @@ def convert_to_intermediate_table(data):
         repo_contribution_list, user_github_id, user_name, new_df
     )
 
+    new_df.to_csv('int_table.csv', index=False)
     return new_df
 
 
@@ -84,7 +84,7 @@ def format_issue_comments(issue_comment_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.ISSUE_COMMENTS,
+                "type": contribTypes.ISSUE_COMMENTS,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -120,7 +120,7 @@ def format_pr_review_contributions(review_contribution_list, user_id, user_name,
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.PR_REVIEWED,
+                "type": contribTypes.PR_REVIEWED,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "review_type": review_type,
@@ -166,7 +166,7 @@ def format_pr_contributions(pr_contribution_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.PR_OPENED,
+                "type": contribTypes.PR_OPENED,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "pr_status": pr_status,
@@ -204,7 +204,7 @@ def format_issue_contributions(issue_contribution_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.ISSUE,
+                "type": contribTypes.ISSUE,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -233,7 +233,7 @@ def format_repo_contributions(repo_contribution_list, user_id, user_name, df):
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.REPO_CREATED,
+                "type": contribTypes.REPO_CREATED,
                 "repo_id": repo_id,
                 "repo_owner_id": user_id,
                 "forks": forks,
