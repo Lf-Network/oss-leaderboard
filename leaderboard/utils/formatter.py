@@ -6,6 +6,7 @@ import pandas as pd
 from pandas.io.json import json_normalize
 from leaderboard.constants import contribTypes
 
+
 def convert_to_intermediate_table(data: str) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(
         json_normalize(json.loads(data.encode())), orient="columns"
@@ -67,7 +68,7 @@ def convert_to_intermediate_table(data: str) -> pd.DataFrame:
         repo_contribution_list, user_github_id, user_name, new_df
     )
 
-    new_df.to_csv('int_table.csv', index=False)
+    new_df.to_csv("int_table.csv", index=False)
     return new_df
 
 

@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta
 import pandas as pd
 
+
 def get_date(days: int) -> str:
     """ Get date before x days.
     Args:

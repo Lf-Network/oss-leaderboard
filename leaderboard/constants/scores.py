@@ -1,5 +1,5 @@
 # scores for each of the sub types
-T1S1 = 1 
+T1S1 = 1
 T1S2 = 1
 T2S1 = 1
 T2S2 = 1

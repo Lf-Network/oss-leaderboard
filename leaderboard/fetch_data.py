@@ -55,11 +55,10 @@ def execute_query(query: str, variables: Dict):
         intermediate_table = convert_to_intermediate_table(
             json.dumps(request.json(), indent=4)
         )
-        
+
         intermediate_score_table = get_intermediate_score_table(intermediate_table)
         final_score_table = get_final_score_table(intermediate_score_table)
         convert_df_to_markdown(final_score_table)
-
 
         with open("data.json", "w") as f:
             json.dump(request.json(), f, indent=4)
