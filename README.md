@@ -3,17 +3,16 @@
 Leaderboard for opensource contributors.
 
 ## Usage
+```bash
+$ cp .env.example .env
+```
+<a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line" class="external-link" target="_blank">Get personal access token from GitHub</a>
 
 #### Building
 
-```bash 
-$ docker build -t leaderboard .
+```bash
+$ make run
 ```
-
-```bash 
-$ docker run --env-file .env leaderboard
-```
-
 ## Development
 
 #### Setting up the codebase

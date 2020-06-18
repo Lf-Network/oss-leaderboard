@@ -1,10 +1,13 @@
+dist: bionic
+
 language: python
 
-python: 
-    - "3.6" 
+python:
+  - "3.6"
 
-install: 
-    - make setup
+install:
+  - make setup
+  - npm install -g pyright
 
 script:
-    - make check
+  - make check

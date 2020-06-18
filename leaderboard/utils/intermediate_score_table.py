@@ -1,14 +1,13 @@
+""" Create Intermediate Score Table from the received data. """
+from typing import Tuple
 import pandas as pd
 from leaderboard.constants import contribTypes
 
 
-def get_intermediate_score_table(intermediate_table_df):
-    """ Returns a dataframe - contribution counts of all sub types for all users
-    Args: 
-        df: pandas DataFrame - Intermediate Table containing flattened data of the github contributions for a group of users
-    
-    Returns: 
-        pandas DataFrame object
+def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.DataFrame:
+    """ Returns contribution counts of all sub types for all users.
+    Args:
+        intermediate_table_df: Intermediate Table containing flattened data of the github contributions for a group of users.
     """
 
     # Intermediate score table that stores the counts for each of the contribution subtypes
@@ -92,18 +91,16 @@ def get_intermediate_score_table(intermediate_table_df):
     return result_df
 
 
-def get_pr_opened_counts(df, user_id):
-    """ Returns a individual counts for all subtypes under the 'PR Opened' type
-    Args: 
-        df: pandas DataFrame - sub-table of contributions for 'PR Opened' type by a particular contributor
-        user_id: usedID of contributor
-    Returns: 
-        int, int
+def get_pr_opened_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
+    """ Returns individual counts for all subtypes under the 'PR Opened' type.
+    Args:
+        df: sub-table of contributions for 'PR Opened' type by a particular contributor.
+        user_id: usedID of the contributor.
     """
 
     t1s1, t1s2 = 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id != contribution.repo_owner_id:
             t1s1 += 1
         elif user_id == contribution.repo_owner_id:
@@ -112,18 +109,16 @@ def get_pr_opened_counts(df, user_id):
     return t1s1, t1s2
 
 
-def get_pr_reviewed_counts(df, user_id):
-    """ Returns a individual counts for all subtypes under the 'PR Reviewed' type
-    Args: 
-        df: pandas DataFrame - sub-table of contributions for 'PR Reviewed' type by a particular contributor
-        user_id: usedID of contributor
-    Returns: 
-        int, int, int, int
+def get_pr_reviewed_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
+    """ Returns individual counts for all subtypes under the 'PR Reviewed' type.
+    Args:
+        df: sub-table of contributions for 'PR Reviewed' type by a particular contributor.
+        user_id: usedID of the contributor.
     """
 
     t2s1, t2s2, t2s3, t2s4 = 0, 0, 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id == contribution.author_id and user_id == contribution.repo_owner_id:
             t2s1 += 1
         elif (
@@ -142,18 +137,16 @@ def get_pr_reviewed_counts(df, user_id):
     return t2s1, t2s2, t2s3, t2s4
 
 
-def get_issue_created_counts(df, user_id):
-    """ Returns a individual counts for all subtypes under the 'Issue Created' type
-    Args: 
-        df: pandas DataFrame - sub-table of contributions for 'Issue Created' type by a particular contributor
-        user_id: usedID of contributor
-    Returns: 
-        int, int
+def get_issue_created_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
+    """ Returns individual counts for all subtypes under the 'Issue Created' type.
+    Args:
+        df: sub-table of contributions for 'Issue Created' type by a particular contributor.
+        user_id: usedID of the contributor.
     """
 
     t3s1, t3s2 = 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id == contribution.repo_owner_id:
             t3s1 += 1
         elif user_id != contribution.repo_owner_id:
@@ -162,18 +155,16 @@ def get_issue_created_counts(df, user_id):
     return t3s1, t3s2
 
 
-def get_commented_on_issue_counts(df, user_id):
-    """ Returns a individual counts for all subtypes under the 'Commented On Issue' type
-    Args: 
-        df: pandas DataFrame - sub-table of contributions for 'Commented On Issue' type by a particular contributor
-        user_id: usedID of contributor
-    Returns: 
-        int, int, int, int
+def get_commented_on_issue_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
+    """ Returns individual counts for all subtypes under the 'Commented On Issue' type.
+    Args:
+        df: sub-table of contributions for 'Commented On Issue' type by a particular contributor.
+        user_id: usedID of the contributor.
     """
 
     t4s1, t4s2, t4s3, t4s4 = 0, 0, 0, 0
 
-    for index, contribution in df.iterrows():
+    for _, contribution in df.iterrows():
         if user_id == contribution.author_id and user_id == contribution.repo_owner_id:
             t4s1 += 1
         elif (
@@ -192,17 +183,9 @@ def get_commented_on_issue_counts(df, user_id):
     return t4s1, t4s2, t4s3, t4s4
 
 
-def get_repo_created_counts(df):
-    """ Returns a individual counts for all subtypes under the 'Repo Created' type
-    Args: 
-        df: pandas DataFrame - sub-table of contributions for 'Repo Created' type by a particular contributor
-    Returns: 
-        int
+def get_repo_created_counts(df: pd.DataFrame) -> int:
+    """ Returns an individual count for all subtypes under the 'Repo Created' type.
+    Args:
+        df: sub-table of contributions for 'Repo Created' type by a particular contributor.
     """
-
-    t5s1 = 0
-
-    for index, contribution in df.iterrows():
-        t5s1 += 1
-
-    return t5s1
+    return len(df)
