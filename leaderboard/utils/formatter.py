@@ -68,7 +68,6 @@ def convert_to_intermediate_table(data: str) -> pd.DataFrame:
         repo_contribution_list, user_github_id, user_name, new_df
     )
 
-    new_df.to_csv("int_table.csv", index=False)
     return new_df
 
 
@@ -88,7 +87,7 @@ def format_issue_comments(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": contribTypes.ISSUE_COMMENTS,
+                "type": contribTypes.T4,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -128,7 +127,7 @@ def format_pr_review_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": contribTypes.PR_REVIEWED,
+                "type": contribTypes.T2,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "review_type": review_type,
@@ -177,7 +176,7 @@ def format_pr_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": contribTypes.PR_OPENED,
+                "type": contribTypes.T1,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "pr_status": pr_status,
@@ -218,7 +217,7 @@ def format_issue_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": contribTypes.ISSUE,
+                "type": contribTypes.T3,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -250,7 +249,7 @@ def format_repo_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": contribTypes.REPO_CREATED,
+                "type": contribTypes.T5,
                 "repo_id": repo_id,
                 "repo_owner_id": user_id,
                 "forks": forks,

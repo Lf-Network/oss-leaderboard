@@ -1,25 +1,23 @@
 import pandas as pd
 
 from leaderboard.constants import scores
+from leaderboard.constants import contribTypes
 
 
 def get_final_score_table(intermediate_score_df: pd.DataFrame) -> pd.DataFrame:
     """ Returns final score table dataframe
     Args: 
         df: pandas DataFrame - Intermediate Score Table containing contribution counts of all sub types for given users
-    
-    Returns: 
-        pandas DataFrame object
     """
 
     final_score_table = pd.DataFrame(
         columns=[
             "User Name",
-            "PR Opened",
-            "PR Reviewed",
-            "Issue",
-            "Issue Comments",
-            "Repo Created",
+            contribTypes.T1,
+            contribTypes.T2,
+            contribTypes.T3,
+            contribTypes.T4,
+            contribTypes.T5,
             "Total Score",
         ]
     )
@@ -52,27 +50,14 @@ def get_final_score_table(intermediate_score_df: pd.DataFrame) -> pd.DataFrame:
         final_score_table = final_score_table.append(
             {
                 "User Name": user_row.user_name,
-                "PR Opened": t1_score,
-                "PR Reviewed": t2_score,
-                "Issue": t3_score,
-                "Issue Comments": t4_score,
-                "Repo Created": t5_score,
+                contribTypes.T1: t1_score,
+                contribTypes.T2: t2_score,
+                contribTypes.T3: t3_score,
+                contribTypes.T4: t4_score,
+                contribTypes.T5: t5_score,
                 "Total Score": total_score,
             },
             ignore_index=True,
         )
-
-    final_score_table = final_score_table.append(
-        {
-            "User Name": "patrick",
-            "PR Opened": 0,
-            "PR Reviewed": 0,
-            "Issue": 0,
-            "Issue Comments": 0,
-            "Repo Created": 0,
-            "Total Score": 0,
-        },
-        ignore_index=True,
-    )
 
     return final_score_table

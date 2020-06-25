@@ -15,6 +15,6 @@ def get_date(days: int) -> str:
     return (datetime.today() - timedelta(days=days)).isoformat()
 
 
-def convert_df_to_markdown(df: pd.DataFrame):
+def convert_df_to_markdown(df: pd.DataFrame) -> str:
     print(df.to_markdown())
     return df.to_markdown()
