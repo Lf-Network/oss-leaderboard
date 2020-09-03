@@ -3,13 +3,12 @@ import json
 from typing import List
 
 import pandas as pd
-from pandas.io.json import json_normalize
 from leaderboard.constants import contribTypes
 
 
 def convert_to_intermediate_table(data: str) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(
-        json_normalize(json.loads(data.encode())), orient="columns"
+        pd.json_normalize(json.loads(data.encode())), orient="columns"
     )
 
     user_github_id = df["data.user.id"][0]

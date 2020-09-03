@@ -16,5 +16,4 @@ def get_date(days: int) -> str:
 
 
 def convert_df_to_markdown(df: pd.DataFrame) -> str:
-    print(df.to_markdown())
     return df.to_markdown()
