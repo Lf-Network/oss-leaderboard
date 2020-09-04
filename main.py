@@ -33,9 +33,8 @@ def main():
     intermediate_score_table = get_intermediate_score_table(intermediate_table)
     final_score_table = get_final_score_table(intermediate_score_table)
     markdown_table = convert_df_to_markdown(final_score_table)
-    html_table = convert_mk_to_html(markdown_table)
 
-    print(html_table)
+    print(markdown_table)
 
 
 main()
