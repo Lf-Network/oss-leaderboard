@@ -9,7 +9,7 @@ from leaderboard.fetch_data import execute_query
 from leaderboard.utils.formatter import convert_to_intermediate_table
 from leaderboard.utils.intermediate_score_table import get_intermediate_score_table
 from leaderboard.utils.final_score_table import get_final_score_table
-from leaderboard.utils.data import convert_df_to_markdown
+from leaderboard.utils.data import convert_df_to_markdown, convert_mk_to_html
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
@@ -33,8 +33,9 @@ def main():
     intermediate_score_table = get_intermediate_score_table(intermediate_table)
     final_score_table = get_final_score_table(intermediate_score_table)
     markdown_table = convert_df_to_markdown(final_score_table)
+    html_table = convert_mk_to_html(markdown_table)
 
-    print(markdown_table)
+    print(html_table)
 
 
 main()

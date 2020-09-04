@@ -1,6 +1,7 @@
 """ Utilities for data processing. """
 from datetime import datetime, timedelta
 import pandas as pd
+import markdown
 
 
 def get_date(days: int) -> str:
@@ -17,3 +18,7 @@ def get_date(days: int) -> str:
 
 def convert_df_to_markdown(df: pd.DataFrame) -> str:
     return df.to_markdown()
+
+
+def convert_mk_to_html(mk_data: str) -> str:
+    return markdown.markdown(mk_data, extensions=["tables"])
