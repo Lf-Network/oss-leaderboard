@@ -1,6 +1,6 @@
 import pandas as pd
 
-from leaderboard.constants import scores
+from leaderboard.constants import scoreWeights
 from leaderboard.constants import contribTypes
 
 
@@ -25,25 +25,25 @@ def get_final_score_table(intermediate_score_df: pd.DataFrame) -> pd.DataFrame:
     for _, user_row in intermediate_score_df.iterrows():
         t1_score, t2_score, t3_score, t4_score, t5_score = (0, 0, 0, 0, 0)
 
-        t1_score = user_row.t1s1 * scores.T1S1 + user_row.t1s2 * scores.T1S2
+        t1_score = user_row.t1s1 * scoreWeights.T1S1 + user_row.t1s2 * scoreWeights.T1S2
 
         t2_score = (
-            user_row.t2s1 * scores.T2S1
-            + user_row.t2s2 * scores.T2S2
-            + user_row.t2s3 * scores.T2S3
-            + user_row.t2s4 * scores.T2S4
+            user_row.t2s1 * scoreWeights.T2S1
+            + user_row.t2s2 * scoreWeights.T2S2
+            + user_row.t2s3 * scoreWeights.T2S3
+            + user_row.t2s4 * scoreWeights.T2S4
         )
 
-        t3_score = user_row.t3s1 * scores.T3S1 + user_row.t3s2 * scores.T3S2
+        t3_score = user_row.t3s1 * scoreWeights.T3S1 + user_row.t3s2 * scoreWeights.T3S2
 
         t4_score = (
-            user_row.t4s1 * scores.T4S1
-            + user_row.t4s2 * scores.T4S2
-            + user_row.t4s3 * scores.T4S3
-            + user_row.t4s4 * scores.T4S4
+            user_row.t4s1 * scoreWeights.T4S1
+            + user_row.t4s2 * scoreWeights.T4S2
+            + user_row.t4s3 * scoreWeights.T4S3
+            + user_row.t4s4 * scoreWeights.T4S4
         )
 
-        t5_score = user_row.t5s1 * scores.T5S1
+        t5_score = user_row.t5s1 * scoreWeights.T5S1
 
         total_score = t1_score + t2_score + t3_score + t4_score + t5_score
 
