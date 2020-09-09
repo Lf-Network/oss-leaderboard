@@ -34,4 +34,4 @@ check:
 	@pyright --verbose
 
 run:
-	@./.run-local.sh
+	@./run-local.sh
