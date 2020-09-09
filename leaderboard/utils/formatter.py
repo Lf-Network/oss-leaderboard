@@ -3,14 +3,12 @@ import json
 from typing import List
 
 import pandas as pd
-from pandas.io.json import json_normalize
-
-import constants
+from leaderboard.constants import contribTypes
 
 
 def convert_to_intermediate_table(data: str) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(
-        json_normalize(json.loads(data.encode())), orient="columns"
+        pd.json_normalize(json.loads(data.encode())), orient="columns"
     )
 
     user_github_id = df["data.user.id"][0]
@@ -88,7 +86,7 @@ def format_issue_comments(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.ISSUE_COMMENTS,
+                "type": contribTypes.T4,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -128,7 +126,7 @@ def format_pr_review_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.PR_REVIEWED,
+                "type": contribTypes.T2,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "review_type": review_type,
@@ -177,7 +175,7 @@ def format_pr_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.PR_OPENED,
+                "type": contribTypes.T1,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "pr_status": pr_status,
@@ -218,7 +216,7 @@ def format_issue_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.ISSUE,
+                "type": contribTypes.T3,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -250,7 +248,7 @@ def format_repo_contributions(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": constants.REPO_CREATED,
+                "type": contribTypes.T5,
                 "repo_id": repo_id,
                 "repo_owner_id": user_id,
                 "forks": forks,
