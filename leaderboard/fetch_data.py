@@ -8,8 +8,6 @@ import requests
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
-from leaderboard.utils.formatter import convert_to_intermediate_table
-from leaderboard.utils.intermediate_score_table import get_intermediate_score_table
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
@@ -22,18 +20,19 @@ headers = {"Authorization": GITHUB_TOKEN}
 logger.info(headers)
 
 
-def execute_query(query: str, variables: Dict):
+def execute_query(query: str, variables: Dict) -> requests.models.Response:
     """ Executes query to fetch data from GraphQL API.
 
 	Args:
 		query: GraphQL query for fetching data.
 		username: whose data will be fetched.
 	"""
+
     s = requests.Session()
 
     retries = Retry(
         total=5,
-        backoff_factor=0.3,
+        backoff_factor=0.8,
         status_forcelist=[500, 502, 503, 504],
         method_whitelist=(["POST"]),
     )
@@ -50,14 +49,8 @@ def execute_query(query: str, variables: Dict):
     if request.status_code == 200:
         logger.info(json.dumps(request.json(), indent=4))
 
-        intermediate_table = convert_to_intermediate_table(
-            json.dumps(request.json(), indent=4)
-        )
-        score_table = get_intermediate_score_table(intermediate_table)
-        logger.info(score_table)
+        return request
 
-        with open("data.json", "w") as f:
-            json.dump(request.json(), f, indent=4)
     else:
         raise Exception(
             "Request failed with code of {} \n{}.".format(
