@@ -7,7 +7,7 @@ python:
 
 install:
   - make setup
-  - npm install -g pyright
+  - npm install -g pyright@1.1.45
 
 script:
   - make check
