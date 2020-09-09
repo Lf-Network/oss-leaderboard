@@ -8,7 +8,7 @@ with open("README.md", "r") as f:
 requirements = [
     "requests==2.22.0",
     "pandas==1.0.0",
-    "tabulate=0.8.7",
+    "tabulate==0.8.7",
     "markdown==3.2.2",
 ]
 

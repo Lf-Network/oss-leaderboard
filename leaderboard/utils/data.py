@@ -27,6 +27,7 @@ def convert_df_to_markdown(df: pd.DataFrame) -> str:
 
     return df.to_markdown()
 
+
 def convert_df_to_html(df: pd.DataFrame) -> str:
     """ Convert dataframe to html 
     Args:
