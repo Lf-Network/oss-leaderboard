@@ -211,7 +211,7 @@ def format_issue_contributions(
         created_at = issue_node["createdAt"]
         last_updated_at = issue_node["updatedAt"]
         # type = 'Issue'
-        df.append(
+        df = df.append(
             {
                 "github_id": github_id,
                 "user_id": user_id,
@@ -243,7 +243,7 @@ def format_repo_contributions(
         created_at = repo_node["createdAt"]
         last_updated_at = repo_node["updatedAt"]
         is_fork = repo_node["isFork"]
-        df.append(
+        df = df.append(
             {
                 "github_id": github_id,
                 "user_id": user_id,
