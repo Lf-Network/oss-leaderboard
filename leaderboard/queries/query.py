@@ -163,6 +163,9 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
       }
       repositoryContributions(first: $dataCount) {
         totalCount
+        pageInfo {
+          hasNextPage
+        }
         edges {
           node {
             repository {
