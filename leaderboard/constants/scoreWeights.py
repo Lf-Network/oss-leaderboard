@@ -1,14 +1,14 @@
-# scores for each of the sub types
-T1S1 = 1
-T1S2 = 1
-T2S1 = 1
-T2S2 = 1
-T2S3 = 1
-T2S4 = 1
-T3S1 = 1
-T3S2 = 1
-T4S1 = 1
-T4S2 = 1
-T4S3 = 1
-T4S4 = 1
-T5S1 = 1
+# score weights for each of the sub types
+T1S1 = 1 # score for 'PR opened in a repo not owned by the user'
+T1S2 = 1 # score for 'PR opened in a repo owned by the user'
+T2S1 = 1 # score for 'PR reviewed that is opened by the user and contributed in the repo owned by the use'
+T2S2 = 1 # score for 'PR reviewed that is not opened by the user and contributed in the repo owned by the use'
+T2S3 = 1 # score for 'PR reviewed that is opened by the user and contributed in the repo not owned by the user'
+T2S4 = 1 # score for 'PR reviewed that is not opened by the user and contributed in the repo not owned by the user'
+T3S1 = 1 # score for 'Issue created in a repo owned by the user'
+T3S2 = 1 # score for 'Issue created in a repo not owned by the user'
+T4S1 = 1 # score for 'Commented on issue created by user in the repo owned by the use'
+T4S2 = 1 # score for 'Commented on issue not created by user in the repo owned by the user'
+T4S3 = 1 # score for 'Commented on issue created by user in the repo not owned by the user'
+T4S4 = 1 # score for 'Commented on issue not created by user in the repo not owned by the user'
+T5S1 = 1 # score for 'Repo created by the user'
