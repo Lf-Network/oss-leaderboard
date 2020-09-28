@@ -1,14 +1,15 @@
 """ GraphQL Query to fetch data. """
 
 query = """
-query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
+query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $pullReqCursor: String, $pullreqreviewcursor: String, $issueCursor: String , $issueCommentsCursor: String, $repoCursor: String) {
   user(login: $username) {
     username: login
     id
-    issueComments(first: $dataCount) {
+    issueComments(last: $dataCount before:$issueCommentsCursor) {
       totalCount
       pageInfo {
-        hasNextPage
+        hasPreviousPage
+        startCursor
       }
       edges {
         cursor
@@ -38,10 +39,11 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
     }
     contributionsCollection(from: $timedelta) {
       hasAnyContributions
-      pullRequestReviewContributions(first: $dataCount) {
+      pullRequestReviewContributions(first: $dataCount after:$pullreqreviewcursor) {
         totalCount
         pageInfo {
           hasNextPage
+          endCursor
         }
         edges {
           cursor
@@ -81,10 +83,11 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
           }
         }
       }
-      issueContributions(first: $dataCount) {
+      issueContributions(first: $dataCount after:$issueCursor) {
         totalCount
         pageInfo {
           hasNextPage
+          endCursor
         }
         edges {
           cursor
@@ -119,10 +122,11 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
           }
         }
       }
-      pullRequestContributions(first: $dataCount) {
+      pullRequestContributions(first: $dataCount after:$pullReqCursor) {
         totalCount
         pageInfo {
           hasNextPage
+          endCursor
         }
         edges {
           node {
@@ -161,10 +165,11 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!) {
           }
         }
       }
-      repositoryContributions(first: $dataCount) {
+      repositoryContributions(first: $dataCount after:$repoCursor) {
         totalCount
         pageInfo {
           hasNextPage
+          endCursor
         }
         edges {
           node {
