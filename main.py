@@ -12,11 +12,8 @@ from multi_users_fetch import fetch_contributions_for_multi_users
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
 
-variables = {
-    "timedelta": get_date(5),
-    "username": "",
-    "dataCount": 5
-}
+variables = {"timedelta": get_date(5), "username": "", "dataCount": 5}
+
 
 def main():
     """ Script entrypoint. """
