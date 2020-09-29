@@ -20,6 +20,9 @@ jobs:
               run: python main.py
               env: 
                 GITHUB_TOKEN: ${{secrets.TOKEN}}
+                USER_LIST: ${{secrets.TOKEN}}
+                DURATION_IN_DAYS: 5
+                PAGE_DATA_COUNT: 5
             - name: Copy css file
               uses: canastro/copy-file-action@master # copy style.css
               with:
