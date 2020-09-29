@@ -1,12 +1,12 @@
 """ Util to convert the json to dataframe. """
 import json
-from typing import List
+from typing import Dict, List
 
 import pandas as pd
 from leaderboard.constants import contribTypes
 
 
-def convert_to_intermediate_table(data: str) -> pd.DataFrame:
+def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(
         pd.json_normalize(json.loads(data.encode())), orient="columns"
     )
@@ -51,9 +51,6 @@ def convert_to_intermediate_table(data: str) -> pd.DataFrame:
         ]
     )
 
-    new_df = format_issue_comments(
-        issue_comment_list, user_github_id, user_name, new_df
-    )
     new_df = format_pr_review_contributions(
         review_contribution_list, user_github_id, user_name, new_df
     )
@@ -66,13 +63,80 @@ def convert_to_intermediate_table(data: str) -> pd.DataFrame:
     new_df = format_repo_contributions(
         repo_contribution_list, user_github_id, user_name, new_df
     )
+    new_df_info = format_issue_comments(
+        issue_comment_list, user_github_id, user_name, timeDelta, new_df
+    )
 
-    return new_df
+    page_info = extract_page_info(df)
+
+    # in case of issue comment(T4), we calculate the value for hasPreviousPage
+    # based on whether the latest api response has any issue comment contribution data that was created before the specified time
+    page_info["page_info_T4"]["hasPreviousPage"] = (
+        not new_df_info["hasOldData"] and page_info["page_info_T4"]["hasPreviousPage"]
+    )
+
+    return {"intermediate_table": new_df_info["df"], "page_info": page_info}
+
+
+def extract_page_info(df: pd.DataFrame) -> Dict:
+    """ Returns page info for each of the contribution types
+    Args: 
+        df: graphql query api response converted to dataframe
+    """
+
+    has_next_page_T1 = df[
+        "data.user.contributionsCollection.pullRequestContributions.pageInfo.hasNextPage"
+    ][0]
+    end_cursor_T1 = df[
+        "data.user.contributionsCollection.pullRequestContributions.pageInfo.endCursor"
+    ][0]
+
+    has_next_page_T2 = df[
+        "data.user.contributionsCollection.pullRequestReviewContributions.pageInfo.hasNextPage"
+    ][0]
+    end_cursor_T2 = df[
+        "data.user.contributionsCollection.pullRequestReviewContributions.pageInfo.endCursor"
+    ][0]
+
+    has_next_page_T3 = df[
+        "data.user.contributionsCollection.issueContributions.pageInfo.hasNextPage"
+    ][0]
+    end_cursor_T3 = df[
+        "data.user.contributionsCollection.issueContributions.pageInfo.endCursor"
+    ][0]
+
+    has_next_page_T4 = df["data.user.issueComments.pageInfo.hasPreviousPage"][0]
+    end_cursor_T4 = df["data.user.issueComments.pageInfo.startCursor"][0]
+
+    has_next_page_T5 = df[
+        "data.user.contributionsCollection.repositoryContributions.pageInfo.hasNextPage"
+    ][0]
+    end_cursor_T5 = df[
+        "data.user.contributionsCollection.repositoryContributions.pageInfo.endCursor"
+    ][0]
+
+    return {
+        "page_info_T1": {"hasNextPage": has_next_page_T1, "endCursor": end_cursor_T1,},
+        "page_info_T2": {"hasNextPage": has_next_page_T2, "endCursor": end_cursor_T2,},
+        "page_info_T3": {"hasNextPage": has_next_page_T3, "endCursor": end_cursor_T3,},
+        "page_info_T4": {
+            "hasPreviousPage": has_next_page_T4,
+            "startCursor": end_cursor_T4,
+        },
+        "page_info_T5": {"hasNextPage": has_next_page_T5, "endCursor": end_cursor_T5,},
+    }
 
 
 def format_issue_comments(
-    issue_comment_list: str, user_id: str, user_name: str, df: pd.DataFrame
-) -> pd.DataFrame:
+    issue_comment_list: str,
+    user_id: str,
+    user_name: str,
+    timeDelta: str,
+    df: pd.DataFrame,
+) -> Dict:
+
+    olderDataCount = 0
+
     for issue_comment in issue_comment_list:
         github_id = issue_comment["node"]["id"]
         repo_id = issue_comment["node"]["issue"]["repository"]["id"]
@@ -81,22 +145,25 @@ def format_issue_comments(
         created_at = issue_comment["node"]["createdAt"]
         last_updated_at = issue_comment["node"]["updatedAt"]
 
-        df = df.append(
-            {
-                "github_id": github_id,
-                "user_id": user_id,
-                "user_name": user_name,
-                "type": contribTypes.T4,
-                "repo_id": repo_id,
-                "repo_owner_id": repo_owner_id,
-                "reactions": reactions,
-                "created_at": created_at,
-                "last_updated_at": last_updated_at,
-            },
-            ignore_index=True,
-        )
+        if created_at >= timeDelta:
+            df = df.append(
+                {
+                    "github_id": github_id,
+                    "user_id": user_id,
+                    "user_name": user_name,
+                    "type": contribTypes.T4,
+                    "repo_id": repo_id,
+                    "repo_owner_id": repo_owner_id,
+                    "reactions": reactions,
+                    "created_at": created_at,
+                    "last_updated_at": last_updated_at,
+                },
+                ignore_index=True,
+            )
+        else:
+            olderDataCount += 1
 
-    return df
+    return {"df": df, "hasOldData": olderDataCount > 0}
 
 
 def format_pr_review_contributions(
@@ -110,7 +177,7 @@ def format_pr_review_contributions(
 
         review_type = pr_review_node["ReviewState"]
         pr_status = pr_review_node["pullRequest"]["state"]
-        author_id = pr_review_node["pullRequest"]["author"]["id"]
+        author_id = pr_review_node["pullRequest"]["author"].get("id")
         reactions = pr_review_node["reactions"]["totalCount"]
         merged_by_id = ""
 
@@ -211,7 +278,7 @@ def format_issue_contributions(
         created_at = issue_node["createdAt"]
         last_updated_at = issue_node["updatedAt"]
         # type = 'Issue'
-        df.append(
+        df = df.append(
             {
                 "github_id": github_id,
                 "user_id": user_id,
@@ -243,7 +310,7 @@ def format_repo_contributions(
         created_at = repo_node["createdAt"]
         last_updated_at = repo_node["updatedAt"]
         is_fork = repo_node["isFork"]
-        df.append(
+        df = df.append(
             {
                 "github_id": github_id,
                 "user_id": user_id,

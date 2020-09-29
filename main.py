@@ -1,37 +1,34 @@
 """ Main module for the OSS Leaderboard. """
+import os
 import logging
-import json
 
-from leaderboard.queries.query import query
 from leaderboard.utils.data import get_date
-from leaderboard.fetch_data import execute_query
 
-from leaderboard.utils.formatter import convert_to_intermediate_table
 from leaderboard.utils.intermediate_score_table import get_intermediate_score_table
 from leaderboard.utils.final_score_table import get_final_score_table
-from leaderboard.utils.data import convert_df_to_markdown, convert_mk_to_html
+from leaderboard.utils.data import convert_df_to_markdown
+from multi_users_fetch import fetch_contributions_for_multi_users
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
 
+user_list = [x.strip() for x in os.environ.get("USER_LIST", "").split(",")]
+duration = int(os.environ.get("DURATION_IN_DAYS", 5))
+data_count = int(os.environ.get("PAGE_DATA_COUNT", 5))
+
 variables = {
-    "timedelta": get_date(100),
-    "username": "sindresorhus",
-    "dataCount": 5,
+    "timedelta": get_date(duration),
+    "dataCount": data_count,
 }
 
 
 def main():
     """ Script entrypoint. """
 
-    result = execute_query(query, variables)
+    result = fetch_contributions_for_multi_users(user_list, variables)
 
-    intermediate_table = convert_to_intermediate_table(
-        json.dumps(result.json(), indent=4)
-    )
-
-    intermediate_score_table = get_intermediate_score_table(intermediate_table)
-    final_score_table = get_final_score_table(intermediate_score_table)
+    intermediate_score_table = get_intermediate_score_table(result)
+    final_score_table = get_final_score_table(intermediate_score_table, user_list)
     markdown_table = convert_df_to_markdown(final_score_table)
 
     print(markdown_table)
