@@ -8,6 +8,7 @@ from leaderboard.utils.intermediate_score_table import get_intermediate_score_ta
 from leaderboard.utils.final_score_table import get_final_score_table
 from leaderboard.utils.data import convert_df_to_markdown
 from multi_users_fetch import fetch_contributions_for_multi_users
+from final_html_output import final_html_output
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
@@ -30,8 +31,8 @@ def main():
     intermediate_score_table = get_intermediate_score_table(result)
     final_score_table = get_final_score_table(intermediate_score_table, user_list)
     markdown_table = convert_df_to_markdown(final_score_table)
-
-    print(markdown_table)
+    
+    final_html_output(final_score_table)
 
 
 main()
