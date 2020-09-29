@@ -6,7 +6,7 @@ import pandas as pd
 from leaderboard.constants import contribTypes
 
 
-def convert_to_intermediate_table(data: str) -> pd.DataFrame:
+def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(
         pd.json_normalize(json.loads(data.encode())), orient="columns"
     )
@@ -51,9 +51,6 @@ def convert_to_intermediate_table(data: str) -> pd.DataFrame:
         ]
     )
 
-    new_df = format_issue_comments(
-        issue_comment_list, user_github_id, user_name, new_df
-    )
     new_df = format_pr_review_contributions(
         review_contribution_list, user_github_id, user_name, new_df
     )
@@ -66,8 +63,16 @@ def convert_to_intermediate_table(data: str) -> pd.DataFrame:
     new_df = format_repo_contributions(
         repo_contribution_list, user_github_id, user_name, new_df
     )
+    new_df_info = format_issue_comments(
+        issue_comment_list, user_github_id, user_name, timeDelta, new_df
+    )
 
-    return {"intermediate_table": new_df, "page_info": extract_page_info(df)}
+    page_info = extract_page_info(df)
+    page_info["page_info_T4"]["hasPreviousPage"] = (
+        not new_df_info["hasOldData"] and page_info["page_info_T4"]["hasPreviousPage"]
+    )
+
+    return {"intermediate_table": new_df_info["df"], "page_info": page_info}
 
 
 def extract_page_info(df: pd.DataFrame) -> Dict:
@@ -115,8 +120,15 @@ def extract_page_info(df: pd.DataFrame) -> Dict:
 
 
 def format_issue_comments(
-    issue_comment_list: str, user_id: str, user_name: str, df: pd.DataFrame
-) -> pd.DataFrame:
+    issue_comment_list: str,
+    user_id: str,
+    user_name: str,
+    timeDelta: str,
+    df: pd.DataFrame,
+) -> Dict:
+
+    olderDataCount = 0
+
     for issue_comment in issue_comment_list:
         github_id = issue_comment["node"]["id"]
         repo_id = issue_comment["node"]["issue"]["repository"]["id"]
@@ -125,22 +137,25 @@ def format_issue_comments(
         created_at = issue_comment["node"]["createdAt"]
         last_updated_at = issue_comment["node"]["updatedAt"]
 
-        df = df.append(
-            {
-                "github_id": github_id,
-                "user_id": user_id,
-                "user_name": user_name,
-                "type": contribTypes.T4,
-                "repo_id": repo_id,
-                "repo_owner_id": repo_owner_id,
-                "reactions": reactions,
-                "created_at": created_at,
-                "last_updated_at": last_updated_at,
-            },
-            ignore_index=True,
-        )
+        if created_at >= timeDelta:
+            df = df.append(
+                {
+                    "github_id": github_id,
+                    "user_id": user_id,
+                    "user_name": user_name,
+                    "type": contribTypes.T4,
+                    "repo_id": repo_id,
+                    "repo_owner_id": repo_owner_id,
+                    "reactions": reactions,
+                    "created_at": created_at,
+                    "last_updated_at": last_updated_at,
+                },
+                ignore_index=True,
+            )
+        else:
+            olderDataCount += 1
 
-    return df
+    return {"df": df, "hasOldData": olderDataCount > 0}
 
 
 def format_pr_review_contributions(

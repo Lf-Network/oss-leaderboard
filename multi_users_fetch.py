@@ -1,17 +1,18 @@
 """ Fetch contributions for multiple users """
-import os
+
 import json
 import pandas as pd
 from typing import Dict
 from copy import deepcopy
 
+from leaderboard.queries.query import query
 from leaderboard.fetch_data import execute_query
 from leaderboard.utils.formatter import convert_to_intermediate_table
 
-user_list = os.environ.get("USER_LIST").split(" ")
 
-
-def fetch_contributions_for_multi_users(query: str, variables: Dict) -> pd.DataFrame:
+def fetch_contributions_for_multi_users(
+    user_list: list, variables: Dict
+) -> pd.DataFrame:
 
     list = []
     for userName in user_list:
@@ -26,10 +27,8 @@ def fetch_contributions_for_multi_users(query: str, variables: Dict) -> pd.DataF
         page_info_T4 = {"hasPreviousPage": True, "startCursor": None}
 
         page_info_T5 = {"hasNextPage": True, "endCursor": None}
-        x = 0
 
         while True:
-            x = x + 1
             params = deepcopy(variables)
 
             params["pullReqCursor"] = page_info_T1["endCursor"]
@@ -42,21 +41,18 @@ def fetch_contributions_for_multi_users(query: str, variables: Dict) -> pd.DataF
 
             params["repoCursor"] = page_info_T5["endCursor"]
 
+            if page_info_T4["hasPreviousPage"]:
+                params["issueCommentDataCount"] = variables["dataCount"]
+            else:
+                params["issueCommentDataCount"] = 0
+
             result = execute_query(query, params)
+
             flat_data = convert_to_intermediate_table(
-                json.dumps(result.json(), indent=4)
+                json.dumps(result.json(), indent=4), variables["timedelta"]
             )
 
             list.append(flat_data["intermediate_table"])
-
-            if (
-                not page_info_T1["hasNextPage"]
-                and not page_info_T2["hasNextPage"]
-                and not page_info_T3["hasNextPage"]
-                and not page_info_T4["hasPreviousPage"]
-                and not page_info_T5["hasNextPage"]
-            ):
-                break
 
             if page_info_T1["hasNextPage"]:
                 page_info_T1 = flat_data["page_info"]["page_info_T1"]
@@ -72,6 +68,15 @@ def fetch_contributions_for_multi_users(query: str, variables: Dict) -> pd.DataF
 
             if page_info_T5["hasNextPage"]:
                 page_info_T5 = flat_data["page_info"]["page_info_T5"]
+
+            if (
+                not page_info_T1["hasNextPage"]
+                and not page_info_T2["hasNextPage"]
+                and not page_info_T3["hasNextPage"]
+                and not page_info_T4["hasPreviousPage"]
+                and not page_info_T5["hasNextPage"]
+            ):
+                break
 
     combined = pd.concat(list)
 

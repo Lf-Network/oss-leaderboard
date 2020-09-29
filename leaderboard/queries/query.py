@@ -1,11 +1,11 @@
 """ GraphQL Query to fetch data. """
 
 query = """
-query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $pullReqCursor: String, $pullreqreviewcursor: String, $issueCursor: String , $issueCommentsCursor: String, $repoCursor: String) {
+query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $issueCommentDataCount: Int!, $pullReqCursor: String, $pullreqreviewcursor: String, $issueCursor: String , $issueCommentsCursor: String, $repoCursor: String) {
   user(login: $username) {
     username: login
     id
-    issueComments(last: $dataCount before:$issueCommentsCursor) {
+    issueComments(last: $issueCommentDataCount before:$issueCommentsCursor) {
       totalCount
       pageInfo {
         hasPreviousPage
