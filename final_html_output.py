@@ -24,5 +24,5 @@ def final_html_output(df: pd.DataFrame) -> str:
     with open('build/index.html', 'w') as f:
         f.write(html_string.format(table=df.to_html(index=False)))
         f.close()
-
+        
     
