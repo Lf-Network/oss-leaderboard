@@ -3,7 +3,6 @@
 import json
 import pandas as pd
 from typing import Dict
-from copy import deepcopy
 
 from leaderboard.queries.query import query
 from leaderboard.fetch_data import execute_query
@@ -11,49 +10,58 @@ from leaderboard.utils.formatter import convert_to_intermediate_table
 
 
 def fetch_contributions_for_multi_users(
-    user_list: list, variables: Dict
+    user_list: list, query_variables: Dict
 ) -> pd.DataFrame:
+    """ Returns combined intermediate table dataframe for all users
+    Args: 
+        user_list: list of users whoss contribution data is to be fetched
+        query_variables: arguments required for the OSS graphql query
+    """
+    # stores list of intermediate dataframes
+    intermediate_list = []
 
-    list = []
     for userName in user_list:
-        variables["username"] = userName
-
+        query_variables["username"] = userName
+        # variables that sore the pagination info for each of the 5 contribution types
         page_info_T1 = {"hasNextPage": True, "endCursor": None}
 
         page_info_T2 = {"hasNextPage": True, "endCursor": None}
 
         page_info_T3 = {"hasNextPage": True, "endCursor": None}
 
+        # in case of issue comment(T4), 'hasPreviousPage' and 'startCursor' is used instead as it involves a different approach to get issue comment contributions after a specific time
         page_info_T4 = {"hasPreviousPage": True, "startCursor": None}
 
         page_info_T5 = {"hasNextPage": True, "endCursor": None}
 
         while True:
-            params = deepcopy(variables)
+            # extra params required for pagination
+            query_variables["pullReqCursor"] = page_info_T1["endCursor"]
 
-            params["pullReqCursor"] = page_info_T1["endCursor"]
+            query_variables["pullreqreviewcursor"] = page_info_T2["endCursor"]
 
-            params["pullreqreviewcursor"] = page_info_T2["endCursor"]
+            query_variables["issueCursor"] = page_info_T3["endCursor"]
 
-            params["issueCursor"] = page_info_T3["endCursor"]
+            query_variables["issueCommentsCursor"] = page_info_T4["startCursor"]
 
-            params["issueCommentsCursor"] = page_info_T4["startCursor"]
+            query_variables["repoCursor"] = page_info_T5["endCursor"]
 
-            params["repoCursor"] = page_info_T5["endCursor"]
-
+            # in case of issue comment(T4), if 'hasPreviousPage' is false, we set the data count to zero so that no more issue comment data is fetched
             if page_info_T4["hasPreviousPage"]:
-                params["issueCommentDataCount"] = variables["dataCount"]
+                query_variables["issueCommentDataCount"] = query_variables["dataCount"]
             else:
-                params["issueCommentDataCount"] = 0
+                query_variables["issueCommentDataCount"] = 0
 
-            result = execute_query(query, params)
+            result = execute_query(query, query_variables)
 
             flat_data = convert_to_intermediate_table(
-                json.dumps(result.json(), indent=4), variables["timedelta"]
+                json.dumps(result.json(), indent=4), query_variables["timedelta"]
             )
 
-            list.append(flat_data["intermediate_table"])
+            intermediate_list.append(flat_data["intermediate_table"])
 
+            # we only set the page info values that we get from api response when the hasNextPage/hasPreviousPage is true
+            # once we get a false value for hasNextPage/hasPreviousPage from api, we set the page info once and ignore the page info value in subsequent responses
             if page_info_T1["hasNextPage"]:
                 page_info_T1 = flat_data["page_info"]["page_info_T1"]
 
@@ -69,6 +77,7 @@ def fetch_contributions_for_multi_users(
             if page_info_T5["hasNextPage"]:
                 page_info_T5 = flat_data["page_info"]["page_info_T5"]
 
+            # if none of the contribution data types have any more data to be fetched for a user, break out of the whie loop and move on to next user
             if (
                 not page_info_T1["hasNextPage"]
                 and not page_info_T2["hasNextPage"]
@@ -78,6 +87,7 @@ def fetch_contributions_for_multi_users(
             ):
                 break
 
-    combined = pd.concat(list)
+    # combines all the intermediate dataframes into one
+    combined = pd.concat(intermediate_list)
 
     return combined

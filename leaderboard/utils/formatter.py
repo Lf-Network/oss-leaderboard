@@ -68,6 +68,9 @@ def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
     )
 
     page_info = extract_page_info(df)
+
+    # in case of issue comment(T4), we calculate the value for hasPreviousPage
+    # based on whether the latest api response has any issue comment contribution data that was created before the specified time
     page_info["page_info_T4"]["hasPreviousPage"] = (
         not new_df_info["hasOldData"] and page_info["page_info_T4"]["hasPreviousPage"]
     )
@@ -76,6 +79,11 @@ def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
 
 
 def extract_page_info(df: pd.DataFrame) -> Dict:
+    """ Returns page info for each of the contribution types
+    Args: 
+        df: graphql query api response converted to dataframe
+    """
+
     has_next_page_T1 = df[
         "data.user.contributionsCollection.pullRequestContributions.pageInfo.hasNextPage"
     ][0]
@@ -169,7 +177,7 @@ def format_pr_review_contributions(
 
         review_type = pr_review_node["ReviewState"]
         pr_status = pr_review_node["pullRequest"]["state"]
-        author_id = pr_review_node["pullRequest"]["author"].get("id", "")
+        author_id = pr_review_node["pullRequest"]["author"].get("id")
         reactions = pr_review_node["reactions"]["totalCount"]
         merged_by_id = ""
 

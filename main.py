@@ -12,12 +12,13 @@ from multi_users_fetch import fetch_contributions_for_multi_users
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
 
-user_list = eval(os.environ.get("USER_LIST"))
-duration = int(os.environ.get("DURATION_IN_DAYS"))
+user_list = [x.strip() for x in os.environ.get("USER_LIST", "").split(",")]
+duration = int(os.environ.get("DURATION_IN_DAYS", 5))
+data_count = int(os.environ.get("PAGE_DATA_COUNT", 5))
+
 variables = {
     "timedelta": get_date(duration),
-    "username": "",
-    "dataCount": 5,
+    "dataCount": data_count,
 }
 
 
