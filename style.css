@@ -1,7 +1,7 @@
 h1 {
-    color: #fff;
-    text-align: center;
-    padding-top: 20px;
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
 }
 body {
 	height: 100%;
@@ -46,13 +46,13 @@ thead {
 }
 
 tbody {
-	tr {
+  tr {
 		&:hover {
 			background-color: rgba(255,255,255,0.3);
 		}
-	}
-	td {
-		position: relative;
+  }
+  td {
+    position: relative;
 		&:hover {
 			&:before {
 				content: "";
