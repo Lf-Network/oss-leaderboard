@@ -13,7 +13,7 @@ requirements = [
 ]
 
 # Development Requirements
-requirements_dev = ["pytest==4.*", "black==19.10b0"]
+requirements_dev = ["pytest==4.*", "black==19.10b0", "pre-commit", "mypy"]
 
 setuptools.setup(
     name="oss-leaderboard",
