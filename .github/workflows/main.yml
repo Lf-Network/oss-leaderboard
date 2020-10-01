@@ -1,0 +1,37 @@
+name: Build and deploy
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: 0 0 * * 5 # Midnight on thrursday
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: Setup python
+        uses: actions/setup-python@v2 # install python
+      - name: Install dependencies
+        run: pip install .
+      - name: Run python code and generate html file
+        run: python main.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_LIST: ${{ secrets.USER_LIST }}
+          DURATION_IN_DAYS: 5
+          PAGE_DATA_COUNT: 5
+      - name: Copy css file
+        uses: canastro/copy-file-action@master # copy style.css
+        with:
+          source: 'style.css'
+          target: './build/style.css'
+      - name: Upload to netlify
+        uses: South-Paw/action-netlify-deploy@v1.0.4 # deploy to netlify
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          build-dir: './build'
