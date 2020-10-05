@@ -17,7 +17,6 @@ $ cp .env.example .env
 #### Building
 
 ```bash
-$ sh run-local.sh
 $ make run
 ```
 
