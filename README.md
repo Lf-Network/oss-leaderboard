@@ -2,7 +2,7 @@
 
 OSS Leaderboard shows the top contributors based on their contribution activities on GitHub.
 
-<img src = "https://i.imgur.com/SPMKoJt.png" width = "700">
+<img src = "https://imgur.com/o32dq3s" width = "700">
 
 ## Usage
 
@@ -44,6 +44,13 @@ $ make venv
 $ source .venv/bin/activate
 
 $ make setup
+```
+
+4. Running docker locally inside your shell 
+
+```bash
+$ sh run-local.sh
+
 ```
 
 #### Running tests
