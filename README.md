@@ -17,6 +17,7 @@ $ cp .env.example .env
 #### Building
 
 ```bash
+$ sh run-local.sh
 $ make run
 ```
 
@@ -44,13 +45,6 @@ $ make venv
 $ source .venv/bin/activate
 
 $ make setup
-```
-
-4. Running docker locally inside your shell 
-
-```bash
-$ sh run-local.sh
-
 ```
 
 #### Running tests

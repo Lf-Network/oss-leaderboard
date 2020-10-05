@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image: url('./assets/bg.png');
+  background-image: url('../assets/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -117,7 +117,7 @@ section.leaderboard__table {
 }
 
 tbody tr:nth-child(1) {
-  background-image: url(./assets/Leader_icon.svg);
+  background-image: url(../assets/Leader_icon.svg);
   background-repeat: no-repeat;
   background-size: 16px;
   background-position: 5px 17px;

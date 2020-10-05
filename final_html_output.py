@@ -15,7 +15,7 @@ def final_html_output(df: pd.DataFrame) -> str:
     <head>
       <title>Opensource Leaderboard Leapforg</title>
     </head>
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/style.css" />
     <body>
       <div class="leaderboard">
         <img
