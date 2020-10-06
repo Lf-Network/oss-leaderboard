@@ -15,6 +15,6 @@ def final_html_output(df: pd.DataFrame) -> str:
 
     if not os.path.exists("build"):
         os.mkdir("build")
-        
+
     with open("build/index.html", "w") as f:
         f.write(html_string.format(table=df.to_html(index=False)))

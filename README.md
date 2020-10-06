@@ -2,7 +2,7 @@
 
 OSS Leaderboard shows the top contributors based on their contribution activities on GitHub.
 
-<img src = "https://i.imgur.com/o32dq3s.png" width = "700">
+<img src = "https://imgur.com/lxiff4i" width = "700">
 
 ## Usage
 
