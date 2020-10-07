@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@361;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white-color: #ffffff;
+  --purple-color: #451d63;
+  --green-color: #00cd55;
+  --darkbg: #111c39;
+  --purple-bright: #f501a4;
+}
+
+body {
+  background-image: url('../assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Inter';
+  padding-top: 10vh;
+}
+
+h1 {
+  font-size: clamp(30px, 3.125rem + 8.333333vw, 1.5rem);
+  color: var(--white-color);
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.leaderboard {
+  max-width: 970px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+img.leaderboard__img {
+  width: 190px;
+  margin-bottom: 45px;
+}
+
+table.dataframe {
+  margin: auto;
+}
+
+table.dataframe,
+th,
+td {
+  border: none;
+}
+
+th {
+  color: #9076a5;
+  text-align: left;
+  padding: 10px 25px;
+  font-size: 12px;
+}
+
+thead {
+  background-color: var(--purple-color);
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+td {
+  color: var(--white-color);
+}
+
+tbody tr:hover {
+  cursor: pointer;
+  background-color: #ffffff1f !important;
+  color: #000000;
+}
+
+tbody tr {
+  color: var(--white-color);
+  font-size: 15px;
+  border-bottom: 1px solid #ffffff0f;
+}
+
+tbody tr td {
+  padding: 15px 25px;
+  border: none;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--darkbg);
+}
+
+table th:not(:first-child) {
+  text-align: right;
+}
+
+table tr td:not(:first-child) {
+  text-align: right;
+}
+
+tbody tr:nth-child(even) {
+  background: #1c2a50;
+}
+
+table.dataframe {
+  width: 100%;
+}
+
+section.leaderboard__table {
+  max-width: 60em;
+  margin: 0 auto;
+}
+
+tbody tr:nth-child(1) {
+  background-image: url(../assets/Leader_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 5px 17px;
+}
+
+tbody tr td:last-child {
+  color: var(--green-color);
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 992px) {
+  .leaderboard {
+    margin: 0px 40px;
+  }
+  body {
+    background-position: inherit;
+  }
+}

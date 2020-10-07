@@ -11,7 +11,7 @@ clean:
 
 venv:
 	@virtualenv -p python3 $(VENV_PATH)
-
+ 
 setup:
 	@pip install -U -e .[dev]
 
