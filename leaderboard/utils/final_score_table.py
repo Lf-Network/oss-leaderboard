@@ -21,14 +21,12 @@ def get_final_score_table(
             contribTypes.T2,
             contribTypes.T3,
             contribTypes.T4,
-            contribTypes.T5,
             "Total Score",
         ]
     )
 
     for user_name in user_list:
-        t1_score, t2_score, t3_score, t4_score, t5_score, total_score = (
-            0,
+        t1_score, t2_score, t3_score, t4_score, total_score = (
             0,
             0,
             0,
@@ -61,9 +59,7 @@ def get_final_score_table(
                 + user_row.t4s4 * scoreWeights.T4S4
             )
 
-            t5_score = user_row.t5s1 * scoreWeights.T5S1
-
-            total_score = t1_score + t2_score + t3_score + t4_score + t5_score
+            total_score = t1_score + t2_score + t3_score + t4_score
 
             final_score_table = final_score_table.append(
                 {
@@ -72,7 +68,6 @@ def get_final_score_table(
                     contribTypes.T2: t2_score,
                     contribTypes.T3: t3_score,
                     contribTypes.T4: t4_score,
-                    contribTypes.T5: t5_score,
                     "Total Score": total_score,
                 },
                 ignore_index=True,
@@ -86,7 +81,6 @@ def get_final_score_table(
                     contribTypes.T2: t2_score,
                     contribTypes.T3: t3_score,
                     contribTypes.T4: t4_score,
-                    contribTypes.T5: t5_score,
                     "Total Score": total_score,
                 },
                 ignore_index=True,
