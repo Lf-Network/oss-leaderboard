@@ -16,7 +16,7 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v2 # install python
       - name: Install dependencies
-        run: pip install .
+        run: python3 -m pip install .
       - name: Run python code and generate html file
         run: python main.py
         env:
