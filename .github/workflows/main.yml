@@ -5,6 +5,7 @@ on:
       - master
   schedule:
     - cron: 0 0 * * 5 # Midnight on thrursday
+  workflow_dispatch: 
 jobs:
   build:
     runs-on: ubuntu-latest
