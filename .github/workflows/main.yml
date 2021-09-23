@@ -24,11 +24,12 @@ jobs:
           USER_LIST: ${{ secrets.USER_LIST }}
           DURATION_IN_DAYS: 5
           PAGE_DATA_COUNT: 5
-      - name: Copy css file
+      - name: Copy assets
         uses: canastro/copy-file-action@master # copy style.css
         with:
-          source: './assets/style.css'
-          target: './build/style.css'
+          source: './assets/.'
+          target: './build/assets/.'
+          flags: '-r'
       - name: Upload to netlify
         uses: South-Paw/action-netlify-deploy@v1.0.4 # deploy to netlify
         with:
