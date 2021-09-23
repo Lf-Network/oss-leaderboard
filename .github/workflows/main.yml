@@ -24,6 +24,9 @@ jobs:
           USER_LIST: ${{ secrets.USER_LIST }}
           DURATION_IN_DAYS: 5
           PAGE_DATA_COUNT: 5
+      - name: Create assets
+        run: |
+          mkdir -p /build/assets
       - name: Copy assets
         uses: canastro/copy-file-action@master # copy style.css
         with:
