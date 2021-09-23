@@ -27,7 +27,7 @@ jobs:
       - name: Copy css file
         uses: canastro/copy-file-action@master # copy style.css
         with:
-          source: 'style.css'
+          source: './assets/style.css'
           target: './build/style.css'
       - name: Upload to netlify
         uses: South-Paw/action-netlify-deploy@v1.0.4 # deploy to netlify
