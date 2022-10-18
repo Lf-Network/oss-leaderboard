@@ -23,6 +23,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $iss
             }
             repository {
               id
+              isArchived
               owner {
                 id
               }
@@ -51,6 +52,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $iss
             repository {
               id
               name
+              isArchived
               owner {
                 id
                 login
@@ -95,6 +97,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $iss
             issue {
               repository {
                 id
+                isArchived
                 owner {
                   id
                 }
@@ -133,6 +136,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $iss
             pullRequest {
               repository {
                 id
+                isArchived
                 owner {
                   id
                 }
@@ -177,6 +181,7 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $iss
               id
               name
               isFork
+              isArchived
               parent {
                 id
                 owner {
