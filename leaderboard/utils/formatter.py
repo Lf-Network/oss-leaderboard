@@ -234,8 +234,8 @@ def format_pr_contributions(
         labels = []
         do_not_continue = False
         for edge in pr_node["labels"]["edges"]:
-            # if invalid label, do not continue
-            if edge["node"]["name"] == "invalid":
+            # if invalid or spam label, do not continue
+            if edge["node"]["name"] == "invalid" or edge["node"]["name"] == "spam":
                 do_not_continue = True
             labels.append(edge["node"]["name"])
         label = ", ".join(labels)
