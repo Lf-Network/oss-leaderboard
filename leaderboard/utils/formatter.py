@@ -79,8 +79,8 @@ def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
 
 
 def extract_page_info(df: pd.DataFrame) -> Dict:
-    """ Returns page info for each of the contribution types
-    Args: 
+    """Returns page info for each of the contribution types
+    Args:
         df: graphql query api response converted to dataframe
     """
 
@@ -116,14 +116,26 @@ def extract_page_info(df: pd.DataFrame) -> Dict:
     ][0]
 
     return {
-        "page_info_T1": {"hasNextPage": has_next_page_T1, "endCursor": end_cursor_T1,},
-        "page_info_T2": {"hasNextPage": has_next_page_T2, "endCursor": end_cursor_T2,},
-        "page_info_T3": {"hasNextPage": has_next_page_T3, "endCursor": end_cursor_T3,},
+        "page_info_T1": {
+            "hasNextPage": has_next_page_T1,
+            "endCursor": end_cursor_T1,
+        },
+        "page_info_T2": {
+            "hasNextPage": has_next_page_T2,
+            "endCursor": end_cursor_T2,
+        },
+        "page_info_T3": {
+            "hasNextPage": has_next_page_T3,
+            "endCursor": end_cursor_T3,
+        },
         "page_info_T4": {
             "hasPreviousPage": has_next_page_T4,
             "startCursor": end_cursor_T4,
         },
-        "page_info_T5": {"hasNextPage": has_next_page_T5, "endCursor": end_cursor_T5,},
+        "page_info_T5": {
+            "hasNextPage": has_next_page_T5,
+            "endCursor": end_cursor_T5,
+        },
     }
 
 
@@ -239,7 +251,7 @@ def format_pr_contributions(
                 do_not_continue = True
             labels.append(edge["node"]["name"])
         label = ", ".join(labels)
-        
+
         if do_not_continue:
             continue
 

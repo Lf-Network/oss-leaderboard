@@ -5,7 +5,7 @@ import markdown
 
 
 def get_date(days: int) -> str:
-    """ Get date before x days.
+    """Get date before x days.
     Args:
         days: number of days before from which data is fetched.
 
@@ -17,7 +17,7 @@ def get_date(days: int) -> str:
 
 
 def convert_df_to_markdown(df: pd.DataFrame) -> str:
-    """ Convert dataframe to markdown 
+    """Convert dataframe to markdown
     Args:
         df: dataframe object
 
@@ -29,7 +29,7 @@ def convert_df_to_markdown(df: pd.DataFrame) -> str:
 
 
 def convert_df_to_html(df: pd.DataFrame) -> str:
-    """ Convert dataframe to html 
+    """Convert dataframe to html
     Args:
         df: dataframe object
 
@@ -41,7 +41,7 @@ def convert_df_to_html(df: pd.DataFrame) -> str:
 
 
 def convert_mk_to_html(mk_data: str) -> str:
-    """ Convert markdown to html 
+    """Convert markdown to html
     Args:
         mk_data: markdown string
 

@@ -24,13 +24,13 @@ variables = {
 
 
 def main():
-    """ Script entrypoint. """
+    """Script entrypoint."""
 
     result = fetch_contributions_for_multi_users(user_list, variables)
 
     intermediate_score_table = get_intermediate_score_table(result)
     final_score_table = get_final_score_table(intermediate_score_table, user_list)
-    markdown_table = convert_df_to_markdown(final_score_table)
+    # markdown_table = convert_df_to_markdown(final_score_table)
 
     final_html_output(final_score_table)
 
