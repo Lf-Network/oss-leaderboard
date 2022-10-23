@@ -7,8 +7,8 @@ from leaderboard.constants import contribTypes
 def get_final_score_table(
     intermediate_score_df: pd.DataFrame, user_list: list
 ) -> pd.DataFrame:
-    """ Returns final score table dataframe
-    Args: 
+    """Returns final score table dataframe
+    Args:
         df: pandas DataFrame - Intermediate Score Table containing contribution counts of all sub types for given users
     """
 

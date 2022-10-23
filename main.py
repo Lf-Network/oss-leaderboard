@@ -24,7 +24,7 @@ variables = {
 
 
 def main():
-    """ Script entrypoint. """
+    """Script entrypoint."""
 
     result = fetch_contributions_for_multi_users(user_list, variables)
 
