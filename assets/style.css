@@ -36,6 +36,10 @@ h1 {
   text-align: center;
 }
 
+.leaderboard__table {
+  overflow-x: auto;
+}
+
 table {
   border-collapse: collapse;
   margin: 0 auto;
@@ -130,7 +134,7 @@ tbody tr td:last-child {
 
 @media only screen and (max-width: 992px) {
   .leaderboard {
-    margin: 0px 40px;
+    margin: 0px 10px;
   }
   body {
     background-position: inherit;
