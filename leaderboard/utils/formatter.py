@@ -230,6 +230,9 @@ def format_pr_contributions(
 
         pr_node = pr["node"]["pullRequest"]
 
+        # Do not count contribution in archived repo
+        if pr_node["repository"]["isArchived"]:
+            continue
         repo_id = pr_node["repository"]["id"]
         repo_owner_id = pr_node["repository"]["owner"]["id"]
         pr_status = pr_node["state"]
@@ -241,9 +244,16 @@ def format_pr_contributions(
             merged_by_id = pr_node["mergedBy"]["id"]
 
         labels = []
+        do_not_continue = False
         for edge in pr_node["labels"]["edges"]:
+            # if invalid or spam label, do not continue
+            if edge["node"]["name"] == "invalid" or edge["node"]["name"] == "spam":
+                do_not_continue = True
             labels.append(edge["node"]["name"])
         label = ", ".join(labels)
+
+        if do_not_continue:
+            continue
 
         created_at = pr_node["createdAt"]
         last_updated_at = pr_node["updatedAt"]
