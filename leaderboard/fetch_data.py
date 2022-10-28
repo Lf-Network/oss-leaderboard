@@ -21,12 +21,12 @@ logger.info(headers)
 
 
 def execute_query(query: str, variables: Dict) -> requests.models.Response:
-    """ Executes query to fetch data from GraphQL API.
+    """Executes query to fetch data from GraphQL API.
 
-	Args:
-		query: GraphQL query for fetching data.
-		username: whose data will be fetched.
-	"""
+    Args:
+            query: GraphQL query for fetching data.
+            username: whose data will be fetched.
+    """
 
     s = requests.Session()
 

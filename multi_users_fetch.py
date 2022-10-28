@@ -12,8 +12,8 @@ from leaderboard.utils.formatter import convert_to_intermediate_table
 def fetch_contributions_for_multi_users(
     user_list: list, query_variables: Dict
 ) -> pd.DataFrame:
-    """ Returns combined intermediate table dataframe for all users
-    Args: 
+    """Returns combined intermediate table dataframe for all users
+    Args:
         user_list: list of users whoss contribution data is to be fetched
         query_variables: arguments required for the OSS graphql query
     """

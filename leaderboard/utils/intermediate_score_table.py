@@ -5,7 +5,7 @@ from leaderboard.constants import contribTypes
 
 
 def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.DataFrame:
-    """ Returns contribution counts of all sub types for all users.
+    """Returns contribution counts of all sub types for all users.
     Args:
         intermediate_table_df: Intermediate Table containing flattened data of the github contributions for a group of users.
     """
@@ -92,7 +92,7 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
 
 
 def get_pr_opened_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
-    """ Returns individual counts for all subtypes under the 'PR Opened' type.
+    """Returns individual counts for all subtypes under the 'PR Opened' type.
     Args:
         df: sub-table of contributions for 'PR Opened' type by a particular contributor.
         user_id: usedID of the contributor.
@@ -110,7 +110,7 @@ def get_pr_opened_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
 
 def get_pr_reviewed_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
-    """ Returns individual counts for all subtypes under the 'PR Reviewed' type.
+    """Returns individual counts for all subtypes under the 'PR Reviewed' type.
     Args:
         df: sub-table of contributions for 'PR Reviewed' type by a particular contributor.
         user_id: usedID of the contributor.
@@ -138,7 +138,7 @@ def get_pr_reviewed_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
 
 def get_issue_created_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
-    """ Returns individual counts for all subtypes under the 'Issue Created' type.
+    """Returns individual counts for all subtypes under the 'Issue Created' type.
     Args:
         df: sub-table of contributions for 'Issue Created' type by a particular contributor.
         user_id: usedID of the contributor.
@@ -156,7 +156,7 @@ def get_issue_created_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
 
 def get_commented_on_issue_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
-    """ Returns individual counts for all subtypes under the 'Commented On Issue' type.
+    """Returns individual counts for all subtypes under the 'Commented On Issue' type.
     Args:
         df: sub-table of contributions for 'Commented On Issue' type by a particular contributor.
         user_id: usedID of the contributor.
@@ -184,7 +184,7 @@ def get_commented_on_issue_counts(df: pd.DataFrame, user_id: str) -> Tuple[int]:
 
 
 def get_repo_created_counts(df: pd.DataFrame) -> int:
-    """ Returns an individual count for all subtypes under the 'Repo Created' type.
+    """Returns an individual count for all subtypes under the 'Repo Created' type.
     Args:
         df: sub-table of contributions for 'Repo Created' type by a particular contributor.
     """
