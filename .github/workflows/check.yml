@@ -1,0 +1,24 @@
+name: Lint and Format Check
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+      
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: Setup python
+        uses: actions/setup-python@v3 # install python.
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: make setup # run setup from Makefile.
+      - name: Install pyright
+        run: npm install -g pyright@1.1.45
+      - name: Check
+        run: make check # run check from Makefile.
