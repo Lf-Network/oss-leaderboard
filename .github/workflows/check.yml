@@ -13,7 +13,7 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v3 # install python.
         with:
-        python-version: '3.9'
+          python-version: '3.9'
       - name: Install dependencies
         run: make setup # run setup from Makefile.
       - name: Install pyright
