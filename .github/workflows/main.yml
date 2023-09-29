@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: 0 0 * * 5 # Midnight on thrursday
+    - cron: 0 0 * * * # Every Midnight
   workflow_dispatch: 
 jobs:
   build:
@@ -24,6 +24,7 @@ jobs:
           USER_LIST: ${{ secrets.USER_LIST }}
           DURATION_IN_DAYS: 5
           PAGE_DATA_COUNT: 5
+          START_DATE: ${{ secrets.START_DATE }}
       - name: Create assets
         run: |
           mkdir -p ./build/assets

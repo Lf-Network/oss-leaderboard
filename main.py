@@ -2,8 +2,6 @@
 import os
 import logging
 
-from leaderboard.utils.data import get_date
-
 from leaderboard.utils.intermediate_score_table import get_intermediate_score_table
 from leaderboard.utils.final_score_table import get_final_score_table
 from multi_users_fetch import fetch_contributions_for_multi_users
@@ -15,9 +13,11 @@ logger = logging.getLogger("main")
 user_list = [x.strip() for x in os.environ.get("USER_LIST", "").split(",")]
 duration = int(os.environ.get("DURATION_IN_DAYS", 5))
 data_count = int(os.environ.get("PAGE_DATA_COUNT", 5))
+start_date = os.environ.get("START_DATE", "2023-10-01T00:00:00")
+
 
 variables = {
-    "timedelta": get_date(duration),
+    "timedelta": start_date,
     "dataCount": data_count,
 }
 
@@ -25,6 +25,7 @@ variables = {
 def main():
     """Script entrypoint."""
 
+    print(variables)
     result = fetch_contributions_for_multi_users(user_list, variables)
 
     intermediate_score_table = get_intermediate_score_table(result)
