@@ -25,7 +25,6 @@ variables = {
 def main():
     """Script entrypoint."""
 
-    print(variables)
     result = fetch_contributions_for_multi_users(user_list, variables)
 
     intermediate_score_table = get_intermediate_score_table(result)
