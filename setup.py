@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 requirements = [
-    "requests==2.22.0",
+    "requests==2.31.0",
     "pandas==1.2.0",
     "tabulate==0.8.7",
     "markdown==3.2.2",
