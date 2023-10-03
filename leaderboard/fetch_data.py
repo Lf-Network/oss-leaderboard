@@ -34,7 +34,7 @@ def execute_query(query: str, variables: Dict) -> requests.models.Response:
         total=5,
         backoff_factor=0.8,
         status_forcelist=[500, 502, 503, 504],
-        method_whitelist=(["POST"]),
+        allowed_methods=(["POST"]),
     )
 
     s.mount("https://", HTTPAdapter(max_retries=retries))
