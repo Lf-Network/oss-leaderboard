@@ -240,9 +240,10 @@ def format_pr_contributions(
         commits = pr_node["commits"]["totalCount"]
 
         merged_by_id = ""
-        if pr_node["merged"]:
-            merged_by_id = pr_node["mergedBy"]["id"]
-
+        if pr_node["merged"] and pr_node["mergedBy"]:
+            mb = pr_node["mergedBy"]
+            if "id" in mb:
+                merged_by_id = pr_node["mergedBy"]["id"]
         labels = []
         do_not_continue = False
         for edge in pr_node["labels"]["edges"]:
