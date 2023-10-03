@@ -11,14 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner.
+        uses: actions/checkout@v3
+
       - name: Setup python
-        uses: actions/setup-python@v3 # install python.
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: setup.py
+
       - name: Install dependencies
-        run: make setup # run setup from Makefile.
+        run: make setup
+
       - name: Install pyright
         run: npm install -g pyright@1.1.45
+
       - name: Check
-        run: make check # run check from Makefile.
+        run: make check
