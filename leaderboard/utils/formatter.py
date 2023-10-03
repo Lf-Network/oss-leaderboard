@@ -241,8 +241,8 @@ def format_pr_contributions(
 
         merged_by_id = ""
         if pr_node["merged"] and pr_node["mergedBy"]:
-            mb  = pr_node["mergedBy"]
-            if "id" in mb: 
+            mb = pr_node["mergedBy"]
+            if "id" in mb:
                 merged_by_id = pr_node["mergedBy"]["id"]
         labels = []
         do_not_continue = False
