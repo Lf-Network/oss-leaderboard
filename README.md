@@ -63,8 +63,6 @@ Make sure to run following commands:
 $ make format
 
 $ make check
-
-$ make test
 ```
 
 ## Intermediate scrore table
