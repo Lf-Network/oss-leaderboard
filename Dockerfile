@@ -1,22 +1,8 @@
-FROM laudio/pyodbc:1.0.33 AS main
+FROM python:3.11-slim AS main
 
-WORKDIR /app
-
-COPY ["setup.py", "README.md", "main.py", "./"]
+COPY ["setup.py", "final_html_output.py", "multi_users_fetch.py", "main.py", "README.md", "./"]
 COPY ["leaderboard", "./leaderboard"]
 
-RUN pip install . 
+RUN pip install -U -e .
 
 CMD ["python", "main.py"]
-
-
-# STAGE: test
-# -----------
-# Image used for running tests.FROM main AS test
-FROM main AS test
-
-RUN pip install .[dev]
-
-COPY ["tests", "./"]
-
-CMD pytest -vvv
