@@ -54,6 +54,10 @@ def fetch_contributions_for_multi_users(
 
             result = execute_query(query, query_variables)
 
+            user = result.json()["data"]["user"]
+            if user == None:
+                break
+
             flat_data = convert_to_intermediate_table(
                 json.dumps(result.json(), indent=4), query_variables["timedelta"]
             )
