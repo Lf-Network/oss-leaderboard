@@ -233,9 +233,14 @@ def format_pr_contributions(
         # Do not count contribution in archived repo
         if pr_node["repository"]["isArchived"]:
             continue
+
         repo_id = pr_node["repository"]["id"]
         repo_owner_id = pr_node["repository"]["owner"]["id"]
         pr_status = pr_node["state"]
+
+        # Do not count contibution for closed PRs
+        if pr_status == "CLOSED":
+            continue
         author_id = user_id
         commits = pr_node["commits"]["totalCount"]
 
