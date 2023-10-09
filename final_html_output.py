@@ -17,4 +17,18 @@ def final_html_output(df: pd.DataFrame) -> str:
         os.mkdir("build")
 
     with open("build/index.html", "w") as f:
-        f.write(html_string.format(table=df.to_html(index=False)))
+        f.write(
+            html_string.format(
+                table=df.to_html(
+                    index=False,
+                    escape=False,
+                    formatters={
+                        "User Name": link_username,
+                    }
+                )
+            )
+        )
+
+
+def link_username(u: str):
+    return f'<a target="_blank" rel="noopener noreferrer" href="https://github.com/{u}">{u}</a>'
