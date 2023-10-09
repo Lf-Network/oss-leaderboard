@@ -1,3 +1,4 @@
+@import "./nav.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@361;400;600&display=swap');
 
 * {
@@ -19,7 +20,6 @@ body {
   background-size: cover;
   background-position: center;
   font-family: 'Inter';
-  padding-top: 10vh;
   padding-bottom: 10vh;
 }
 
@@ -33,7 +33,7 @@ h1 {
 
 .leaderboard {
   max-width: 970px;
-  margin: 0 auto;
+  margin: 50px auto 0 auto;
   text-align: center;
 }
 
