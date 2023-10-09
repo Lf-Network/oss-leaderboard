@@ -1,12 +1,16 @@
 """ Fetch contributions for multiple users """
 
 import json
+import logging
 import pandas as pd
 from typing import Dict
 
 from leaderboard.queries.query import query
 from leaderboard.fetch_data import execute_query
 from leaderboard.utils.formatter import convert_to_intermediate_table
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger("fetch_data")
 
 
 def fetch_contributions_for_multi_users(
@@ -53,6 +57,11 @@ def fetch_contributions_for_multi_users(
                 query_variables["issueCommentDataCount"] = 0
 
             result = execute_query(query, query_variables)
+
+            user = result.json()["data"]["user"]
+            if user == None:
+                logger.info("Invalid GitHub user detected %s\n", userName)
+                break
 
             flat_data = convert_to_intermediate_table(
                 json.dumps(result.json(), indent=4), query_variables["timedelta"]
