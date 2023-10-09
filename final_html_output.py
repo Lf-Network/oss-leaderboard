@@ -24,7 +24,7 @@ def final_html_output(df: pd.DataFrame) -> str:
                     escape=False,
                     formatters={
                         "User Name": link_username,
-                    }
+                    },
                 )
             )
         )
