@@ -23,20 +23,20 @@ def final_html_output(df: pd.DataFrame) -> str:
                     index=False,
                     escape=False,
                     formatters={
-                        "User Name": link_username,
+                        "User Name": format_username,
                     },
                 )
             )
         )
 
 
-def link_username(u: str):
-    return f'<a target="_blank" rel="noopener noreferrer" href="https://github.com/{u}">{u}</a>'
+def format_username(u: str):
+    """Format username with avatar image and clickable link to redirect to user's profile"""
 
+    link_html = '<a target="_blank" rel="noopener noreferrer" href="https://github.com/{}">{}</a>'
+    img_html = '<img src="https://github.com/{}.png?size=20" alt="@{}" />'
 
-def add_user_avatar(df: pd.DataFrame) -> pd.DataFrame:
-    image_tag = lambda u: f'<img src="https://github.com/{u}.png?size=20" alt="@{u}" />'
-    avatarUrls = df["User Name"].apply(image_tag)
-    df.insert(0, "Avatar Url", avatarUrls)
+    link_image = link_html.format(u, img_html.format(u, u))
+    link_username = link_html.format(u, u)
 
-    return df
+    return f'<div class="username">{link_image} {link_username}</div>'

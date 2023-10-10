@@ -5,7 +5,7 @@ import logging
 from leaderboard.utils.intermediate_score_table import get_intermediate_score_table
 from leaderboard.utils.final_score_table import get_final_score_table
 from multi_users_fetch import fetch_contributions_for_multi_users
-from final_html_output import final_html_output, add_user_avatar
+from final_html_output import final_html_output
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
@@ -29,7 +29,6 @@ def main():
 
     intermediate_score_table = get_intermediate_score_table(result)
     final_score_table = get_final_score_table(intermediate_score_table, user_list)
-    final_score_table = add_user_avatar(final_score_table)
 
     final_html_output(final_score_table)
 

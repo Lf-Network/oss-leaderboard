@@ -109,15 +109,11 @@ tbody tr:nth-child(odd) {
   background-color: var(--darkbg);
 }
 
-table th:first-child {
-  font-size: 0;
-}
-
-table th:not(:first-child):not(:nth-child(2)) {
+table th:not(:first-child) {
   text-align: right;
 }
 
-table tr td:not(:first-child):not(:nth-child(2)) {
+table tr td:not(:first-child) {
   text-align: right;
 }
 
@@ -152,6 +148,15 @@ tbody tr:nth-child(1) {
 tbody tr td:last-child {
   color: var(--green-color);
   font-weight: bold;
+}
+
+.username {
+  display: flex;
+  vertical-align: middle;
+}
+
+.username img {
+  margin-right: 12px;
 }
 
 @media only screen and (max-width: 992px) {
