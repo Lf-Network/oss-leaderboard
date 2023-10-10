@@ -124,6 +124,7 @@ table.dataframe {
   width: 100%;
 }
 
+
 section.leaderboard__table {
   max-width: 60em;
   margin: 0 auto;
@@ -139,6 +140,16 @@ tbody tr:nth-child(1) {
 tbody tr td:last-child {
   color: var(--green-color);
   font-weight: bold;
+}
+
+.username {
+  display: flex;
+  vertical-align: middle;
+}
+
+.username img {
+  border-radius: 50%;
+  margin-right: 12px;
 }
 
 @media only screen and (max-width: 992px) {
