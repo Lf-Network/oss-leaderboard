@@ -24,6 +24,7 @@ def final_html_output(df: pd.DataFrame) -> str:
                     escape=False,
                     formatters={
                         "User Name": link_username,
+                        "Avatar Url": set_user_avatar,
                     },
                 )
             )
@@ -32,3 +33,7 @@ def final_html_output(df: pd.DataFrame) -> str:
 
 def link_username(u: str):
     return f'<a target="_blank" rel="noopener noreferrer" href="https://github.com/{u}">{u}</a>'
+
+
+def set_user_avatar(url: str):
+    return f'<img src="{url}" />'
