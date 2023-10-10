@@ -5,21 +5,12 @@ import logging
 import pandas as pd
 from typing import Dict
 
-from leaderboard.queries.query import query, user_query
+from leaderboard.queries.query import query
 from leaderboard.fetch_data import execute_query
 from leaderboard.utils.formatter import convert_to_intermediate_table
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
-
-
-def fetch_users_info(user_list: list) -> Dict:
-    users = {}
-    for username in user_list:
-        result = execute_query(user_query, {"username": username})
-        users[username] = result.json()["data"]["user"]
-
-    return users
 
 
 def fetch_contributions_for_multi_users(
