@@ -34,7 +34,7 @@ def format_username(u: str):
     """Format username with avatar image and clickable link to redirect to user's profile"""
 
     link_html = '<a target="_blank" rel="noopener noreferrer" href="https://github.com/{}">{}</a>'
-    img_html = '<img src="https://github.com/{}.png?size=20" alt="@{}" />'
+    img_html = '<img src="https://github.com/{}.png?size=20" width="20" height="20" alt="@{}" />'
 
     link_image = link_html.format(u, img_html.format(u, u))
     link_username = link_html.format(u, u)
