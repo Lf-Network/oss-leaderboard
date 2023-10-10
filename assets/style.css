@@ -125,13 +125,6 @@ table.dataframe {
   width: 100%;
 }
 
-table.dataframe tr td:first-child {
-  padding: 15px 0 15px 25px;
-}
-
-table.dataframe tr td img {
-  border-radius: 50%;
-}
 
 section.leaderboard__table {
   max-width: 60em;
@@ -156,6 +149,7 @@ tbody tr td:last-child {
 }
 
 .username img {
+  border-radius: 50%;
   margin-right: 12px;
 }
 
