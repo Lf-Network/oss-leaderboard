@@ -207,3 +207,13 @@ query ossQuery($timedelta: DateTime!, $username: String!, $dataCount: Int!, $iss
   }
 }
 """
+
+user_query = """
+query userQuery($username: String!) {
+   user(login: $username) {
+        username: login
+        id
+        avatarUrl(size: 20)
+    }
+}
+"""

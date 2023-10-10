@@ -109,11 +109,15 @@ tbody tr:nth-child(odd) {
   background-color: var(--darkbg);
 }
 
-table th:not(:first-child) {
+table th:first-child {
+  font-size: 0;
+}
+
+table th:not(:first-child):not(:nth-child(2)) {
   text-align: right;
 }
 
-table tr td:not(:first-child) {
+table tr td:not(:first-child):not(:nth-child(2)) {
   text-align: right;
 }
 
@@ -123,6 +127,10 @@ tbody tr:nth-child(even) {
 
 table.dataframe {
   width: 100%;
+}
+
+table.dataframe tr td:first-child {
+  padding: 15px 0 15px 25px;
 }
 
 section.leaderboard__table {
