@@ -1,16 +1,7 @@
 import pandas as pd
-from typing import Dict
 
 from leaderboard.constants import scoreWeights
 from leaderboard.constants import contribTypes
-
-
-def set_users_info(df: pd.DataFrame, user_info: Dict) -> pd.DataFrame:
-    """Returns dataframe by adding Avatar Url column to dataframe"""
-    avatarUrls = df["User Name"].apply(lambda u: user_info[u]["avatarUrl"])
-    df.insert(0, "Avatar Url", avatarUrls)
-
-    return df
 
 
 def get_final_score_table(
