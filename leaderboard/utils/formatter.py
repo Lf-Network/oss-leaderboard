@@ -7,6 +7,19 @@ from leaderboard.constants import contribTypes
 
 
 def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
+    """
+    Converts a JSON string containing data about a user's contributions on GitHub
+    into an intermediate table format that can be used to generate a leaderboard.
+
+    Args:
+        data (str): A JSON string containing data about a user's contributions on GitHub.
+        timeDelta (str): A string representing a time delta in the format "X days/hours/minutes".
+
+    Returns:
+        dict: A dictionary containing two keys:
+            - "intermediate_table": A pandas DataFrame containing the intermediate table.
+            - "page_info": A dictionary containing pagination information for the API query.
+    """
     df = pd.DataFrame.from_dict(
         pd.json_normalize(json.loads(data.encode())), orient="columns"
     )
@@ -79,9 +92,14 @@ def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
 
 
 def extract_page_info(df: pd.DataFrame) -> Dict:
-    """Returns page info for each of the contribution types
+    """
+    Returns page info for each of the contribution types
+
     Args:
         df: graphql query api response converted to dataframe
+
+    Returns:
+        A dictionary containing page info for each of the contribution types
     """
 
     has_next_page_T1 = df[
@@ -146,7 +164,19 @@ def format_issue_comments(
     timeDelta: str,
     df: pd.DataFrame,
 ) -> Dict:
+    """
+    Formats a list of issue comments and appends them to a pandas DataFrame.
 
+    Args:
+        issue_comment_list (str): A list of issue comments.
+        user_id (str): The ID of the user who made the comments.
+        user_name (str): The name of the user who made the comments.
+        timeDelta (str): A string representing the time delta for filtering comments.
+        df (pd.DataFrame): A pandas DataFrame to which the formatted comments will be appended.
+
+    Returns:
+        dict: A dictionary containing the updated DataFrame and a boolean indicating whether there are older comments.
+    """
     olderDataCount = 0
 
     for issue_comment in issue_comment_list:
@@ -181,6 +211,18 @@ def format_issue_comments(
 def format_pr_review_contributions(
     review_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
 ) -> pd.DataFrame:
+    """
+    Formats pull request review contributions and appends them to a pandas DataFrame.
+
+    Args:
+        review_contribution_list (List): A list of pull request review contributions.
+        user_id (str): The ID of the user who made the contributions.
+        user_name (str): The name of the user who made the contributions.
+        df (pd.DataFrame): The pandas DataFrame to which the formatted contributions will be appended.
+
+    Returns:
+        pd.DataFrame: The pandas DataFrame with the formatted contributions appended.
+    """
     for pr_review in review_contribution_list:
         github_id = pr_review["node"]["pullRequestReview"]["id"]
         pr_review_node = pr_review["node"]["pullRequestReview"]
@@ -229,6 +271,18 @@ def format_pr_review_contributions(
 def format_pr_contributions(
     pr_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
 ) -> pd.DataFrame:
+    """
+    Formats pull request contributions and appends them to a pandas DataFrame.
+
+    Args:
+        pr_contribution_list (List): A list of pull request contributions.
+        user_id (str): The ID of the user who made the contributions.
+        user_name (str): The name of the user who made the contributions.
+        df (pd.DataFrame): The pandas DataFrame to which the contributions will be appended.
+
+    Returns:
+        pd.DataFrame: The updated pandas DataFrame with the new contributions.
+    """
     for pr in pr_contribution_list:
         github_id = pr["node"]["pullRequest"]["id"]
 
@@ -294,6 +348,18 @@ def format_pr_contributions(
 def format_issue_contributions(
     issue_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
 ) -> pd.DataFrame:
+    """
+    Formats a list of issue contributions and appends them to a pandas DataFrame.
+
+    Args:
+        issue_contribution_list (List): A list of issue contributions.
+        user_id (str): The ID of the user who made the contributions.
+        user_name (str): The name of the user who made the contributions.
+        df (pd.DataFrame): The pandas DataFrame to which the formatted contributions will be appended.
+
+    Returns:
+        pd.DataFrame: The pandas DataFrame with the formatted contributions appended.
+    """
     for issue in issue_contribution_list:
         github_id = issue["node"]["issue"]["id"]
         issue_node = issue["node"]["issue"]
@@ -333,6 +399,18 @@ def format_issue_contributions(
 def format_repo_contributions(
     repo_contribution_list: List, user_id: str, user_name: str, df: pd.DataFrame
 ) -> pd.DataFrame:
+    """
+    Formats a list of repository contributions and appends them to a pandas DataFrame.
+
+    Args:
+        repo_contribution_list (List): A list of repository contributions.
+        user_id (str): The ID of the user who made the contributions.
+        user_name (str): The name of the user who made the contributions.
+        df (pd.DataFrame): The pandas DataFrame to which the contributions will be appended.
+
+    Returns:
+        pd.DataFrame: The updated pandas DataFrame with the appended contributions.
+    """
     for repo in repo_contribution_list:
         github_id = repo["node"]["repository"]["id"]
         repo_node = repo["node"]["repository"]

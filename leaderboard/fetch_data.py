@@ -7,6 +7,9 @@ from typing import Dict
 import requests
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -21,11 +24,18 @@ logger.info(headers)
 
 
 def execute_query(query: str, variables: Dict) -> requests.models.Response:
-    """Executes query to fetch data from GraphQL API.
+    """
+    Executes query to fetch data from GraphQL API.
 
     Args:
-            query: GraphQL query for fetching data.
-            username: whose data will be fetched.
+        query (str): GraphQL query for fetching data.
+        variables (Dict): Variables to be used in the GraphQL query.
+
+    Returns:
+        requests.models.Response: Response object containing the fetched data.
+
+    Raises:
+        Exception: If the request fails with a non-200 status code.
     """
 
     s = requests.Session()

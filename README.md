@@ -56,7 +56,7 @@ $ make format
 $ make check
 ```
 
-## Intermediate scrore table
+## Intermediate score table
 
 The Intermediate score table stores the counts of all the individual contribution sub-types for each of the contributors.
 The labels in the table starting from T1S1 to T5S1 correspond to the following:
