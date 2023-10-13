@@ -23,7 +23,13 @@ variables = {
 
 
 def main():
-    """Script entrypoint."""
+    """Script entrypoint.
+
+    This function fetches contributions for multiple users, calculates their scores, and generates an HTML output of the final leaderboard.
+
+    Returns:
+        None
+    """
 
     result = fetch_contributions_for_multi_users(user_list, variables)
 

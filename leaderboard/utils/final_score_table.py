@@ -7,9 +7,15 @@ from leaderboard.constants import contribTypes
 def get_final_score_table(
     intermediate_score_df: pd.DataFrame, user_list: list
 ) -> pd.DataFrame:
-    """Returns final score table dataframe
+    """
+    Returns a final score table dataframe based on the intermediate score table containing contribution counts of all sub types for given users.
+
     Args:
-        df: pandas DataFrame - Intermediate Score Table containing contribution counts of all sub types for given users
+        intermediate_score_df (pandas DataFrame): Intermediate Score Table containing contribution counts of all sub types for given users.
+        user_list (list): List of user names for which the final score table is to be generated.
+
+    Returns:
+        pandas DataFrame: Final score table dataframe containing the total score of each user based on their contributions across all sub types.
     """
 
     intermediate_score_df.set_index("user_name", inplace=True)

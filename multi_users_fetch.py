@@ -16,10 +16,15 @@ logger = logging.getLogger("fetch_data")
 def fetch_contributions_for_multi_users(
     user_list: list, query_variables: Dict
 ) -> pd.DataFrame:
-    """Returns combined intermediate table dataframe for all users
+    """
+    Fetches contribution data for multiple GitHub users and returns a combined intermediate table dataframe.
+
     Args:
-        user_list: list of users whoss contribution data is to be fetched
-        query_variables: arguments required for the OSS graphql query
+        user_list (list): List of GitHub usernames whose contribution data is to be fetched.
+        query_variables (Dict): Arguments required for the OSS graphql query.
+
+    Returns:
+        pd.DataFrame: Combined intermediate table dataframe for all users.
     """
     # stores list of intermediate dataframes
     intermediate_list = []
