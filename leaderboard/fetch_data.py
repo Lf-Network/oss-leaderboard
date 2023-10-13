@@ -7,9 +7,6 @@ from typing import Dict
 import requests
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 logging.basicConfig(level=logging.DEBUG)
