@@ -189,7 +189,11 @@ def format_pr_review_contributions(
 
         review_type = pr_review_node["ReviewState"]
         pr_status = pr_review_node["pullRequest"]["state"]
-        author_id = pr_review_node["pullRequest"]["author"].get("id")
+
+        author_id = ""
+        if pr_review_node["pullRequest"]["author"]: # handle deleted user
+            author_id = pr_review_node["pullRequest"]["author"].get("id")
+
         reactions = pr_review_node["reactions"]["totalCount"]
         merged_by_id = ""
 
