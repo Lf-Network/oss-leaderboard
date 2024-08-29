@@ -14,12 +14,12 @@ venv:
 	@echo "Creating virtual environment..."
 	@command -v python3 >/dev/null 2>&1 || { echo "Python 3 not found. Please install Python 3."; exit 1; }
 	@python3 -m venv --help >/dev/null 2>&1 || { echo "Python 3 venv module not found. Please ensure Python 3 is installed with venv support."; exit 1; }
-	@command -v pip >/dev/null 2>&1 || { echo "pip not found. Please install pip for Python 3."; exit 1; }
+	@command -v pip3 >/dev/null 2>&1 || { echo "pip3 not found. Please install pip3 for Python 3."; exit 1; }
 	@python3 -m venv $(VENV_PATH)
 
 setup: venv
 	@echo "Installing dependencies..."
-	@$(VENV_PATH)/bin/pip install -U -e .[dev]
+	@$(VENV_PATH)/bin/pip3 install -U -e .[dev]
 
 venv_test:
 	@echo "Running tests..."
