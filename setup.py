@@ -1,3 +1,5 @@
+""" Package setup. """
+
 import setuptools
 
 

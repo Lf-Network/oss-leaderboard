@@ -66,7 +66,9 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
             elif contrib_type == contribTypes.T3:
                 t3s1, t3s2 = get_issue_created_counts(frame2, user_tuple[0])
             elif contrib_type == contribTypes.T4:
-                t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(frame2, user_tuple[0])
+                t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(
+                    frame2, user_tuple[0]
+                )
             elif contrib_type == contribTypes.T5:
                 t5s1 = get_repo_created_counts(frame2)
 
