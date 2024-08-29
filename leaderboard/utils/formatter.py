@@ -188,20 +188,20 @@ def format_issue_comments(
         last_updated_at = issue_comment["node"]["updatedAt"]
 
         if created_at >= timeDelta:
-            df = df.append(
-                {
-                    "github_id": github_id,
-                    "user_id": user_id,
-                    "user_name": user_name,
-                    "type": contribTypes.T4,
-                    "repo_id": repo_id,
-                    "repo_owner_id": repo_owner_id,
-                    "reactions": reactions,
-                    "created_at": created_at,
-                    "last_updated_at": last_updated_at,
-                },
-                ignore_index=True,
-            )
+            new_row_data = {
+                "github_id": github_id,
+                "user_id": user_id,
+                "user_name": user_name,
+                "type": contribTypes.T4,
+                "repo_id": repo_id,
+                "repo_owner_id": repo_owner_id,
+                "reactions": reactions,
+                "created_at": created_at,
+                "last_updated_at": last_updated_at,
+            }
+
+            new_row_df = pd.DataFrame([new_row_data])
+            df = pd.concat([df, new_row_df], ignore_index=True)
         else:
             olderDataCount += 1
 
@@ -246,24 +246,24 @@ def format_pr_review_contributions(
         last_updated_at = pr_review_node["updatedAt"]
         # label, commits, forks, stars, comments
 
-        df = df.append(
-            {
-                "github_id": github_id,
-                "user_id": user_id,
-                "user_name": user_name,
-                "type": contribTypes.T2,
-                "repo_id": repo_id,
-                "repo_owner_id": repo_owner_id,
-                "review_type": review_type,
-                "pr_status": pr_status,
-                "author_id": author_id,
-                "merged_by_id": merged_by_id,
-                "reactions": reactions,
-                "created_at": created_at,
-                "last_updated_at": last_updated_at,
-            },
-            ignore_index=True,
-        )
+        new_data = {
+            "github_id": github_id,
+            "user_id": user_id,
+            "user_name": user_name,
+            "type": contribTypes.T2,
+            "repo_id": repo_id,
+            "repo_owner_id": repo_owner_id,
+            "review_type": review_type,
+            "pr_status": pr_status,
+            "author_id": author_id,
+            "merged_by_id": merged_by_id,
+            "reactions": reactions,
+            "created_at": created_at,
+            "last_updated_at": last_updated_at,
+        }
+
+        new_row_df = pd.DataFrame([new_data])
+        df = pd.concat([df, new_row_df], ignore_index=True)
 
     return df
 
@@ -323,24 +323,24 @@ def format_pr_contributions(
         last_updated_at = pr_node["updatedAt"]
         # forks, stars, comments
 
-        df = df.append(
-            {
-                "github_id": github_id,
-                "user_id": user_id,
-                "user_name": user_name,
-                "type": contribTypes.T1,
-                "repo_id": repo_id,
-                "repo_owner_id": repo_owner_id,
-                "pr_status": pr_status,
-                "author_id": author_id,
-                "label": label,
-                "commits": commits,
-                "merged_by_id": merged_by_id,
-                "created_at": created_at,
-                "last_updated_at": last_updated_at,
-            },
-            ignore_index=True,
-        )
+        new_row_data = {
+            "github_id": github_id,
+            "user_id": user_id,
+            "user_name": user_name,
+            "type": contribTypes.T1,
+            "repo_id": repo_id,
+            "repo_owner_id": repo_owner_id,
+            "pr_status": pr_status,
+            "author_id": author_id,
+            "label": label,
+            "commits": commits,
+            "merged_by_id": merged_by_id,
+            "created_at": created_at,
+            "last_updated_at": last_updated_at,
+        }
+
+        new_row_df = pd.DataFrame([new_row_data])
+        df = pd.concat([df, new_row_df], ignore_index=True)
 
     return df
 
@@ -375,23 +375,23 @@ def format_issue_contributions(
         comments = issue_node["comments"]["totalCount"]
         created_at = issue_node["createdAt"]
         last_updated_at = issue_node["updatedAt"]
-        # type = 'Issue'
-        df = df.append(
-            {
-                "github_id": github_id,
-                "user_id": user_id,
-                "user_name": user_name,
-                "type": contribTypes.T3,
-                "repo_id": repo_id,
-                "repo_owner_id": repo_owner_id,
-                "reactions": reactions,
-                "label": label,
-                "comments": comments,
-                "created_at": created_at,
-                "last_updated_at": last_updated_at,
-            },
-            ignore_index=True,
-        )
+
+        new_row_data = {
+            "github_id": github_id,
+            "user_id": user_id,
+            "user_name": user_name,
+            "type": contribTypes.T3,
+            "repo_id": repo_id,
+            "repo_owner_id": repo_owner_id,
+            "reactions": reactions,
+            "label": label,
+            "comments": comments,
+            "created_at": created_at,
+            "last_updated_at": last_updated_at,
+        }
+
+        new_row_df = pd.DataFrame([new_row_data])
+        df = pd.concat([df, new_row_df], ignore_index=True)
 
     return df
 
@@ -420,21 +420,22 @@ def format_repo_contributions(
         created_at = repo_node["createdAt"]
         last_updated_at = repo_node["updatedAt"]
         is_fork = repo_node["isFork"]
-        df = df.append(
-            {
-                "github_id": github_id,
-                "user_id": user_id,
-                "user_name": user_name,
-                "type": contribTypes.T5,
-                "repo_id": repo_id,
-                "repo_owner_id": user_id,
-                "forks": forks,
-                "stars": stars,
-                "is_fork": is_fork,
-                "created_at": created_at,
-                "last_updated_at": last_updated_at,
-            },
-            ignore_index=True,
-        )
 
+        new_row_data = {
+            "github_id": github_id,
+            "user_id": user_id,
+            "user_name": user_name,
+            "type": contribTypes.T5,
+            "repo_id": repo_id,
+            "repo_owner_id": user_id,  # Assuming this is intended
+            "forks": forks,
+            "stars": stars,
+            "is_fork": is_fork,
+            "created_at": created_at,
+            "last_updated_at": last_updated_at,
+        }
+
+        new_row_df = pd.DataFrame([new_row_data])
+        df = pd.concat([df, new_row_df], ignore_index=True)
+        
     return df

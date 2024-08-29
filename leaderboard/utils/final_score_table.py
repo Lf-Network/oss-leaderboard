@@ -20,16 +20,16 @@ def get_final_score_table(
 
     intermediate_score_df.set_index("user_name", inplace=True)
 
-    final_score_table = pd.DataFrame(
-        columns=[
-            "User Name",
-            contribTypes.T1,
-            contribTypes.T2,
-            contribTypes.T3,
-            contribTypes.T4,
-            "Total Score",
-        ]
-    )
+    final_score_table = pd.DataFrame({
+        "User Name": pd.Series(dtype="string"),
+        contribTypes.T1: pd.Series(dtype="float"),
+        contribTypes.T2: pd.Series(dtype="float"),
+        contribTypes.T3: pd.Series(dtype="float"),
+        contribTypes.T4: pd.Series(dtype="float"),
+        "Total Score": pd.Series(dtype="float"),   
+    })
+
+    rows = []
 
     for user_name in user_list:
         t1_score, t2_score, t3_score, t4_score, total_score = (
@@ -70,33 +70,32 @@ def get_final_score_table(
             if total_score <= 0.0:
                 continue
 
-            final_score_table = final_score_table.append(
-                {
-                    "User Name": user_name,
-                    contribTypes.T1: t1_score,
-                    contribTypes.T2: t2_score,
-                    contribTypes.T3: t3_score,
-                    contribTypes.T4: t4_score,
-                    "Total Score": total_score,
-                },
-                ignore_index=True,
-            )
+            new_row_data = {
+                "User Name": user_name,
+                contribTypes.T1: t1_score,
+                contribTypes.T2: t2_score,
+                contribTypes.T3: t3_score,
+                contribTypes.T4: t4_score,
+                "Total Score": total_score,
+            }
+            rows.append(new_row_data)
 
         except KeyError:
             if total_score <= 0.0:
                 continue
 
-            final_score_table = final_score_table.append(
-                {
-                    "User Name": user_name,
-                    contribTypes.T1: t1_score,
-                    contribTypes.T2: t2_score,
-                    contribTypes.T3: t3_score,
-                    contribTypes.T4: t4_score,
-                    "Total Score": total_score,
-                },
-                ignore_index=True,
-            )
+            new_row_data = {
+                "User Name": user_name,
+                contribTypes.T1: t1_score,
+                contribTypes.T2: t2_score,
+                contribTypes.T3: t3_score,
+                contribTypes.T4: t4_score,
+                "Total Score": total_score,
+            }
+            rows.append(new_row_data)
+
+    rows_df = pd.DataFrame(rows)
+    final_score_table = pd.concat([final_score_table, rows_df], ignore_index=True, join='outer')
 
     return final_score_table.sort_values(
         by=["Total Score", "User Name"], ascending=[False, True]

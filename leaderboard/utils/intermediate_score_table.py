@@ -57,7 +57,8 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
         )
 
         user_contrib_group_by_type = frame.groupby(["type"])
-        for contrib_type, frame2 in user_contrib_group_by_type:
+        for contrib_type_tuple, frame2 in user_contrib_group_by_type:
+            contrib_type = contrib_type_tuple[0]
             if contrib_type == contribTypes.T1:
                 t1s1, t1s2 = get_pr_opened_counts(frame2, user_tuple[0])
             elif contrib_type == contribTypes.T2:
@@ -72,26 +73,26 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
                 t5s1 = get_repo_created_counts(frame2)
 
         # set total contribution counts of a user
-        result_df = result_df.append(
-            {
-                "user_name": user_tuple[1],
-                "user_id": user_tuple[0],
-                "t1s1": t1s1,
-                "t1s2": t1s2,
-                "t2s1": t2s1,
-                "t2s2": t2s2,
-                "t2s3": t2s3,
-                "t2s4": t2s4,
-                "t3s1": t3s1,
-                "t3s2": t3s2,
-                "t4s1": t4s1,
-                "t4s2": t4s2,
-                "t4s3": t4s3,
-                "t4s4": t4s4,
-                "t5s1": t5s1,
-            },
-            ignore_index=True,
-        )
+        new_row_data = {
+            "user_name": user_tuple[1],
+            "user_id": user_tuple[0],
+            "t1s1": t1s1,
+            "t1s2": t1s2,
+            "t2s1": t2s1,
+            "t2s2": t2s2,
+            "t2s3": t2s3,
+            "t2s4": t2s4,
+            "t3s1": t3s1,
+            "t3s2": t3s2,
+            "t4s1": t4s1,
+            "t4s2": t4s2,
+            "t4s3": t4s3,
+            "t4s4": t4s4,
+            "t5s1": t5s1,
+        }
+
+        new_row_df = pd.DataFrame([new_row_data])
+        result_df = pd.concat([result_df, new_row_df], ignore_index=True)
 
     return result_df
 
