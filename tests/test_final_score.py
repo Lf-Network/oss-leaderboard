@@ -17,7 +17,11 @@ def final_score_table() -> pd.DataFrame:
     Returns:
         pd.DataFrame: The final score table containing user scores.
     """
-    user_list = [user.strip() for user in os.environ.get("USER_LIST", "").split(",") if user.strip()]
+    user_list = [
+        user.strip()
+        for user in os.environ.get("USER_LIST", "").split(",")
+        if user.strip()
+    ]
     data_count: int = int(os.environ.get("PAGE_DATA_COUNT", 5))
     start_date: str = os.environ.get("START_DATE", "2023-10-01T00:00:00")
 
@@ -49,7 +53,7 @@ def test_final_score_table(final_score_table: pd.DataFrame) -> None:
         AssertionError: If the final score table does not match the expected DataFrame.
     """
     # Read the expected results from the CSV file
-    expected_df = pd.read_csv('test_output/final_scores.csv')
+    expected_df = pd.read_csv("test_output/final_scores.csv")
 
     # Set the index of both DataFrames to 'User Name'
     final_score_table.set_index("User Name", inplace=True)

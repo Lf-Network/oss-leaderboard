@@ -1,4 +1,5 @@
 """ Util to convert the json to dataframe. """
+
 import json
 from typing import Dict, List
 
@@ -437,5 +438,5 @@ def format_repo_contributions(
 
         new_row_df = pd.DataFrame([new_row_data])
         df = pd.concat([df, new_row_df], ignore_index=True)
-        
+
     return df

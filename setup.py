@@ -1,17 +1,19 @@
 import setuptools
 
+
 # Function to read requirements from a file
 def read_requirements(file_name):
     with open(file_name) as f:
         return f.read().splitlines()
+
 
 # Read long description from README.md
 with open("README.md", "r") as f:
     long_description = f.read()
 
 # Load requirements
-requirements = read_requirements('requirements.txt')
-requirements_dev = read_requirements('requirements-dev.txt')
+requirements = read_requirements("requirements.txt")
+requirements_dev = read_requirements("requirements-dev.txt")
 
 # Set up the package
 setuptools.setup(

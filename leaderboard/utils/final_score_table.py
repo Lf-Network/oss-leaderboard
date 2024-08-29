@@ -20,14 +20,16 @@ def get_final_score_table(
 
     intermediate_score_df.set_index("user_name", inplace=True)
 
-    final_score_table = pd.DataFrame({
-        "User Name": pd.Series(dtype="string"),
-        contribTypes.T1: pd.Series(dtype="float"),
-        contribTypes.T2: pd.Series(dtype="float"),
-        contribTypes.T3: pd.Series(dtype="float"),
-        contribTypes.T4: pd.Series(dtype="float"),
-        "Total Score": pd.Series(dtype="float"),   
-    })
+    final_score_table = pd.DataFrame(
+        {
+            "User Name": pd.Series(dtype="string"),
+            contribTypes.T1: pd.Series(dtype="float"),
+            contribTypes.T2: pd.Series(dtype="float"),
+            contribTypes.T3: pd.Series(dtype="float"),
+            contribTypes.T4: pd.Series(dtype="float"),
+            "Total Score": pd.Series(dtype="float"),
+        }
+    )
 
     rows = []
 
@@ -95,7 +97,9 @@ def get_final_score_table(
             rows.append(new_row_data)
 
     rows_df = pd.DataFrame(rows)
-    final_score_table = pd.concat([final_score_table, rows_df], ignore_index=True, join='outer')
+    final_score_table = pd.concat(
+        [final_score_table, rows_df], ignore_index=True, join="outer"
+    )
 
     return final_score_table.sort_values(
         by=["Total Score", "User Name"], ascending=[False, True]
