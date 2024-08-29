@@ -57,9 +57,8 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
             0,
         )
 
-        user_contrib_group_by_type = frame.groupby(["type"])
-        for contrib_type_tuple, frame2 in user_contrib_group_by_type:
-            contrib_type = contrib_type_tuple[0]
+        user_contrib_group_by_type = frame.groupby("type")
+        for contrib_type, frame2 in user_contrib_group_by_type:
             if contrib_type == contribTypes.T1:
                 t1s1, t1s2 = get_pr_opened_counts(frame2, user_tuple[0])
             elif contrib_type == contribTypes.T2:
@@ -67,9 +66,7 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
             elif contrib_type == contribTypes.T3:
                 t3s1, t3s2 = get_issue_created_counts(frame2, user_tuple[0])
             elif contrib_type == contribTypes.T4:
-                t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(
-                    frame2, user_tuple[0]
-                )
+                t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(frame2, user_tuple[0])
             elif contrib_type == contribTypes.T5:
                 t5s1 = get_repo_created_counts(frame2)
 
