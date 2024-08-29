@@ -46,10 +46,20 @@ $ source .venv/bin/activate
 $ make setup
 ```
 
+## Running Integration Tests
+
+To run the integration tests using `pytest`, execute the following command:
+
+```bash
+$ pytest tests/test_final_score.py
+```
+
+This command will run the integration tests defined in the `test_final_score.py` file. Ensure that your test environment is properly set up and that all dependencies are installed.
+
 ## Contributing
 
 Feel free to send pull requests.
-Make sure to run following commands:
+Make sure to run the following commands:
 
 ```bash
 $ make format
