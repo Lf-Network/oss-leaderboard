@@ -51,10 +51,10 @@ $ make setup
 To run the integration tests using `pytest`, execute the following command:
 
 ```bash
-$ pytest tests/test_final_score.py
+$ pytest tests/test_final_html.py
 ```
 
-This command will run the integration tests defined in the `test_final_score.py` file. Ensure that your test environment is properly set up and that all dependencies are installed.
+This command will run the integration tests defined in the `test_final_html.py` file. Ensure that your test environment is properly set up and that all dependencies are installed.
 
 ## Contributing
 
