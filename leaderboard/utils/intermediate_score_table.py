@@ -2,7 +2,7 @@
 
 from typing import Tuple
 import pandas as pd
-from leaderboard.constants import contribTypes
+from leaderboard.constants.contribTypes import scores
 
 
 def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.DataFrame:
@@ -59,17 +59,17 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
 
         user_contrib_group_by_type = frame.groupby("type")
         for contrib_type, frame2 in user_contrib_group_by_type:
-            if contrib_type == contribTypes.T1:
+            if contrib_type == scores["T1"]["description"]:
                 t1s1, t1s2 = get_pr_opened_counts(frame2, user_tuple[0])
-            elif contrib_type == contribTypes.T2:
+            elif contrib_type == scores["T2"]["description"]:
                 t2s1, t2s2, t2s3, t2s4 = get_pr_reviewed_counts(frame2, user_tuple[0])
-            elif contrib_type == contribTypes.T3:
+            elif contrib_type == scores["T3"]["description"]:
                 t3s1, t3s2 = get_issue_created_counts(frame2, user_tuple[0])
-            elif contrib_type == contribTypes.T4:
+            elif contrib_type == scores["T4"]["description"]:
                 t4s1, t4s2, t4s3, t4s4 = get_commented_on_issue_counts(
                     frame2, user_tuple[0]
                 )
-            elif contrib_type == contribTypes.T5:
+            elif contrib_type == scores["T5"]["description"]:
                 t5s1 = get_repo_created_counts(frame2)
 
         # set total contribution counts of a user

@@ -4,7 +4,7 @@ import json
 from typing import Dict, List
 
 import pandas as pd
-from leaderboard.constants import contribTypes
+from leaderboard.constants.contribTypes import scores
 
 
 def convert_to_intermediate_table(data: str, timeDelta: str) -> pd.DataFrame:
@@ -193,7 +193,7 @@ def format_issue_comments(
                 "github_id": github_id,
                 "user_id": user_id,
                 "user_name": user_name,
-                "type": contribTypes.T4,
+                "type": scores["T4"]["description"],
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
                 "reactions": reactions,
@@ -251,7 +251,7 @@ def format_pr_review_contributions(
             "github_id": github_id,
             "user_id": user_id,
             "user_name": user_name,
-            "type": contribTypes.T2,
+            "type": scores["T2"]["description"],
             "repo_id": repo_id,
             "repo_owner_id": repo_owner_id,
             "review_type": review_type,
@@ -328,7 +328,7 @@ def format_pr_contributions(
             "github_id": github_id,
             "user_id": user_id,
             "user_name": user_name,
-            "type": contribTypes.T1,
+            "type": scores["T1"]["description"],
             "repo_id": repo_id,
             "repo_owner_id": repo_owner_id,
             "pr_status": pr_status,
@@ -381,7 +381,7 @@ def format_issue_contributions(
             "github_id": github_id,
             "user_id": user_id,
             "user_name": user_name,
-            "type": contribTypes.T3,
+            "type": scores["T3"]["description"],
             "repo_id": repo_id,
             "repo_owner_id": repo_owner_id,
             "reactions": reactions,
@@ -426,7 +426,7 @@ def format_repo_contributions(
             "github_id": github_id,
             "user_id": user_id,
             "user_name": user_name,
-            "type": contribTypes.T5,
+            "type": scores["T5"]["description"],
             "repo_id": repo_id,
             "repo_owner_id": user_id,  # Assuming this is intended
             "forks": forks,

@@ -1,8 +1,6 @@
 import pandas as pd
 
-from leaderboard.constants import scoreWeights
-from leaderboard.constants import contribTypes
-
+from leaderboard.constants.contribTypes import scores
 
 def get_final_score_table(
     intermediate_score_df: pd.DataFrame, user_list: list
@@ -23,10 +21,10 @@ def get_final_score_table(
     final_score_table = pd.DataFrame(
         {
             "User Name": pd.Series(dtype="string"),
-            contribTypes.T1: pd.Series(dtype="float"),
-            contribTypes.T2: pd.Series(dtype="float"),
-            contribTypes.T3: pd.Series(dtype="float"),
-            contribTypes.T4: pd.Series(dtype="float"),
+            scores["T1"]["description"]: pd.Series(dtype="float"),
+            scores["T2"]["description"]: pd.Series(dtype="float"),
+            scores["T3"]["description"]: pd.Series(dtype="float"),
+            scores["T4"]["description"]: pd.Series(dtype="float"),
             "Total Score": pd.Series(dtype="float"),
         }
     )
@@ -46,25 +44,27 @@ def get_final_score_table(
             user_row = intermediate_score_df.loc[user_name]
 
             t1_score = (
-                user_row.t1s1 * scoreWeights.T1S1 + user_row.t1s2 * scoreWeights.T1S2
+                user_row.t1s1 * scores["T1"]["subtypes"]["T1S1"]["weight"]
+                + user_row.t1s2 * scores["T1"]["subtypes"]["T1S2"]["weight"]
             )
 
             t2_score = (
-                user_row.t2s1 * scoreWeights.T2S1
-                + user_row.t2s2 * scoreWeights.T2S2
-                + user_row.t2s3 * scoreWeights.T2S3
-                + user_row.t2s4 * scoreWeights.T2S4
+                user_row.t2s1 * scores["T2"]["subtypes"]["T2S1"]["weight"]
+                + user_row.t2s2 * scores["T2"]["subtypes"]["T2S2"]["weight"]
+                + user_row.t2s3 * scores["T2"]["subtypes"]["T2S3"]["weight"]
+                + user_row.t2s4 * scores["T2"]["subtypes"]["T2S4"]["weight"]
             )
 
             t3_score = (
-                user_row.t3s1 * scoreWeights.T3S1 + user_row.t3s2 * scoreWeights.T3S2
+                user_row.t3s1 * scores["T3"]["subtypes"]["T3S1"]["weight"]
+                + user_row.t3s2 * scores["T3"]["subtypes"]["T3S2"]["weight"]
             )
 
             t4_score = (
-                user_row.t4s1 * scoreWeights.T4S1
-                + user_row.t4s2 * scoreWeights.T4S2
-                + user_row.t4s3 * scoreWeights.T4S3
-                + user_row.t4s4 * scoreWeights.T4S4
+                user_row.t4s1 * scores["T4"]["subtypes"]["T4S1"]["weight"]
+                + user_row.t4s2 * scores["T4"]["subtypes"]["T4S2"]["weight"]
+                + user_row.t4s3 * scores["T4"]["subtypes"]["T4S3"]["weight"]
+                + user_row.t4s4 * scores["T4"]["subtypes"]["T4S4"]["weight"]
             )
 
             total_score = t1_score + t2_score + t3_score + t4_score
@@ -74,24 +74,25 @@ def get_final_score_table(
 
             new_row_data = {
                 "User Name": user_name,
-                contribTypes.T1: t1_score,
-                contribTypes.T2: t2_score,
-                contribTypes.T3: t3_score,
-                contribTypes.T4: t4_score,
+                scores["T1"]["description"]: t1_score,
+                scores["T2"]["description"]: t2_score,
+                scores["T3"]["description"]: t3_score,
+                scores["T4"]["description"]: t4_score,
                 "Total Score": total_score,
             }
             rows.append(new_row_data)
 
         except KeyError:
+            # If the user is not in the intermediate_score_df, skip them
             if total_score <= 0.0:
                 continue
 
             new_row_data = {
                 "User Name": user_name,
-                contribTypes.T1: t1_score,
-                contribTypes.T2: t2_score,
-                contribTypes.T3: t3_score,
-                contribTypes.T4: t4_score,
+                scores["T1"]["description"]: t1_score,
+                scores["T2"]["description"]: t2_score,
+                scores["T3"]["description"]: t3_score,
+                scores["T4"]["description"]: t4_score,
                 "Total Score": total_score,
             }
             rows.append(new_row_data)

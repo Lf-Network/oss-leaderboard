@@ -1,5 +1,80 @@
-T1 = "PR Opened"  # subtypes => t1s1, t1s2
-T2 = "PR Reviewed"  # subtypes => t2s1, t2s2, t2s3, t2s4
-T3 = "Issue"  # subtypes => t3s1, t3s2
-T4 = "PR/Issue Comments"  # subtypes => t4s1, t4s2, t4s3, t4s4
-T5 = "Repo Created"  # subtypes => t5s1
+scores = {
+    "T1": {
+        "description": "PR Opened",
+        "subtypes": {
+            "T1S1": {
+                "description": "PR opened in a repo not owned by the user",
+                "weight": 1
+            },
+            "T1S2": {
+                "description": "PR opened in a repo owned by the user",
+                "weight": 0.6
+            }
+        }
+    },
+    "T2": {
+        "description": "PR Reviewed",
+        "subtypes": {
+            "T2S1": {
+                "description": "PR reviewed that is opened by the user and contributed in the repo owned by the user",
+                "weight": 0.5
+            },
+            "T2S2": {
+                "description": "PR reviewed that is not opened by the user and contributed in the repo owned by the user",
+                "weight": 0.5
+            },
+            "T2S3": {
+                "description": "PR reviewed that is opened by the user and contributed in the repo not owned by the user",
+                "weight": 0.5
+            },
+            "T2S4": {
+                "description": "PR reviewed that is not opened by the user and contributed in the repo not owned by the user",
+                "weight": 0.5
+            }
+        }
+    },
+    "T3": {
+        "description": "Issue",
+        "subtypes": {
+            "T3S1": {
+                "description": "Issue created in a repo owned by the user",
+                "weight": 0.3
+            },
+            "T3S2": {
+                "description": "Issue created in a repo not owned by the user",
+                "weight": 0.3
+            }
+        }
+    },
+    "T4": {
+        "description": "PR/Issue Comments",
+        "subtypes": {
+            "T4S1": {
+                "description": "Commented on an issue created by user in the repo owned by the user",
+                "weight": 0.1
+            },
+            "T4S2": {
+                "description": "Commented on an issue not created by user in the repo owned by the user",
+                "weight": 0.1
+            },
+            "T4S3": {
+                "description": "Commented on an issue created by user in the repo not owned by the user",
+                "weight": 0.1
+            },
+            "T4S4": {
+                "description": "Commented on an issue not created by user in the repo not owned by the user",
+                "weight": 0.1
+            }
+        }
+    },
+    "T5": {
+        "description": "Repo Created",
+        "subtypes": {
+            "T5S1": {
+                "description": "Repo created by the user",
+                "weight": 0
+            }
+        }
+    }
+}
+
