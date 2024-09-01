@@ -2,10 +2,16 @@ import json
 import pandas as pd
 from typing import Dict
 from leaderboard.utils.page_info import extract_page_info
-from leaderboard.utils.formatters.format_pr_review_contributions import format_pr_review_contributions
+from leaderboard.utils.formatters.format_pr_review_contributions import (
+    format_pr_review_contributions,
+)
 from leaderboard.utils.formatters.format_pr_contributions import format_pr_contributions
-from leaderboard.utils.formatters.format_issue_contributions import format_issue_contributions
-from leaderboard.utils.formatters.format_repo_contributions import format_repo_contributions
+from leaderboard.utils.formatters.format_issue_contributions import (
+    format_issue_contributions,
+)
+from leaderboard.utils.formatters.format_repo_contributions import (
+    format_repo_contributions,
+)
 from leaderboard.utils.formatters.format_issue_comments import format_issue_comments
 
 
@@ -29,10 +35,18 @@ def convert_to_intermediate_table(data: str, time_delta: str) -> Dict:
     user_name = df["data.user.username"].iloc[0]
 
     contribution_lists = {
-        "review_contribution_list": df["data.user.contributionsCollection.pullRequestReviewContributions.edges"].iloc[0],
-        "pr_contribution_list": df["data.user.contributionsCollection.pullRequestContributions.edges"].iloc[0],
-        "issue_contribution_list": df["data.user.contributionsCollection.issueContributions.edges"].iloc[0],
-        "repo_contribution_list": df["data.user.contributionsCollection.repositoryContributions.edges"].iloc[0],
+        "review_contribution_list": df[
+            "data.user.contributionsCollection.pullRequestReviewContributions.edges"
+        ].iloc[0],
+        "pr_contribution_list": df[
+            "data.user.contributionsCollection.pullRequestContributions.edges"
+        ].iloc[0],
+        "issue_contribution_list": df[
+            "data.user.contributionsCollection.issueContributions.edges"
+        ].iloc[0],
+        "repo_contribution_list": df[
+            "data.user.contributionsCollection.repositoryContributions.edges"
+        ].iloc[0],
         "issue_comment_list": df["data.user.issueComments.edges"].iloc[0],
     }
 
@@ -70,10 +84,14 @@ def convert_to_intermediate_table(data: str, time_delta: str) -> Dict:
 
     for key, formatter in formatters.items():
         if key == "issue_comment_list":
-            new_df_info = formatter(contribution_lists[key], user_github_id, user_name, time_delta, new_df)
+            new_df_info = formatter(
+                contribution_lists[key], user_github_id, user_name, time_delta, new_df
+            )
             new_df = new_df_info["df"]
         else:
-            new_df = formatter(contribution_lists[key], user_github_id, user_name, new_df)
+            new_df = formatter(
+                contribution_lists[key], user_github_id, user_name, new_df
+            )
 
     page_info = extract_page_info(df)
     page_info["page_info_T4"]["hasPreviousPage"] = (

@@ -21,7 +21,8 @@ def get_final_score_table(
 
     def calculate_type_score(user_row, type_description, subtypes):
         return sum(
-            user_row[f"{type_description.lower()}s{i}"] * subtypes[f"{type_description.upper()}S{i}"]["weight"]
+            user_row[f"{type_description.lower()}s{i}"]
+            * subtypes[f"{type_description.upper()}S{i}"]["weight"]
             for i in range(1, len(subtypes) + 1)
         )
 
@@ -59,4 +60,6 @@ def get_final_score_table(
     final_score_table = pd.DataFrame(rows)
 
     # Sort the final score table
-    return final_score_table.sort_values(by=["Total Score", "User Name"], ascending=[False, True])
+    return final_score_table.sort_values(
+        by=["Total Score", "User Name"], ascending=[False, True]
+    )

@@ -3,6 +3,7 @@ from typing import List, Dict, Any
 
 from leaderboard.constants.contribTypes import scores
 
+
 def format_issue_comments(
     issue_comment_list: List[Dict[str, Any]],
     user_id: str,
@@ -43,5 +44,7 @@ def format_issue_comments(
 
     return {
         "df": pd.concat([df, new_df], ignore_index=True),
-        "hasOldData": any(comment["node"]["createdAt"] < time_delta for comment in issue_comment_list)
+        "hasOldData": any(
+            comment["node"]["createdAt"] < time_delta for comment in issue_comment_list
+        ),
     }

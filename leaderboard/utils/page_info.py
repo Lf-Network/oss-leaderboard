@@ -24,13 +24,21 @@ def extract_page_info(df: pd.DataFrame) -> Dict:
     for key, contribution_type in page_info_keys.items():
         if key == "T4":
             page_info[f"page_info_{key}"] = {
-                "hasPreviousPage": df[f"data.user.{contribution_type}.pageInfo.hasPreviousPage"].iloc[0],
-                "startCursor": df[f"data.user.{contribution_type}.pageInfo.startCursor"].iloc[0],
+                "hasPreviousPage": df[
+                    f"data.user.{contribution_type}.pageInfo.hasPreviousPage"
+                ].iloc[0],
+                "startCursor": df[
+                    f"data.user.{contribution_type}.pageInfo.startCursor"
+                ].iloc[0],
             }
         else:
             page_info[f"page_info_{key}"] = {
-                "hasNextPage": df[f"data.user.contributionsCollection.{contribution_type}.pageInfo.hasNextPage"].iloc[0],
-                "endCursor": df[f"data.user.contributionsCollection.{contribution_type}.pageInfo.endCursor"].iloc[0],
+                "hasNextPage": df[
+                    f"data.user.contributionsCollection.{contribution_type}.pageInfo.hasNextPage"
+                ].iloc[0],
+                "endCursor": df[
+                    f"data.user.contributionsCollection.{contribution_type}.pageInfo.endCursor"
+                ].iloc[0],
             }
 
     return page_info

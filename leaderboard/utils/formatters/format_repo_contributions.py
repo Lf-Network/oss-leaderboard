@@ -3,11 +3,9 @@ from typing import List, Dict
 
 from leaderboard.constants.contribTypes import scores
 
+
 def format_repo_contributions(
-    repo_contribution_list: List[Dict], 
-    user_id: str, 
-    user_name: str, 
-    df: pd.DataFrame
+    repo_contribution_list: List[Dict], user_id: str, user_name: str, df: pd.DataFrame
 ) -> pd.DataFrame:
     """
     Formats a list of repository contributions and appends them to a pandas DataFrame.

@@ -3,11 +3,12 @@ from typing import List, Dict, Any
 
 from leaderboard.constants.contribTypes import scores
 
+
 def format_issue_contributions(
     issue_contribution_list: List[Dict[str, Any]],
     user_id: str,
     user_name: str,
-    df: pd.DataFrame
+    df: pd.DataFrame,
 ) -> pd.DataFrame:
     """
     Formats a list of issue contributions and appends them to a pandas DataFrame.
@@ -31,12 +32,15 @@ def format_issue_contributions(
                 "repo_id": issue["node"]["issue"]["repository"]["id"],
                 "repo_owner_id": issue["node"]["issue"]["repository"]["owner"]["id"],
                 "reactions": issue["node"]["issue"]["reactions"]["totalCount"],
-                "label": ", ".join(edge["node"]["name"] for edge in issue["node"]["issue"]["labels"]["edges"]),
+                "label": ", ".join(
+                    edge["node"]["name"]
+                    for edge in issue["node"]["issue"]["labels"]["edges"]
+                ),
                 "comments": issue["node"]["issue"]["comments"]["totalCount"],
                 "created_at": issue["node"]["issue"]["createdAt"],
                 "last_updated_at": issue["node"]["issue"]["updatedAt"],
             }
-        for issue in issue_contribution_list
+            for issue in issue_contribution_list
         ]
     )
 

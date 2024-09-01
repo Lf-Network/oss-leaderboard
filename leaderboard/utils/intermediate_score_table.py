@@ -36,7 +36,13 @@ def get_intermediate_score_table(intermediate_table_df: pd.DataFrame) -> pd.Data
 
     for (user_id, user_name), frame in user_groups:
         counts = get_contribution_counts(frame, user_id)
-        result_df = pd.concat([result_df, pd.DataFrame([{"user_name": user_name, "user_id": user_id, **counts}])], ignore_index=True)
+        result_df = pd.concat(
+            [
+                result_df,
+                pd.DataFrame([{"user_name": user_name, "user_id": user_id, **counts}]),
+            ],
+            ignore_index=True,
+        )
 
     return result_df
 

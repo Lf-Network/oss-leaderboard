@@ -11,9 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
 
 
-def fetch_contributions_for_user(
-    user_name: str, query_variables: Dict
-) -> pd.DataFrame:
+def fetch_contributions_for_user(user_name: str, query_variables: Dict) -> pd.DataFrame:
     """
     Fetches contribution data for a single GitHub user and returns an intermediate table dataframe.
 
@@ -124,7 +122,8 @@ def should_continue_fetching(page_info: Dict) -> bool:
         bool: True if fetching should continue, False otherwise.
     """
     return any(
-        page_info[key].get("hasNextPage", False) or page_info[key].get("hasPreviousPage", False)
+        page_info[key].get("hasNextPage", False)
+        or page_info[key].get("hasPreviousPage", False)
         for key in page_info
     )
 
