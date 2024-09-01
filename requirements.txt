@@ -2,7 +2,7 @@ certifi==2024.7.4
 charset-normalizer==2.1.1
 idna==3.8
 Markdown==3.4.4
-numpy==1.24.3
+numpy==1.24.4
 pandas==1.5.3
 python-dateutil==2.8.2
 pytz==2024.1
