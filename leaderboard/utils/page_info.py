@@ -1,6 +1,7 @@
 import pandas as pd
 from typing import Dict
 
+
 def extract_page_info(df: pd.DataFrame) -> Dict:
     """
     Returns page info for each of the contribution types
@@ -11,57 +12,25 @@ def extract_page_info(df: pd.DataFrame) -> Dict:
     Returns:
         A dictionary containing page info for each of the contribution types
     """
-
-    has_next_page_T1 = df[
-        "data.user.contributionsCollection.pullRequestContributions.pageInfo.hasNextPage"
-    ][0]
-    end_cursor_T1 = df[
-        "data.user.contributionsCollection.pullRequestContributions.pageInfo.endCursor"
-    ][0]
-
-    has_next_page_T2 = df[
-        "data.user.contributionsCollection.pullRequestReviewContributions.pageInfo.hasNextPage"
-    ][0]
-    end_cursor_T2 = df[
-        "data.user.contributionsCollection.pullRequestReviewContributions.pageInfo.endCursor"
-    ][0]
-
-    has_next_page_T3 = df[
-        "data.user.contributionsCollection.issueContributions.pageInfo.hasNextPage"
-    ][0]
-    end_cursor_T3 = df[
-        "data.user.contributionsCollection.issueContributions.pageInfo.endCursor"
-    ][0]
-
-    has_next_page_T4 = df["data.user.issueComments.pageInfo.hasPreviousPage"][0]
-    end_cursor_T4 = df["data.user.issueComments.pageInfo.startCursor"][0]
-
-    has_next_page_T5 = df[
-        "data.user.contributionsCollection.repositoryContributions.pageInfo.hasNextPage"
-    ][0]
-    end_cursor_T5 = df[
-        "data.user.contributionsCollection.repositoryContributions.pageInfo.endCursor"
-    ][0]
-
-    return {
-        "page_info_T1": {
-            "hasNextPage": has_next_page_T1,
-            "endCursor": end_cursor_T1,
-        },
-        "page_info_T2": {
-            "hasNextPage": has_next_page_T2,
-            "endCursor": end_cursor_T2,
-        },
-        "page_info_T3": {
-            "hasNextPage": has_next_page_T3,
-            "endCursor": end_cursor_T3,
-        },
-        "page_info_T4": {
-            "hasPreviousPage": has_next_page_T4,
-            "startCursor": end_cursor_T4,
-        },
-        "page_info_T5": {
-            "hasNextPage": has_next_page_T5,
-            "endCursor": end_cursor_T5,
-        },
+    page_info_keys = {
+        "T1": "pullRequestContributions",
+        "T2": "pullRequestReviewContributions",
+        "T3": "issueContributions",
+        "T4": "issueComments",  # Note: This uses 'hasPreviousPage' and 'startCursor'
+        "T5": "repositoryContributions",
     }
+
+    page_info = {}
+    for key, contribution_type in page_info_keys.items():
+        if key == "T4":
+            page_info[f"page_info_{key}"] = {
+                "hasPreviousPage": df[f"data.user.{contribution_type}.pageInfo.hasPreviousPage"].iloc[0],
+                "startCursor": df[f"data.user.{contribution_type}.pageInfo.startCursor"].iloc[0],
+            }
+        else:
+            page_info[f"page_info_{key}"] = {
+                "hasNextPage": df[f"data.user.contributionsCollection.{contribution_type}.pageInfo.hasNextPage"].iloc[0],
+                "endCursor": df[f"data.user.contributionsCollection.{contribution_type}.pageInfo.endCursor"].iloc[0],
+            }
+
+    return page_info
