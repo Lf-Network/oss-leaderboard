@@ -16,8 +16,7 @@ RUN chown -R appuser:appgroup /app
 USER appuser
 
 # Install Python requirements
-# Install Python requirements
-RUN pip3 install --user --upgrade pip && \
+RUN pip install --user --upgrade pip && \
     pip3 install --user -r requirements.txt && \
     pip3 install --user -r requirements-dev.txt
 

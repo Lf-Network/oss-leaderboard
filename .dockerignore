@@ -1,0 +1,6 @@
+# Ignore sensitive files and directories
+.ssh/
+.env
+secrets/
+logs/
+README.md
