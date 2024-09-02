@@ -15,7 +15,7 @@ def final_html_output(df: pd.DataFrame) -> str:
     Returns:
         A string containing the final HTML output.
     """
-    html_string = read_html_file("./assets/index.html")
+    html_string = read_file("./assets/index.html")
     output_file_path = create_output_file_path("build/index.html")
 
     with open(output_file_path, "w") as f:
@@ -32,20 +32,6 @@ def final_html_output(df: pd.DataFrame) -> str:
         )
 
     return read_file(output_file_path)
-
-
-def read_html_file(file_path: str) -> str:
-    """
-    Read HTML file
-
-    Args:
-        file_path (str): The path to the HTML file.
-
-    Returns:
-        str: The contents of the HTML file.
-    """
-    with open(file_path) as file:
-        return file.read()
 
 
 def create_output_file_path(file_path: str) -> str:
