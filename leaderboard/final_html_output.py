@@ -16,7 +16,7 @@ def final_html_output(df: pd.DataFrame) -> str:
         A string containing the final HTML output.
     """
     html_string = read_file("./assets/index.html")
-    output_file_path = create_output_file_path("build/index.html")
+    output_file_path = create_output_file_path("./build/index.html")
 
     with open(output_file_path, "w") as f:
         f.write(
