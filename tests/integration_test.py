@@ -33,10 +33,7 @@ class TestMain(unittest.TestCase):
         """Test the main function to ensure HTML output matches expected output."""
         
         # Create a list of mock HTTP response objects for each sample data entry
-        mock_responses = [
-            MagicMock(json=lambda i: self.sample_data[i])
-            for _ in range(len(self.sample_data))
-        ]
+        mock_responses = [MagicMock(json=entry.copy) for entry in self.sample_data]
 
         # Set the side effect of the mock to return each response sequentially
         mock_execute_query.side_effect = mock_responses
