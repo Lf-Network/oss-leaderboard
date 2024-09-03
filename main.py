@@ -11,7 +11,6 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
 
 user_list = [x.strip() for x in os.environ.get("USER_LIST", "").split(",")]
-duration = int(os.environ.get("DURATION_IN_DAYS", 5))
 data_count = int(os.environ.get("PAGE_DATA_COUNT", 5))
 start_date = os.environ.get("START_DATE", "2023-10-01T00:00:00")
 
@@ -22,13 +21,18 @@ variables = {
 }
 
 
-def main():
-    """Script entrypoint.
+def generate_html(user_list, variables):
+    """Generate HTML output for a leaderboard based on user contributions.
 
-    This function fetches contributions for multiple users, calculates their scores, and generates an HTML output of the final leaderboard.
+    This function fetches contributions for multiple users, calculates their scores, 
+    and generates an HTML representation of the final leaderboard.
+
+    Args:
+        user_list (list): A list of user identifiers for whom contributions are to be fetched.
+        variables (dict): A dictionary of variables that may affect the contribution fetching process.
 
     Returns:
-        None
+        str: An HTML string representing the final leaderboard based on the calculated scores.
     """
 
     result = fetch_contributions_for_multi_users(user_list, variables)
@@ -36,7 +40,14 @@ def main():
     intermediate_score_table = get_intermediate_score_table(result)
     final_score_table = get_final_score_table(intermediate_score_table, user_list)
 
-    final_html_output(final_score_table)
+    return final_html_output(final_score_table)
 
 
-main()
+if __name__ == "__main__":
+    html_string = generate_html(user_list, variables)
+
+    if not os.path.exists("build"):
+        os.mkdir("build")
+    
+    with open("build/index.html", "w") as f:
+        f.write(html_string)
