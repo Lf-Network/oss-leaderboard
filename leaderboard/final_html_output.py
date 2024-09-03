@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 
 
@@ -6,8 +5,7 @@ def final_html_output(df: pd.DataFrame) -> str:
     """
     Get final html output
 
-    This function reads an HTML file, replaces a placeholder with a table generated from a pandas DataFrame,
-    and writes the resulting HTML to a file.
+    This function reads an HTML file, replaces a placeholder with a table generated from a pandas DataFrame.
 
     Args:
         df: A pandas DataFrame containing the data to be displayed in the table.
@@ -16,11 +14,8 @@ def final_html_output(df: pd.DataFrame) -> str:
         A string containing the final HTML output.
     """
     html_string = read_file("./assets/index.html")
-    output_file_path = create_output_file_path("./build/index.html")
 
-    with open(output_file_path, "w") as f:
-        f.write(
-            html_string.format(
+    html_string = html_string.format(
                 table=df.to_html(
                     index=False,
                     escape=False,
@@ -29,26 +24,8 @@ def final_html_output(df: pd.DataFrame) -> str:
                     },
                 )
             )
-        )
 
-    return read_file(output_file_path)
-
-
-def create_output_file_path(file_path: str) -> str:
-    """
-    Create output file path
-
-    Args:
-        file_path (str): The path to the output file.
-
-    Returns:
-        str: The path to the output file.
-    """
-    output_dir = os.path.dirname(file_path)
-    if not os.path.exists(output_dir):
-        os.mkdir(output_dir)
-
-    return file_path
+    return html_string
 
 
 def read_file(file_path: str) -> str:
