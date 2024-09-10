@@ -12,7 +12,7 @@ from requests.adapters import HTTPAdapter
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("fetch_data")
 
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+GITHUB_TOKEN = str(os.environ.get("GITHUB_TOKEN"))
 API_ENDPOINT = "https://api.github.com/graphql"
 
 headers = {"Authorization": "token " + GITHUB_TOKEN}
@@ -39,7 +39,7 @@ def execute_query(query: str, variables: Dict) -> requests.models.Response:
 
     retries = Retry(
         total=5,
-        backoff_factor=0.8,
+        backoff_factor=1,
         status_forcelist=[500, 502, 503, 504],
         allowed_methods=(["POST"]),
     )
