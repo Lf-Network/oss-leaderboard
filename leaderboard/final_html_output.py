@@ -1,5 +1,7 @@
 import pandas as pd
 
+from typing import Any
+
 
 def final_html_output(df: pd.DataFrame) -> str:
     """
@@ -42,7 +44,7 @@ def read_file(file_path: str) -> str:
         return file.read()
 
 
-def format_username(username: str) -> str:
+def format_username(username: Any) -> str:
     """
     Format username with avatar image and clickable link to redirect to user's profile.
 

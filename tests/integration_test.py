@@ -2,7 +2,7 @@ import os
 import json
 import unittest
 
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from difflib import Differ
 
 from main import generate_html
@@ -28,15 +28,12 @@ class TestMain(unittest.TestCase):
             "dataCount": data_count,
         }
 
-    @patch('leaderboard.fetch_data.execute_query')
+    @patch('leaderboard.multi_users_fetch.execute_query')
     def test_main_function(self, mock_execute_query):
         """Test the main function to ensure HTML output matches expected output."""
-        
-        # Create a list of mock HTTP response objects for each sample data entry
-        mock_responses = [MagicMock(json=entry.copy) for entry in self.sample_data]
 
         # Set the side effect of the mock to return each response sequentially
-        mock_execute_query.side_effect = mock_responses
+        mock_execute_query.side_effect = self.sample_data
 
         # Run the generate_html_function
         html_string = generate_html(self.user_list, self.variables)  # This will use the mocked execute_query

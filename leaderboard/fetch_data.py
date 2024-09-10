@@ -39,7 +39,7 @@ def execute_query(query: str, variables: Dict) -> Dict:
     s = requests.Session()
     retries = Retry(
         total=5,
-        backoff_factor=0.8,
+        backoff_factor=1,
         status_forcelist=[500, 502, 503, 504],
         allowed_methods=["POST"],
     )
