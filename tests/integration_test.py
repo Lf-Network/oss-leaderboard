@@ -28,7 +28,7 @@ class TestMain(unittest.TestCase):
             "dataCount": data_count,
         }
 
-    @patch('leaderboard.fetch_data.execute_query')
+    @patch('multi_users_fetch.execute_query')
     def test_main_function(self, mock_execute_query):
         """Test the main function to ensure HTML output matches expected output."""
         
