@@ -20,7 +20,7 @@ class TestMain(unittest.TestCase):
         with open('./tests/sample_data.json', 'r') as json_file:
             self.sample_data = json.load(json_file)
 
-        self.user_list = ["yankeexe", "Swechhya", "mesaugat"]
+        self.user_list = ["user1", "user2", "user3"]
         data_count = 5
         start_date = os.environ.get("START_DATE", "2023-10-01T00:00:00")
         self.variables = {

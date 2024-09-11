@@ -2,7 +2,7 @@
     {
         "data": {
             "user": {
-                "username": "yankeexe",
+                "username": "user1",
                 "id": "MDQ6VXNlcjEzNjIzOTEz",
                 "issueComments": {
                     "totalCount": 199,
@@ -151,7 +151,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjEzNjIzOTEz",
-                                            "login": "yankeexe"
+                                            "login": "user1"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -162,11 +162,11 @@
                                                 "login": "sumanpaikdev",
                                                 "id": "U_kgDOBY7WUQ"
                                             },
-                                            "url": "https://github.com/yankeexe/good-first-issues/pull/28",
+                                            "url": "https://github.com/user1/good-first-issues/pull/28",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "yankeexe"
+                                                "login": "user1"
                                             }
                                         },
                                         "reactions": {
@@ -273,7 +273,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-26T15:32:49Z",
                                         "mergedBy": {
-                                            "login": "yankeexe",
+                                            "login": "user1",
                                             "id": "MDQ6VXNlcjEzNjIzOTEz"
                                         },
                                         "labels": {
@@ -394,7 +394,7 @@
     {
         "data": {
             "user": {
-                "username": "Swechhya",
+                "username": "user2",
                 "id": "MDQ6VXNlcjYyNTE0MTI=",
                 "issueComments": {
                     "totalCount": 144,
@@ -432,7 +432,7 @@
                             "node": {
                                 "issue": {
                                     "author": {
-                                        "login": "Swechhya",
+                                        "login": "user2",
                                         "id": "MDQ6VXNlcjYyNTE0MTI="
                                     },
                                     "repository": {
@@ -456,7 +456,7 @@
                             "node": {
                                 "issue": {
                                     "author": {
-                                        "login": "Swechhya",
+                                        "login": "user2",
                                         "id": "MDQ6VXNlcjYyNTE0MTI="
                                     },
                                     "repository": {
@@ -803,7 +803,7 @@
                                         "merged": true,
                                         "mergedAt": "2024-08-14T11:14:19Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -834,7 +834,7 @@
                                         "merged": true,
                                         "mergedAt": "2024-05-09T09:40:48Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -865,7 +865,7 @@
                                         "merged": true,
                                         "mergedAt": "2024-03-14T05:17:34Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -896,7 +896,7 @@
                                         "merged": true,
                                         "mergedAt": "2024-03-07T17:41:48Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -967,7 +967,7 @@
     {
         "data": {
             "user": {
-                "username": "Swechhya",
+                "username": "user2",
                 "id": "MDQ6VXNlcjYyNTE0MTI=",
                 "issueComments": {
                     "totalCount": 144,
@@ -1101,7 +1101,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjYyNTE0MTI=",
-                                            "login": "Swechhya"
+                                            "login": "user2"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -1112,11 +1112,11 @@
                                                 "login": "olivroy",
                                                 "id": "MDQ6VXNlcjUyNjA2NzM0"
                                             },
-                                            "url": "https://github.com/Swechhya/shinyanimate/pull/16",
+                                            "url": "https://github.com/user2/shinyanimate/pull/16",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "Swechhya"
+                                                "login": "user2"
                                             }
                                         },
                                         "reactions": {
@@ -1197,7 +1197,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-30T15:39:35Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -1228,7 +1228,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-30T12:52:57Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -1259,7 +1259,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-18T08:43:15Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -1290,7 +1290,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-17T15:52:53Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -1321,7 +1321,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-14T07:14:37Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -1353,7 +1353,7 @@
     {
         "data": {
             "user": {
-                "username": "Swechhya",
+                "username": "user2",
                 "id": "MDQ6VXNlcjYyNTE0MTI=",
                 "issueComments": {
                     "totalCount": 144,
@@ -1585,7 +1585,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-11T15:48:34Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -1616,7 +1616,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-11T15:44:57Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -1647,7 +1647,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-09T09:10:31Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -1678,7 +1678,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-08T14:09:37Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -1709,7 +1709,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-05T14:58:58Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -1741,7 +1741,7 @@
     {
         "data": {
             "user": {
-                "username": "Swechhya",
+                "username": "user2",
                 "id": "MDQ6VXNlcjYyNTE0MTI=",
                 "issueComments": {
                     "totalCount": 144,
@@ -1926,7 +1926,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -1971,7 +1971,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-04T04:15:15Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -2033,7 +2033,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-04T04:14:42Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -2064,7 +2064,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-03T11:57:05Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -2095,7 +2095,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-03T09:37:29Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -2127,7 +2127,7 @@
     {
         "data": {
             "user": {
-                "username": "Swechhya",
+                "username": "user2",
                 "id": "MDQ6VXNlcjYyNTE0MTI=",
                 "issueComments": {
                     "totalCount": 144,
@@ -2206,7 +2206,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2235,14 +2235,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-MSW85cItlv",
                                             "author": {
-                                                "login": "mesaugat",
+                                                "login": "user3",
                                                 "id": "MDQ6VXNlcjQyNDA5OTE="
                                             },
                                             "url": "https://github.com/Lf-Network/oss-leaderboard/pull/52",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "Swechhya"
+                                                "login": "user2"
                                             }
                                         },
                                         "reactions": {
@@ -2278,7 +2278,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2314,7 +2314,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2359,7 +2359,7 @@
     {
         "data": {
             "user": {
-                "username": "Swechhya",
+                "username": "user2",
                 "id": "MDQ6VXNlcjYyNTE0MTI=",
                 "issueComments": {
                     "totalCount": 144,
@@ -2429,14 +2429,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-MSW85bxWjF",
                                             "author": {
-                                                "login": "mesaugat",
+                                                "login": "user3",
                                                 "id": "MDQ6VXNlcjQyNDA5OTE="
                                             },
                                             "url": "https://github.com/Lf-Network/oss-leaderboard/pull/43",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2481,7 +2481,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -2630,7 +2630,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -2641,7 +2641,7 @@
                                                 "login": "Sulcrus",
                                                 "id": "MDQ6VXNlcjkwOTI2OTYz"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/212",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/212",
                                             "state": "OPEN",
                                             "merged": false,
                                             "mergedBy": null
@@ -2664,7 +2664,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -2674,11 +2674,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/35",
+                                            "url": "https://github.com/user3/swift-react/pull/35",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2699,7 +2699,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -2709,11 +2709,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/34",
+                                            "url": "https://github.com/user3/swift-react/pull/34",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2748,7 +2748,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2783,7 +2783,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -2864,7 +2864,7 @@
                                         "merged": true,
                                         "mergedAt": "2024-05-04T09:16:24Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -2969,7 +2969,7 @@
                                         "merged": true,
                                         "mergedAt": "2024-02-10T16:06:51Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -3000,7 +3000,7 @@
                                         "merged": true,
                                         "mergedAt": "2024-02-09T05:57:31Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -3102,7 +3102,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -3265,7 +3265,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3300,7 +3300,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3335,7 +3335,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3370,7 +3370,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3405,7 +3405,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3478,7 +3478,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-12-29T08:48:53Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -3509,7 +3509,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-12-29T07:12:37Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -3540,7 +3540,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-07T12:13:31Z",
                                         "mergedBy": {
-                                            "login": "Swechhya",
+                                            "login": "user2",
                                             "id": "MDQ6VXNlcjYyNTE0MTI="
                                         },
                                         "labels": {
@@ -3571,7 +3571,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-05T07:44:53Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -3603,7 +3603,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -3767,7 +3767,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3788,7 +3788,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -3799,11 +3799,11 @@
                                                 "login": "taragurung",
                                                 "id": "MDQ6VXNlcjQ0Nzg4MzE="
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/211",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/211",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3824,7 +3824,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -3835,11 +3835,11 @@
                                                 "login": "Bibek99",
                                                 "id": "MDQ6VXNlcjQ5OTU0MTUx"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/210",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/210",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3860,7 +3860,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -3871,11 +3871,11 @@
                                                 "login": "achyutkneupane",
                                                 "id": "MDQ6VXNlcjMwNDMxNDI2"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/209",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/209",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -3896,7 +3896,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -3907,7 +3907,7 @@
                                                 "login": "Pranix-GIT",
                                                 "id": "U_kgDOBrfC3w"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/205",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/205",
                                             "state": "CLOSED",
                                             "merged": false,
                                             "mergedBy": null
@@ -3954,7 +3954,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-03T12:58:28Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -3985,7 +3985,7 @@
                                         "merged": true,
                                         "mergedAt": "2023-10-03T12:59:44Z",
                                         "mergedBy": {
-                                            "login": "mesaugat",
+                                            "login": "user3",
                                             "id": "MDQ6VXNlcjQyNDA5OTE="
                                         },
                                         "labels": {
@@ -4017,7 +4017,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -4166,7 +4166,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4177,7 +4177,7 @@
                                                 "login": "SajanPdl",
                                                 "id": "U_kgDOBnMjzg"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/208",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/208",
                                             "state": "CLOSED",
                                             "merged": false,
                                             "mergedBy": null
@@ -4200,7 +4200,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4211,11 +4211,11 @@
                                                 "login": "mukezhz",
                                                 "id": "MDQ6VXNlcjQzODEzNjcw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/207",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/207",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4236,7 +4236,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4247,11 +4247,11 @@
                                                 "login": "mukezhz",
                                                 "id": "MDQ6VXNlcjQzODEzNjcw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/206",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/206",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4272,7 +4272,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4283,11 +4283,11 @@
                                                 "login": "ThomasDenoncin",
                                                 "id": "MDQ6VXNlcjc2NDI4MDk="
                                             },
-                                            "url": "https://github.com/mesaugat/chai-exclude/pull/51",
+                                            "url": "https://github.com/user3/chai-exclude/pull/51",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4308,7 +4308,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4319,11 +4319,11 @@
                                                 "login": "aakashx58",
                                                 "id": "U_kgDOBlxemA"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/202",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/202",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4368,7 +4368,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -4516,7 +4516,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4526,11 +4526,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal-api/pull/27",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal-api/pull/27",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4565,7 +4565,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4586,7 +4586,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4596,11 +4596,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/33",
+                                            "url": "https://github.com/user3/swift-react/pull/33",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4621,7 +4621,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4631,11 +4631,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/32",
+                                            "url": "https://github.com/user3/swift-react/pull/32",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4670,7 +4670,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4715,7 +4715,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -4873,7 +4873,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4908,7 +4908,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4929,7 +4929,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -4939,11 +4939,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/chai-exclude/pull/50",
+                                            "url": "https://github.com/user3/chai-exclude/pull/50",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4978,7 +4978,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -4999,7 +4999,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5010,11 +5010,11 @@
                                                 "login": "aakashx58",
                                                 "id": "U_kgDOBlxemA"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/201",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/201",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5059,7 +5059,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -5220,7 +5220,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5241,7 +5241,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5252,11 +5252,11 @@
                                                 "login": "karkikamal098",
                                                 "id": "U_kgDOBx5_zw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/197",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/197",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5277,7 +5277,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5288,11 +5288,11 @@
                                                 "login": "mrboj",
                                                 "id": "MDQ6VXNlcjM5NzUwNzU0"
                                             },
-                                            "url": "https://github.com/mesaugat/chai-exclude/pull/47",
+                                            "url": "https://github.com/user3/chai-exclude/pull/47",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5327,7 +5327,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5362,7 +5362,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5407,7 +5407,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -5570,7 +5570,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5606,7 +5606,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5627,7 +5627,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5638,11 +5638,11 @@
                                                 "login": "lomassubedi",
                                                 "id": "MDQ6VXNlcjEzNjkyNjk1"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/192",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/192",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5663,7 +5663,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5674,11 +5674,11 @@
                                                 "login": "curtainteddy",
                                                 "id": "MDQ6VXNlcjU3NzgyNzMw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/195",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/195",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5759,7 +5759,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -5844,7 +5844,7 @@
                             "node": {
                                 "issue": {
                                     "author": {
-                                        "login": "mesaugat",
+                                        "login": "user3",
                                         "id": "MDQ6VXNlcjQyNDA5OTE="
                                     },
                                     "repository": {
@@ -5907,7 +5907,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5918,11 +5918,11 @@
                                                 "login": "aakashx58",
                                                 "id": "U_kgDOBlxemA"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/191",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/191",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5943,7 +5943,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5954,11 +5954,11 @@
                                                 "login": "aitcinternational",
                                                 "id": "U_kgDOCYzlrQ"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/186",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/186",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -5979,7 +5979,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -5990,7 +5990,7 @@
                                                 "login": "soojksh",
                                                 "id": "U_kgDOBsJydg"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/185",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/185",
                                             "state": "CLOSED",
                                             "merged": false,
                                             "mergedBy": null
@@ -6013,7 +6013,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -6024,11 +6024,11 @@
                                                 "login": "Shresthadev403",
                                                 "id": "U_kgDOBaJsHA"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/189",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/189",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6049,7 +6049,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -6060,11 +6060,11 @@
                                                 "login": "awalrujaa",
                                                 "id": "MDQ6VXNlcjczNjgzMzEz"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/193",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/193",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6109,7 +6109,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -6266,14 +6266,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-jpDM5udNXS",
                                             "author": {
-                                                "login": "mesaugat",
+                                                "login": "user3",
                                                 "id": "MDQ6VXNlcjQyNDA5OTE="
                                             },
                                             "url": "https://github.com/leapfrogtechnology/sync-db/pull/230",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6309,7 +6309,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6330,7 +6330,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -6341,11 +6341,11 @@
                                                 "login": "AashirwadPandey",
                                                 "id": "U_kgDOBvJ87w"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/187",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/187",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6366,7 +6366,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -6376,11 +6376,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/31",
+                                            "url": "https://github.com/user3/swift-react/pull/31",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6401,7 +6401,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -6411,11 +6411,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal-api/pull/26",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal-api/pull/26",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6460,7 +6460,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -6474,7 +6474,7 @@
                             "node": {
                                 "issue": {
                                     "author": {
-                                        "login": "mesaugat",
+                                        "login": "user3",
                                         "id": "MDQ6VXNlcjQyNDA5OTE="
                                     },
                                     "repository": {
@@ -6570,7 +6570,7 @@
                             "node": {
                                 "issue": {
                                     "author": {
-                                        "login": "mesaugat",
+                                        "login": "user3",
                                         "id": "MDQ6VXNlcjQyNDA5OTE="
                                     },
                                     "repository": {
@@ -6623,7 +6623,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6658,7 +6658,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6693,7 +6693,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6714,7 +6714,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -6724,11 +6724,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/30",
+                                            "url": "https://github.com/user3/swift-react/pull/30",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6763,7 +6763,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -6808,7 +6808,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -6957,7 +6957,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -6967,11 +6967,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/29",
+                                            "url": "https://github.com/user3/swift-react/pull/29",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7040,7 +7040,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7061,7 +7061,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7072,11 +7072,11 @@
                                                 "login": "anup8",
                                                 "id": "MDQ6VXNlcjMzMjg3MDEw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/180",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/180",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7097,7 +7097,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7108,11 +7108,11 @@
                                                 "login": "jrroshan",
                                                 "id": "MDQ6VXNlcjI0ODA4MTk2"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/182",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/182",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7157,7 +7157,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -7195,7 +7195,7 @@
                             "node": {
                                 "issue": {
                                     "author": {
-                                        "login": "Swechhya",
+                                        "login": "user2",
                                         "id": "MDQ6VXNlcjYyNTE0MTI="
                                     },
                                     "repository": {
@@ -7219,7 +7219,7 @@
                             "node": {
                                 "issue": {
                                     "author": {
-                                        "login": "Swechhya",
+                                        "login": "user2",
                                         "id": "MDQ6VXNlcjYyNTE0MTI="
                                     },
                                     "repository": {
@@ -7321,7 +7321,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7357,7 +7357,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7378,7 +7378,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7389,11 +7389,11 @@
                                                 "login": "ChetSocio",
                                                 "id": "U_kgDOBs15_Q"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/179",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/179",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7414,7 +7414,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7425,11 +7425,11 @@
                                                 "login": "PradipCodes",
                                                 "id": "MDQ6VXNlcjQ0NzI0NDkx"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/177",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/177",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7450,7 +7450,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7461,11 +7461,11 @@
                                                 "login": "akumaaayush",
                                                 "id": "MDQ6VXNlcjU4ODEzMDA2"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/176",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/176",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7510,7 +7510,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -7538,7 +7538,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7549,11 +7549,11 @@
                                                 "login": "aashishkarki11",
                                                 "id": "U_kgDOCA7reA"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/175",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/175",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7574,7 +7574,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7585,11 +7585,11 @@
                                                 "login": "raaz0n",
                                                 "id": "MDQ6VXNlcjM2NzY5ODYy"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/174",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/174",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7610,7 +7610,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7620,11 +7620,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/28",
+                                            "url": "https://github.com/user3/swift-react/pull/28",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7659,7 +7659,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7694,7 +7694,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7739,7 +7739,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -7767,7 +7767,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7778,11 +7778,11 @@
                                                 "login": "mukezhz",
                                                 "id": "MDQ6VXNlcjQzODEzNjcw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/172",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/172",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7803,7 +7803,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7814,11 +7814,11 @@
                                                 "login": "rnimisha",
                                                 "id": "MDQ6VXNlcjY2OTM5MTUx"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/171",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/171",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7839,7 +7839,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7850,11 +7850,11 @@
                                                 "login": "nishan2053",
                                                 "id": "U_kgDOBzCL0A"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/170",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/170",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7875,7 +7875,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7886,11 +7886,11 @@
                                                 "login": "mukezhz",
                                                 "id": "MDQ6VXNlcjQzODEzNjcw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/167",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/167",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7911,7 +7911,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -7922,11 +7922,11 @@
                                                 "login": "subashpoudel7",
                                                 "id": "MDQ6VXNlcjQxMDMwMjkz"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/169",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/169",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -7971,7 +7971,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -7999,7 +7999,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8010,11 +8010,11 @@
                                                 "login": "rrupeshh",
                                                 "id": "MDQ6VXNlcjIyMzM3MjY4"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/168",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/168",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8035,7 +8035,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8046,11 +8046,11 @@
                                                 "login": "mukezhz",
                                                 "id": "MDQ6VXNlcjQzODEzNjcw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/166",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/166",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8071,7 +8071,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8082,11 +8082,11 @@
                                                 "login": "ankman007",
                                                 "id": "U_kgDOBnMvNw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/165",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/165",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8107,7 +8107,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8118,11 +8118,11 @@
                                                 "login": "mukezhz",
                                                 "id": "MDQ6VXNlcjQzODEzNjcw"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/164",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/164",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8157,7 +8157,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8202,7 +8202,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -8230,7 +8230,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8241,11 +8241,11 @@
                                                 "login": "manisacharya",
                                                 "id": "MDQ6VXNlcjIyNTQzMDE5"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/163",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/163",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8280,7 +8280,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8315,7 +8315,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8336,7 +8336,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8346,11 +8346,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/27",
+                                            "url": "https://github.com/user3/swift-react/pull/27",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8386,7 +8386,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8431,7 +8431,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -8459,7 +8459,7 @@
                                         "isArchived": true,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8469,11 +8469,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/express-api-es6-starter/pull/75",
+                                            "url": "https://github.com/user3/express-api-es6-starter/pull/75",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8502,14 +8502,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-MSW85dGHrV",
                                             "author": {
-                                                "login": "Swechhya",
+                                                "login": "user2",
                                                 "id": "MDQ6VXNlcjYyNTE0MTI="
                                             },
                                             "url": "https://github.com/Lf-Network/oss-leaderboard/pull/62",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8545,7 +8545,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8566,7 +8566,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8577,11 +8577,11 @@
                                                 "login": "jarp0l",
                                                 "id": "MDQ6VXNlcjU3OTczMzU2"
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/161",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/161",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8617,7 +8617,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8662,7 +8662,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -8705,7 +8705,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8741,7 +8741,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8777,7 +8777,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8812,7 +8812,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8841,14 +8841,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-MSW85cPEWy",
                                             "author": {
-                                                "login": "Swechhya",
+                                                "login": "user2",
                                                 "id": "MDQ6VXNlcjYyNTE0MTI="
                                             },
                                             "url": "https://github.com/Lf-Network/oss-leaderboard/pull/56",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -8893,7 +8893,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -8989,7 +8989,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -8999,11 +8999,11 @@
                                             "author": {
                                                 "login": "dependabot"
                                             },
-                                            "url": "https://github.com/mesaugat/swift-react/pull/26",
+                                            "url": "https://github.com/user3/swift-react/pull/26",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9039,7 +9039,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9075,7 +9075,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9120,7 +9120,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -9156,14 +9156,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-MSW85cK6c8",
                                             "author": {
-                                                "login": "Swechhya",
+                                                "login": "user2",
                                                 "id": "MDQ6VXNlcjYyNTE0MTI="
                                             },
                                             "url": "https://github.com/Lf-Network/oss-leaderboard/pull/53",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9199,7 +9199,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9235,7 +9235,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9271,7 +9271,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9292,7 +9292,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -9300,11 +9300,11 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOBRYekM5afoCZ",
                                             "author": null,
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/159",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/159",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9349,7 +9349,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -9377,7 +9377,7 @@
                                         "isArchived": false,
                                         "owner": {
                                             "id": "MDQ6VXNlcjQyNDA5OTE=",
-                                            "login": "mesaugat"
+                                            "login": "user3"
                                         }
                                     },
                                     "pullRequestReview": {
@@ -9388,11 +9388,11 @@
                                                 "login": "kingkarki",
                                                 "id": "MDQ6VXNlcjc1NjE2Mg=="
                                             },
-                                            "url": "https://github.com/mesaugat/tech-companies-in-nepal/pull/160",
+                                            "url": "https://github.com/user3/tech-companies-in-nepal/pull/160",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9421,14 +9421,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-MSW85bx8AW",
                                             "author": {
-                                                "login": "Swechhya",
+                                                "login": "user2",
                                                 "id": "MDQ6VXNlcjYyNTE0MTI="
                                             },
                                             "url": "https://github.com/Lf-Network/oss-leaderboard/pull/44",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9491,14 +9491,14 @@
                                         "pullRequest": {
                                             "id": "PR_kwDOC-MSW85bxFFN",
                                             "author": {
-                                                "login": "Swechhya",
+                                                "login": "user2",
                                                 "id": "MDQ6VXNlcjYyNTE0MTI="
                                             },
                                             "url": "https://github.com/Lf-Network/oss-leaderboard/pull/42",
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9533,7 +9533,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9578,7 +9578,7 @@
     {
         "data": {
             "user": {
-                "username": "mesaugat",
+                "username": "user3",
                 "id": "MDQ6VXNlcjQyNDA5OTE=",
                 "issueComments": {
                     "totalCount": 617,
@@ -9621,7 +9621,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
@@ -9656,7 +9656,7 @@
                                             "state": "MERGED",
                                             "merged": true,
                                             "mergedBy": {
-                                                "login": "mesaugat"
+                                                "login": "user3"
                                             }
                                         },
                                         "reactions": {
