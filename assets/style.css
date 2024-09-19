@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@361;400;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@361;400;600&family=Ubuntu+Mono:wght@400&display=swap');
 /* Resetting default styles */
 * {
   margin: 0;
@@ -14,17 +13,19 @@ html, body {
 /* Root CSS Variables */
 :root {
   /* Color Variables */
-  --white-color: #ffffff;
+  --theme-color: #9EE43F;
+  --white-color: #FFFFFF;
   --black-color: #000000;
-  --golden-banner: #fdce2c;
-  --gold-thread: #feeeb2;
-  --granulated-sugar: #fffdf6;
-  --blended-light: #fffae8;
+  --th-color: #43700A;
+  --hover-color: #FFFFFF80;
+  --even-color: #FFFFFF4D;
+  --odd-color: #FFFFFF33;
+
 
   /* Font Variables */
-  --font-family: 'Inter', sans-serif;
-  --font-size-small: 0.75rem; /* 12px */
-  --font-size-medium: 0.9375rem; /* 15px */
+  --font-family: 'Ubuntu Mono', monospace;
+  --font-size-small: 0.875rem; /* 14px */
+  --font-size-medium: 1rem; /* 16px */
   --font-size-large: clamp(1.875rem, 3.125rem + 8.333vw, 1.5rem); /* 30px */
   
   /* Padding Variables */
@@ -34,7 +35,7 @@ html, body {
 
 /* Body Styles */
 body {
-  background: url('../assets/bg.png') no-repeat center / cover;
+  background: var(--theme-color);
   font-family: var(--font-family);
   padding-bottom: 10vh;
 }
@@ -61,9 +62,13 @@ h1 {
 
 /* Table Styles */
 table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
   margin: 0 auto;
+  border: 1px solid var(--theme-color);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 img.leaderboard__img {
@@ -77,14 +82,14 @@ th, td {
 }
 
 th {
-  color: var(--black-color);
+  color: var(--white-color);
   text-align: left;
   padding: var(--padding-small);
   font-size: var(--font-size-small);
 }
 
 thead {
-  background-color: var(--golden-banner);
+  background-color: var(--th-color);
   font-size: 0.8125rem; /* 13px */
   text-transform: uppercase;
   margin-bottom: 1.25rem; /* 20px */
@@ -102,7 +107,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background-color: var(--gold-thread) !important;
+  background-color: var(--hover-color) !important;
   cursor: pointer;
 }
 
@@ -121,11 +126,11 @@ tbody tr td a:hover {
 
 /* Alternating Row Colors */
 tbody tr:nth-child(odd) {
-  background-color: var(--granulated-sugar);
+  background-color: var(--odd-color);
 }
 
 tbody tr:nth-child(even) {
-  background-color: var(--blended-light);
+  background-color: var(--even-color);
 }
 
 /* Aligning Text in Table */
@@ -136,7 +141,12 @@ table td:not(:first-child) {
 
 /* First Row Styling */
 tbody tr:first-child {
-  background: var(--granulated-sugar) url('../assets/Leader_icon.svg') no-repeat 5px 17px / 16px;
+  background: var(--odd-color) url('../assets/Leader_icon.svg') no-repeat 5px 17px / 16px;
+}
+
+/* Last column styling */
+tbody td:last-child {
+  font-weight: bold;
 }
 
 /* Username Styles */
@@ -171,7 +181,7 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: var(--white-color);
+  color: var(--black-color);
   margin-left: 2.8125rem; /* 45px */
   font-weight: 700;
 }
