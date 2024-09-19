@@ -1,20 +1,23 @@
 """ Package setup. """
+
 import setuptools
 
 
+# Function to read requirements from a file
+def read_requirements(file_name):
+    with open(file_name) as f:
+        return f.read().splitlines()
+
+
+# Read long description from README.md
 with open("README.md", "r") as f:
     long_description = f.read()
 
-requirements = [
-    "requests==2.31.0",
-    "pandas==1.5.3",
-    "tabulate==0.8.7",
-    "markdown==3.2.2",
-]
+# Load requirements
+requirements = read_requirements("requirements.txt")
+requirements_dev = read_requirements("requirements-dev.txt")
 
-# Development Requirements
-requirements_dev = ["pytest==4.*", "black==22.3.0", "pre-commit", "mypy"]
-
+# Set up the package
 setuptools.setup(
     name="oss-leaderboard",
     version="0.0.1",

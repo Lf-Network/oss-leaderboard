@@ -49,7 +49,7 @@ $ make setup
 ## Contributing
 
 Feel free to send pull requests.
-Make sure to run following commands:
+Make sure to run the following commands:
 
 ```bash
 $ make format

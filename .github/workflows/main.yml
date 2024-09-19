@@ -17,8 +17,8 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: '3.8'
+          cache: 'pip3'
           cache-dependency-path: setup.py
 
       - name: Install dependencies
