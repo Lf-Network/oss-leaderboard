@@ -13,7 +13,7 @@ venv:
 	@virtualenv -p python3 $(VENV_PATH)
 
 setup:
-	pip3 install -U -e .[dev]
+	@pip3 install -U -e .[dev]
 
 venv_test:
 	@pytest -vvv
