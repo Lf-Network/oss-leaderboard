@@ -27,6 +27,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+Pipfile
 
 # Installer logs
 pip-log.txt
