@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+from leaderboard.constants import contribTypes
+
 
 def final_html_output(df: pd.DataFrame) -> str:
     """Get final html output
@@ -23,18 +25,33 @@ def final_html_output(df: pd.DataFrame) -> str:
     with open("build/index.html", "w") as f:
         f.write(
             html_string.format(
-                table=df.to_html(
+                table=df.apply(format_row, axis=1).to_html(
                     index=False,
                     escape=False,
-                    formatters={
-                        "User Name": format_username,
-                    },
                 )
             )
         )
 
 
-def format_username(username: str):
+def format_row(row: pd.DataFrame) -> pd.DataFrame:
+    """
+    Formats the data in the given DataFrame row.
+
+    Args:
+        row (pd.DataFrame): A DataFrame representing a row of data.
+
+    Returns:
+        pd.DataFrame: The formatted DataFrame row.
+    """
+
+    username = row["User Name"]
+    row["User Name"] = format_username(username)
+    row[contribTypes.T1] = format_open_pr(username, row[contribTypes.T1])
+
+    return row
+
+
+def format_username(username: str) -> str:
     """
     Format username with avatar image and clickable link to redirect to user's profile.
 
@@ -52,3 +69,21 @@ def format_username(username: str):
     link_username = link_html.format(username, username)
 
     return f'<div class="username">{link_image} {link_username}</div>'
+
+
+def format_open_pr(username: str, value: str) -> str:
+    """
+    Formats an pr opened value to link to frogtoberfest checker.
+
+    Args:
+        username (str): The username associated with the pull request.
+        value (str): The value to be displayed as the link text.
+
+    Returns:
+        str: The formatted HTML code with the link.
+    """
+
+    checker_link_html = '<a target="_blank" rel="noopener noreferrer" href="https://frogtoberfest.lftechnology.com/user/{}">{}</a>'
+    link_checker = checker_link_html.format(username, value)
+
+    return link_checker
