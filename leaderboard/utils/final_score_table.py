@@ -41,7 +41,7 @@ def get_final_score_table(
         )
 
         try:
-            user_row = intermediate_score_df.loc[user_name]
+            user_row = intermediate_score_df.loc[user_name.lower()]
 
             t1_score = (
                 user_row.t1s1 * scoreWeights.T1S1 + user_row.t1s2 * scoreWeights.T1S2
