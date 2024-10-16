@@ -54,3 +54,27 @@ def convert_mk_to_html(mk_data: str) -> str:
         str: The resulting html string.
     """
     return markdown.markdown(mk_data, extensions=["tables"])
+
+
+def remove_duplicates_case_insensitive(input_list):
+    """
+    Remove duplicate entries from a list case insensitively.
+
+    Args:
+        input_list (list): The list from which to remove duplicates.
+
+    Returns:
+        list: A new list containing the unique items from the input list,
+              preserving the case of the first occurrence of each item.
+    """
+    # Create a set to track unique lowercase versions of the list items
+    seen = set()
+    result = []
+    
+    for item in input_list:
+        lower_item = item.lower()
+        if lower_item not in seen:
+            seen.add(lower_item)
+            result.append(item)
+    
+    return result
