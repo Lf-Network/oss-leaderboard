@@ -31,7 +31,7 @@ def main():
     Returns:
         None
     """
- 
+
     # Remove duplicate usernames
     dedup_user_list = remove_duplicates_case_insensitive(user_list)
 
