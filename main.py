@@ -32,7 +32,7 @@ def main():
         None
     """
 
-    # Remove duplicate usernames
+    # Remove duplicate usernames.
     dedup_user_list = remove_duplicates_case_insensitive(user_list)
 
     result = fetch_contributions_for_multi_users(dedup_user_list, variables)
