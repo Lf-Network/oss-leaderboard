@@ -10,7 +10,7 @@ requirements = [
     "pandas==1.5.3",
     "tabulate==0.8.7",
     "markdown==3.2.2",
-    "numpy==1.26.4"
+    "numpy==1.26.4",
 ]
 
 # Development Requirements
