@@ -6,6 +6,7 @@ from leaderboard.utils.intermediate_score_table import get_intermediate_score_ta
 from leaderboard.utils.final_score_table import get_final_score_table
 from multi_users_fetch import fetch_contributions_for_multi_users
 from final_html_output import final_html_output
+from leaderboard.utils.data import remove_duplicates_case_insensitive
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("main")
@@ -31,10 +32,13 @@ def main():
         None
     """
 
-    result = fetch_contributions_for_multi_users(user_list, variables)
+    # Remove duplicate usernames.
+    dedup_user_list = remove_duplicates_case_insensitive(user_list)
+
+    result = fetch_contributions_for_multi_users(dedup_user_list, variables)
 
     intermediate_score_table = get_intermediate_score_table(result)
-    final_score_table = get_final_score_table(intermediate_score_table, user_list)
+    final_score_table = get_final_score_table(intermediate_score_table, dedup_user_list)
 
     final_html_output(final_score_table)
 
