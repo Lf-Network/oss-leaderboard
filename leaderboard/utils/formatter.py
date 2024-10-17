@@ -1,4 +1,5 @@
 """ Util to convert the json to dataframe. """
+
 import json
 from typing import Dict, List
 
@@ -192,7 +193,7 @@ def format_issue_comments(
                 {
                     "github_id": github_id,
                     "user_id": user_id,
-                    "user_name": user_name,
+                    "user_name": user_name.lower(),
                     "type": contribTypes.T4,
                     "repo_id": repo_id,
                     "repo_owner_id": repo_owner_id,
@@ -250,7 +251,7 @@ def format_pr_review_contributions(
             {
                 "github_id": github_id,
                 "user_id": user_id,
-                "user_name": user_name,
+                "user_name": user_name.lower(),
                 "type": contribTypes.T2,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
@@ -327,7 +328,7 @@ def format_pr_contributions(
             {
                 "github_id": github_id,
                 "user_id": user_id,
-                "user_name": user_name,
+                "user_name": user_name.lower(),
                 "type": contribTypes.T1,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
@@ -380,7 +381,7 @@ def format_issue_contributions(
             {
                 "github_id": github_id,
                 "user_id": user_id,
-                "user_name": user_name,
+                "user_name": user_name.lower(),
                 "type": contribTypes.T3,
                 "repo_id": repo_id,
                 "repo_owner_id": repo_owner_id,
@@ -424,7 +425,7 @@ def format_repo_contributions(
             {
                 "github_id": github_id,
                 "user_id": user_id,
-                "user_name": user_name,
+                "user_name": user_name.lower(),
                 "type": contribTypes.T5,
                 "repo_id": repo_id,
                 "repo_owner_id": user_id,
